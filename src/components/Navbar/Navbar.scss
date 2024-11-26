@@ -1,0 +1,217 @@
+@import "../../responsive.scss";
+
+@font-face {
+    font-family: logo;
+    src: url("/fonts/DancingScript-VariableFont_wght.ttf");
+}
+
+.flex-me {
+    display: flex;
+    align-items: center;
+}
+
+
+.slide-in {
+    right: 0 !important;
+}
+
+nav {
+    border: 1px solid;
+    // box-shadow: 1px 1px 2px 1px rgba(81, 81, 81, 0.986);
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: absolute;
+    z-index: 9999;
+    top: 15px;
+    color: white;
+    height: 60px; // subject to change , this was added when working on dashboard 
+
+    .nav-logo {
+        flex: 1;
+        height: 40px;
+
+        img {
+            width: 30%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        span {
+            font-family: logo;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+    }
+
+    .nav-links-mb {
+        display: none;
+        position: relative;
+        transition: all .3s ease;
+
+        @include md {
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            background-color: #001220;
+            flex-direction: column;
+            right: -50%;
+            top: -15px;
+            bottom: 0;
+            width: 50%;
+
+            a {
+                transition: all .3s ease;
+                color: white;
+                font-size: 1.3rem;
+                border: 1px solid rgba(128, 128, 128, 0.559);
+                padding: 1rem;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            a.active,
+            a:hover {
+                background-color: #ff5197;
+            }
+
+            .close {
+                svg {
+                    fill: #fff;
+                }
+
+                position: absolute;
+                top: 25px;
+                right: 0;
+                margin-right: .5rem;
+                cursor: pointer;
+
+            }
+        }
+
+        @include xsm {
+            right: -100%;
+            width: 100%;
+            background-color: #0012209d;
+            backdrop-filter: blur(20px);
+        }
+    }
+
+    .nav-links {
+        flex: 2.5;
+        height: 40px;
+        justify-content: space-around;
+
+
+        .nav-item.dropdown {
+            border: 1px solid;
+            position: relative;
+            height: 40px;
+            padding: .5rem 1rem;
+            cursor: pointer;
+
+            ul {
+                padding-top: 1.5rem;
+                display: none;
+                border: 1px solid red;
+                position: absolute;
+                width: 200px;
+                left: 0;
+                overflow: hidden;
+
+                a {
+                    border: 1px solid;
+                    display: block;
+                    width: 100%;
+                    position: relative;
+                    left: -200px;
+                    transition: all .3s ease;
+
+
+                    // &:nth-of-type(2) {
+                    //     position: relative;
+                    //     left: -200px;
+                    // }
+                }
+            }
+
+            &:hover ul {
+                display: inherit;
+
+                a {
+                    left: 0;
+                }
+            }
+
+            @include md {
+                display: none;
+            }
+        }
+
+        a {
+            position: relative;
+            margin-inline-end: 10px;
+            color: inherit;
+            height: 40px;
+            padding: .5rem 1rem;
+            text-decoration: none;
+
+            @include lg {
+                padding: .5rem;
+            }
+
+            @include md {
+                display: none;
+            }
+        }
+
+        a.cta:last-of-type {
+            border-radius: 5px;
+            box-shadow: 4px 3px 3px 1px #ff5197;
+            background-color: #fff;
+            color: #001220;
+            padding-inline: 2rem;
+            border: 2px solid transparent;
+            transition: all .3s ease;
+
+            &::after {
+                display: none;
+            }
+
+            &:hover {
+                background-color: #001220;
+                border-color: white;
+                color: white;
+            }
+        }
+
+        a::after {
+            content: "";
+            width: 0px;
+            height: 3px;
+            background-color: #ff5197de;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transition: all .3s ease;
+        }
+
+        a:hover::after {
+            background-color: #ff5197de;
+            width: 100%;
+        }
+    }
+
+    .hb-menu-ic {
+        display: none;
+        cursor: pointer;
+
+        @include md {
+            display: initial;
+            margin-right: .5rem;
+        }
+
+    }
+}

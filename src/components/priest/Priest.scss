@@ -1,0 +1,134 @@
+@import "../../responsive.scss";
+
+.mid {
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-around;
+    padding: 1rem .5rem;
+
+    .left {
+        border: 1px solid;
+        box-shadow: 6px 4px 3px white;
+        height: 400px;
+        width: 30%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @include md {
+            width: 80%;
+        }
+
+        @include sm {
+            box-shadow: none;
+            width: 100%;
+        }
+    }
+
+
+
+    .right {
+        width: 65%;
+
+        .row {
+            margin-bottom: .5rem;
+            max-width: 700px;
+
+            h2 {
+                margin-bottom: .8rem;
+                font-weight: 100;
+            }
+
+            h3 {
+                margin-bottom: .2rem;
+            }
+
+            text-align: justify;
+        }
+
+        .row:first-of-type,
+        .row:last-of-type {
+            padding: .5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.347);
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        @include md {
+            width: 100%;
+
+            // border: 1px solid;
+            .details {
+                // border: 1px solid ;
+                width: 82%;
+                margin: auto;
+            }
+        }
+
+        @include sm {
+            .details {
+                width: 100%;
+            }
+        }
+    }
+
+    @include md {
+        flex-direction: column;
+    }
+
+    @include sm {
+        padding: 1rem;
+    }
+}
+
+.last {
+    background-color: #fff;
+    color: #001220;
+    padding: 1rem .8rem;
+
+    .wrapper {
+        display: flex;
+        gap: 5px;
+        justify-content: space-between;
+        margin: auto;
+        height: fit-content;
+
+        .TeamCards {
+            // height: 100%;
+            width: 300px;
+        }
+
+        a {
+            color: #001220;
+        }
+
+        @include md {
+            flex-wrap: wrap;
+            height: fit-content;
+
+            .TeamCards {
+                height: 100%;
+                width: 48%;
+            }
+        }
+
+        @include sm {
+            .TeamCards {
+                width: 100%;
+                margin: auto;
+            }
+        }
+    }
+
+}

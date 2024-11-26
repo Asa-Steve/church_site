@@ -1,0 +1,24 @@
+
+.donate.form-section {
+    #cur_icon{
+        color: rgb(94, 94, 94);
+    }
+    #Donation_sum{
+        width: 95%;
+        margin-left: 2px;
+    }
+
+    .row{
+        .card_deits{
+            display: flex;
+            gap: 20px;
+
+            input:nth-of-type(1){
+                flex: 3;
+            }
+            input:not(input:nth-of-type(1)){
+                flex: 1;
+            }
+        }
+    }
+}
