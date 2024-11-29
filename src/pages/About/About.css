@@ -1,0 +1,287 @@
+.about_sect {
+  padding-top: 4rem;
+  min-height: 100vh;
+  background-color: rgba(255, 255, 255, 0.945);
+  color: black;
+}
+
+.about_sect .header_title {
+  margin: 1rem 0 3rem;
+}
+
+.about_sect .header_title h2,
+.about_sect .header_title p {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.about_sect .header_title h2 {
+  font-size: 3.5rem;
+  font-weight: 100;
+}
+
+.about_sect .header_title p {
+  max-width: 800px;
+  margin: auto;
+  font-size: 1.2rem;
+  color: #605f5f;
+}
+
+@media (max-width: 905px) {
+  .about_sect .header_title h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  .about_sect .header_title p {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 736px) {
+  .about_sect .header_title p {
+    max-width: 350px;
+  }
+}
+
+.about_sect .mission_stat {
+  width: 95%;
+  margin: 2rem auto 8rem;
+  padding: 1rem;
+  height: 500px;
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.about_sect .mission_stat .left {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.about_sect .mission_stat .left .stat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 98%;
+}
+
+.about_sect .mission_stat .left .stat span.num {
+  width: 100px;
+  height: 100px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  background-color: black;
+  color: white;
+  font-size: 3rem;
+  font-weight: bolder;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.about_sect .mission_stat .left .stat .stat-info {
+  width: 100%;
+  padding: 0.3rem;
+  height: 100%;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.about_sect .mission_stat .left .stat .stat-info h3,
+.about_sect .mission_stat .left .stat .stat-info p {
+  position: relative;
+  z-index: 3;
+}
+
+.about_sect .mission_stat .left .stat .stat-info h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  -webkit-transition: color 0.3s ease-in;
+  transition: color 0.3s ease-in;
+}
+
+.about_sect .mission_stat .left .stat .stat-info p {
+  line-height: 20px;
+  font-weight: 100;
+  color: #6d6969;
+}
+
+.about_sect .mission_stat .left .stat .stat-info::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  width: 0px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: black;
+}
+
+.about_sect .mission_stat .left .stat .stat-info:hover h3 {
+  color: white;
+}
+
+.about_sect .mission_stat .left .stat .stat-info:hover p {
+  color: #cecece;
+}
+
+.about_sect .mission_stat .left .stat .stat-info:hover::before {
+  width: 100%;
+}
+
+.about_sect .mission_stat .right {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  overflow: hidden;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.233) -5px 10px 25px 0px;
+          box-shadow: rgba(0, 0, 0, 0.233) -5px 10px 25px 0px;
+}
+
+.about_sect .mission_stat .right img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 905px) {
+  .about_sect .mission_stat {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    row-gap: 20px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin-bottom: 3rem;
+  }
+  .about_sect .mission_stat .right {
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
+    height: 300px;
+  }
+  .about_sect .mission_stat .right img {
+    height: 100%;
+  }
+  .about_sect .mission_stat .left {
+    row-gap: 10px;
+  }
+}
+
+.about_sect .about_faq {
+  margin-block: 5rem;
+}
+
+.about_sect .about_faq .contact_info_sect {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+.about_sect .about_faq .contact_info_sect .left {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.about_sect .about_faq .contact_info_sect .right {
+  -webkit-box-flex: 1.5;
+      -ms-flex: 1.5;
+          flex: 1.5;
+  background-color: #001220;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.about_sect .about_faq .contact_info_sect .right .faqs {
+  padding: 0.5rem;
+}
+
+.about_sect .about_faq .contact_info_sect .right .faqs .Faq {
+  border-color: #c8c8c8;
+}
+
+@media (max-width: 905px) {
+  .about_sect .about_faq .contact_info_sect {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    row-gap: 10px;
+  }
+}
+
+.about_sect .about_our_team {
+  margin-bottom: 4rem;
+}
+
+.about_sect .about_our_team .cards {
+  width: 90%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 0.5rem;
+  gap: 10px;
+}
+
+.about_sect .about_our_team .cards a {
+  color: inherit;
+}
+
+@media (max-width: 1024px) {
+  .about_sect .about_our_team .cards {
+    width: 100%;
+    padding-bottom: 2rem;
+    row-gap: 30px;
+  }
+  .about_sect .about_our_team .cards .TeamCards {
+    width: 250px;
+  }
+}
+
+@media (max-width: 905px) {
+  .about_sect .about_our_team .cards .TeamCards {
+    width: 300px;
+  }
+}
+
+@media (max-width: 524px) {
+  .about_sect .about_our_team .cards .TeamCards {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=About.css.map */

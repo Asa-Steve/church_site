@@ -1,9 +1,8 @@
-import { Outlet } from 'react-router-dom'
-import './DashboardLayout.scss'
-import Footer from './components/Footer/Footer'
+import { Outlet } from "react-router-dom";
+import "./DashboardLayout.scss";
+import Footer from "./components/headers/Footer/Footer";
 
 function DashboardLayout() {
-
   return (
     <>
       {/* No Navbar */}
@@ -11,7 +10,7 @@ function DashboardLayout() {
         <Outlet />
       </div>
     </>
-  )
+  );
 }
 
-export default DashboardLayout
+export default DashboardLayout;

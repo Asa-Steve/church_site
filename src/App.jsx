@@ -1,10 +1,9 @@
-import { Outlet } from 'react-router-dom'
-import './App.scss'
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/Footer/Footer'
+import { Outlet } from "react-router-dom";
+import "./App.scss";
+import Navbar from "./components/headers/Navbar/Navbar";
+import Footer from "./components/headers/Footer/Footer";
 
 function App() {
-
   return (
     <>
       <Navbar />
@@ -13,7 +12,7 @@ function App() {
       </div>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

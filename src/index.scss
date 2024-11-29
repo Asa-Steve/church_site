@@ -1,4 +1,4 @@
-@import "./responsive.scss";
+@import "./styles/responsive.scss";
 
 * {
   margin: 0;
@@ -9,8 +9,8 @@
 body {
   min-width: 320px;
   min-height: 100vh;
-  // font-family: sans-serif; 
-  font-family: 'Gill Sans ', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  // font-family: sans-serif;
+  font-family: "Gill Sans ", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   background-color: #001220;
   color: white;
 }
@@ -33,7 +33,7 @@ a {
 }
 
 .diff {
-  color: #FF0066;
+  color: #ff0066;
   font-size: 10px;
   font-weight: bold;
   letter-spacing: 2px;
@@ -56,14 +56,11 @@ a {
       .wrap {
         width: 90%;
       }
-
     }
 
     #message {
       height: 100px;
     }
-
-
   }
 
   .right {
@@ -84,11 +81,10 @@ a {
 
       p {
         color: rgb(96, 95, 95);
-        transition: all .3s ease-in-out;
+        transition: all 0.3s ease-in-out;
       }
 
       a {
-
         &:hover {
           p {
             color: #ff5197;
@@ -108,8 +104,6 @@ a {
     width: 99%;
     margin-bottom: 0;
   }
-
-
 }
 
 // End Of Global Classes
@@ -135,7 +129,6 @@ section.top {
   }
 
   .text {
-
     h1 {
       font-weight: 100;
       font-size: 3rem;
@@ -147,17 +140,13 @@ section.top {
     }
 
     z-index: 1;
-
   }
 }
-
-
 
 // Added this chunk after commenting the .scss for Baptism
 section.top {
   border-image-source: linear-gradient(hsl(0, 100%, 50%), hsl(0, 0%, 0%));
   border-image-slice: 1 fill;
-
 }
 
 .form-section {
@@ -191,8 +180,7 @@ section.top {
         margin-bottom: 1rem;
         // border: 1px solid;
 
-
-        // ***** Changes i made after adding divs and labels**** 
+        // ***** Changes i made after adding divs and labels****
 
         // &.input-grp input:nth-of-type(1) {
         //     width: 60%;
@@ -232,7 +220,6 @@ section.top {
             flex-direction: column;
           }
         }
-
       }
 
       input {
@@ -247,12 +234,11 @@ section.top {
         appearance: none;
         -moz-appearance: textfield;
 
-
         &:focus {
           outline: none;
         }
 
-        &[type='radio'] {
+        &[type="radio"] {
           border: 1px solid red;
           font-size: 1rem;
         }
@@ -260,7 +246,7 @@ section.top {
 
       label {
         display: block;
-        margin-bottom: .2rem;
+        margin-bottom: 0.2rem;
         color: black;
         font-family: consolas;
       }
@@ -272,9 +258,8 @@ section.top {
         background-color: transparent;
         color: black;
 
-        padding: .2rem .5rem;
+        padding: 0.2rem 0.5rem;
         border: 1px solid rgba(6, 6, 6, 0.235);
-
       }
 
       textarea {
@@ -283,7 +268,7 @@ section.top {
         background-color: transparent;
         border: none;
         color: black;
-        padding: .5rem;
+        padding: 0.5rem;
         border-block: 1px solid rgba(6, 6, 6, 0.235);
         resize: none;
 
@@ -293,10 +278,10 @@ section.top {
       }
 
       button {
-        padding: .5rem 2rem;
+        padding: 0.5rem 2rem;
         border: none;
         background-color: #ff0066;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
         color: white;
         cursor: pointer;
 
@@ -308,7 +293,7 @@ section.top {
       }
 
       .wed_in {
-        padding: .2rem;
+        padding: 0.2rem;
         display: flex;
         gap: 10px;
         width: fit-content;
@@ -317,16 +302,24 @@ section.top {
           display: flex;
           place-items: center;
           justify-content: flex-start;
-          border: 1px solid black;
-          padding: .2rem;
+          padding: 0.2rem;
           width: 60px;
           height: fit-content;
+          cursor: pointer;
 
           input {
-            margin: .2rem;
-            height: 80%;
+            margin: 0.2rem;
+            height: 30%;
             width: 30%;
             cursor: pointer;
+
+            &[type="radio"] {
+              height: 12px;
+
+              &:checked {
+                background-color: red;
+              }
+            }
           }
         }
       }
