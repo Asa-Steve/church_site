@@ -146,23 +146,9 @@ const Navbar = () => {
                 >
                   infant Baptism
                 </NavLink>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "dropdown-item active" : "dropdown-item"
-                  }
-                  to="#"
-                  onClick={handleSlideIN}
-                >
-                  Another action
-                </NavLink>
+                <NavLink onClick={handleSlideIN}>Another action</NavLink>
                 <hr className="dropdown-divider" />
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "dropdown-item active" : "dropdown-item"
-                  }
-                  to="#"
-                  onClick={handleSlideIN}
-                >
+                <NavLink to="#" onClick={handleSlideIN}>
                   Something else here
                 </NavLink>
               </ul>
