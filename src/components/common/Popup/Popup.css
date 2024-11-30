@@ -8,6 +8,7 @@
   left: 50%;
   top: 50%;
   height: 250px;
+  z-index: 300000;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   width: 500px;
@@ -112,6 +113,7 @@
           backdrop-filter: blur(8px);
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  z-index: 30000;
 }
 
 .popup-overlay.hide {

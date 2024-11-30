@@ -55,7 +55,6 @@ const router = createBrowserRouter([
         path: "/baptism",
         element: <Baptism />,
       },
-      ,
       {
         path: "/payment_status",
         element: <PaymentSuccess />,
@@ -63,12 +62,21 @@ const router = createBrowserRouter([
     ],
   },
   {
+    // path: "/admin",
+    // element: <DashboardLayout />,
+    // errorElement: <Error />,
+    // children: [
+    //   {
+    //     path: "",
+    //     element: <Dashboard />,
+    //   },
+    // ],
     path: "/admin",
     element: <DashboardLayout />,
     errorElement: <Error />,
     children: [
       {
-        path: "",
+        index: true,
         element: <Dashboard />,
       },
     ],

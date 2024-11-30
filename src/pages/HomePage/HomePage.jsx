@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import team from "../../components/Utils/team";
 import faqs from "../../components/Utils/faqs";
 
-
 const HomePage = () => {
   const [activeFaq, setActiveFaq] = useState(null);
   const toggleFaq = (idx) => {
@@ -25,7 +24,8 @@ const HomePage = () => {
             Join us as we journey together in worship, love, and service. Be
             part of a vibrant community where everyone belongs.
           </p>
-          <button>Discover More</button>
+
+          <Link to="/about">Discover More</Link>
         </div>
         <div className="right"></div>
 
@@ -180,7 +180,7 @@ const HomePage = () => {
                 tincidunt aliquam nibh at pulvinar.
               </p>
 
-              <Link to="">Show more</Link>
+              <Link to="/article">Show more</Link>
             </div>
           </div>
           <div className="program sec">
@@ -193,7 +193,7 @@ const HomePage = () => {
                 tincidunt aliquam nibh at pulvinar.
               </p>
 
-              <Link to="">Show more</Link>
+              <Link to="/article">Show more</Link>
             </div>
           </div>
         </div>

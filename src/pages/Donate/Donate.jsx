@@ -138,9 +138,10 @@ const Donate = () => {
                 <div>
                   <label htmlFor="ph">Phone Number</label>
                   <input
-                    type="text"
+                    type="number"
                     name="phoneNo"
                     id="ph"
+                    min={0}
                     placeholder="Phone Number"
                     value={formData.phoneNo}
                     onChange={handleChange}

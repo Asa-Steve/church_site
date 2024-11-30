@@ -231,6 +231,7 @@ const Baptism = () => {
                     type="number"
                     name="parentPhone"
                     id="parent_ph"
+                    min={0}
                     placeholder="E.g +234 7035 545 521"
                     onChange={handleChange}
                     value={formData.parentPhone}

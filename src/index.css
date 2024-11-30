@@ -11,6 +11,24 @@ body {
   font-family: "Gill Sans ", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   background-color: #001220;
   color: white;
+  position: relative;
+}
+
+body #root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body #root .Footer {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  margin-top: auto;
 }
 
 a {

@@ -164,6 +164,7 @@ const Mass = () => {
                     type="number"
                     id="stipend"
                     name="amount"
+                    min={200}
                     placeholder="$ Mass Stipend"
                     required
                     onChange={handleChange}

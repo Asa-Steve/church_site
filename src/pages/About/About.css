@@ -80,11 +80,12 @@
       -ms-flex-align: center;
           align-items: center;
   width: 98%;
+  height: 100px;
 }
 
 .about_sect .mission_stat .left .stat span.num {
   width: 100px;
-  height: 100px;
+  height: 100%;
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -99,6 +100,11 @@
   width: 100%;
   padding: 0.3rem;
   height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-left: 1rem;
   position: relative;
 }
@@ -185,6 +191,12 @@
   }
   .about_sect .mission_stat .left {
     row-gap: 10px;
+  }
+}
+
+@media (max-width: 632px) {
+  .about_sect .mission_stat .left .stat {
+    height: 120px;
   }
 }
 
