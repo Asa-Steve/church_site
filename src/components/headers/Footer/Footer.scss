@@ -1,14 +1,14 @@
 @import "../../../styles/responsive.scss";
 
 .Footer {
-  height: 250px;
+  // height: 300px;
+  display: flex;
+  flex-direction: column;
 
   border-top: 1px solid rgba(255, 255, 255, 0.502);
 
   .wrapper {
     display: flex;
-    height: 100%;
-
     .col-1 {
       flex: 1;
       padding: 0.5rem;

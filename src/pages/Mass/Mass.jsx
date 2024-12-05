@@ -14,8 +14,10 @@ const Mass = () => {
     email: "",
     requestedFor: "",
     amount: "",
-    novena: 4,
-    paymentFor: "mass",
+    novena: 1,
+    intentions: "",
+    note: "",
+    paymentFor: "mass_request",
   });
   // Handling Form Submit
   const handleSubmit = (e) => {
@@ -66,7 +68,7 @@ const Mass = () => {
     try {
       setisLoading(true);
       const response = await axios.post(
-        "http://localhost:3000/initialize-transaction",
+        "http://localhost:3000/api/v1/makePayment",
         payload
       );
       const {
@@ -164,7 +166,7 @@ const Mass = () => {
                     type="number"
                     id="stipend"
                     name="amount"
-                    min={200}
+                    min={300}
                     placeholder="$ Mass Stipend"
                     required
                     onChange={handleChange}

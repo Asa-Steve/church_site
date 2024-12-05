@@ -25,8 +25,6 @@ const Donate = () => {
 
   // Setting a display message for user
   const setPop = (msg) => {
-    console.log("got called with msg :", msg);
-
     setMessage(msg);
 
     // setTimeout(() => {
@@ -64,12 +62,10 @@ const Donate = () => {
     };
     setMessage("");
 
-    console.log(payload);
-
     try {
       setisLoading(true);
       const response = await axios.post(
-        "http://localhost:3000/initialize-transaction",
+        "http://localhost:3000/api/v1/makePayment",
         payload
       );
       const {

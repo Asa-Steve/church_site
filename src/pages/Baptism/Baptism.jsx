@@ -25,7 +25,8 @@ const Baptism = () => {
     residenceAddr: "",
     wedded: "",
     sponsor: "",
-    amount:1000
+    amount: 1000,
+    paymentFor: "infant_baptism",
   });
 
   // Handling Input Change when typing
@@ -62,12 +63,12 @@ const Baptism = () => {
       email: formData.email,
       amount: formData.amount * 100,
       callback_url: "http://localhost:5173/payment_status",
-      metadata: { ...formData, paymentFor: "baptism" },
+      metadata: { ...formData },
     };
     try {
       setisLoading(true);
       const response = await axios.post(
-        "http://localhost:3000/initialize-transaction",
+        "http://localhost:3000/api/v1/makePayment",
         payload
       );
       const {

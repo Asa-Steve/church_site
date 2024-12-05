@@ -28,6 +28,12 @@
      object-fit: cover;
 }
 
+@media (max-width: 632px) {
+  .stick .event_sect .left {
+    border: 3px solid red;
+  }
+}
+
 .stick .event_sect .right {
   -webkit-box-flex: 1.5;
       -ms-flex: 1.5;
@@ -105,5 +111,18 @@
 
 .stick .event_sect .right .event-body .modalities li:not(:last-of-type) {
   border-bottom: 1px solid rgba(155, 152, 152, 0.372);
+}
+
+@media (max-width: 632px) {
+  .stick .event_sect {
+    border: 3px solid red;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .stick .event_sect .left {
+    height: 400px;
+  }
 }
 /*# sourceMappingURL=Article.css.map */

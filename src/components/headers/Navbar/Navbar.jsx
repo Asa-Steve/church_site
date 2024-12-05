@@ -23,18 +23,21 @@ const Navbar = () => {
         </div>
 
         <div className="nav-links flex-me">
-          <NavLink to="/" className={({ isActive }) => isActive && "active"}>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+          >
             Home
           </NavLink>
           <NavLink
             to="/about"
-            className={({ isActive }) => isActive && "active"}
+            className={({ isActive }) => (isActive ? "active" : undefined)}
           >
             About Us
           </NavLink>
           <NavLink
             to="/article"
-            className={({ isActive }) => isActive && "active"}
+            className={({ isActive }) => (isActive ? "active" : undefined)}
           >
             Articles
           </NavLink>
@@ -53,13 +56,13 @@ const Navbar = () => {
           </div>
           <NavLink
             to="/mass"
-            className={({ isActive }) => isActive && "active"}
+            className={({ isActive }) => (isActive ? "active" : undefined)}
           >
             Mass Request
           </NavLink>
           <NavLink
             to="/contact"
-            className={({ isActive }) => isActive && "active"}
+            className={({ isActive }) => (isActive ? "active" : undefined)}
           >
             Contact Us
           </NavLink>
@@ -89,21 +92,21 @@ const Navbar = () => {
             <NavLink
               to="/"
               onClick={handleSlideIN}
-              className={({ isActive }) => isActive && "active"}
+              className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Home
             </NavLink>
             <NavLink
               onClick={handleSlideIN}
               to="/about"
-              className={({ isActive }) => isActive && "active"}
+              className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               About Us
             </NavLink>
             <NavLink
               onClick={handleSlideIN}
               to="/article"
-              className={({ isActive }) => isActive && "active"}
+              className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Articles
             </NavLink>
@@ -146,9 +149,11 @@ const Navbar = () => {
                 >
                   infant Baptism
                 </NavLink>
-                <NavLink onClick={handleSlideIN}>Another action</NavLink>
+                <NavLink to="/" onClick={handleSlideIN}>
+                  Another action
+                </NavLink>
                 <hr className="dropdown-divider" />
-                <NavLink to="#" onClick={handleSlideIN}>
+                <NavLink to="/" onClick={handleSlideIN}>
                   Something else here
                 </NavLink>
               </ul>
@@ -156,14 +161,14 @@ const Navbar = () => {
             <NavLink
               onClick={handleSlideIN}
               to="/mass"
-              className={({ isActive }) => isActive && "active"}
+              className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Mass Request
             </NavLink>
             <NavLink
               onClick={handleSlideIN}
               to="/contact"
-              className={({ isActive }) => isActive && "active"}
+              className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Contact Us
             </NavLink>
@@ -176,7 +181,10 @@ const Navbar = () => {
             </NavLink>
           </div>
         </div>
-        <div className="hb-menu-ic" style={{ display: slideIn && "none" }}>
+        <div
+          className="hb-menu-ic"
+          style={{ display: slideIn ? "none" : undefined }}
+        >
           <svg
             onClick={handleSlideIN}
             xmlns="http://www.w3.org/2000/svg"

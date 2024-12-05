@@ -17,7 +17,7 @@ const Payment_Success = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:3000/verify-payment",
+          "http://localhost:3000/api/v1/verifyPayment",
           { reference }
         );
         console.log("Payment Verified:", response.data);

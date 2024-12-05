@@ -73,14 +73,14 @@
   }
   .hero .left h1,
   .hero .left p,
-  .hero .left button {
+  .hero .left a {
     text-align: center;
     margin-inline: auto;
   }
   .hero .left h1 {
     font-size: 4.5rem;
   }
-  .hero .left button {
+  .hero .left a {
     padding: 0.7rem;
   }
   .hero .left p:nth-of-type(1) {
