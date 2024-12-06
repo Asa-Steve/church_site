@@ -1,0 +1,155 @@
+.mid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 1rem .5rem;
+}
+
+.mid .left {
+  border: 1px solid;
+  -webkit-box-shadow: 6px 4px 3px white;
+          box-shadow: 6px 4px 3px white;
+  height: 400px;
+  width: 30%;
+}
+
+.mid .left img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media (max-width: 905px) {
+  .mid .left {
+    width: 80%;
+  }
+}
+
+@media (max-width: 736px) {
+  .mid .left {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    width: 100%;
+  }
+}
+
+.mid .right {
+  width: 65%;
+}
+
+.mid .right .row {
+  margin-bottom: .5rem;
+  max-width: 700px;
+  text-align: justify;
+}
+
+.mid .right .row h2 {
+  margin-bottom: .8rem;
+  font-weight: 100;
+}
+
+.mid .right .row h3 {
+  margin-bottom: .2rem;
+}
+
+.mid .right .row:first-of-type,
+.mid .right .row:last-of-type {
+  padding: .5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.347);
+}
+
+.mid .right span {
+  font-weight: bold;
+}
+
+.mid .right ul {
+  list-style: none;
+}
+
+@media (max-width: 905px) {
+  .mid .right {
+    width: 100%;
+  }
+  .mid .right .details {
+    width: 82%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 736px) {
+  .mid .right .details {
+    width: 100%;
+  }
+}
+
+@media (max-width: 905px) {
+  .mid {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media (max-width: 736px) {
+  .mid {
+    padding: 1rem;
+  }
+}
+
+.last {
+  background-color: #fff;
+  color: #001220;
+  padding: 1rem .8rem;
+}
+
+.last .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: auto;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.last .wrapper .TeamCards {
+  width: 300px;
+}
+
+.last .wrapper a {
+  color: #001220;
+}
+
+@media (max-width: 905px) {
+  .last .wrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .last .wrapper .TeamCards {
+    height: 100%;
+    width: 48%;
+  }
+}
+
+@media (max-width: 736px) {
+  .last .wrapper .TeamCards {
+    width: 100%;
+    margin: auto;
+  }
+}
+/*# sourceMappingURL=Priest.css.map */

@@ -1,0 +1,65 @@
+.Faq {
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  border: 1px solid;
+}
+
+.Faq .qst {
+  height: 100%;
+  width: 88%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.Faq .acc-btn {
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 .5rem;
+}
+
+.Faq .acc-btn .qst-toggler {
+  width: 10%;
+  height: 100%;
+  position: relative;
+}
+
+.Faq .acc-btn .qst-toggler span {
+  display: block;
+  width: 20px;
+  height: 3px;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  right: 35%;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.Faq .acc-btn .qst-toggler span:nth-of-type(2) {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.Faq .faq-deit {
+  padding: .5rem;
+}
+/*# sourceMappingURL=Faq.css.map */
