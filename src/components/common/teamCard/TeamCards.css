@@ -1,0 +1,46 @@
+.TeamCards {
+  border: 1px solid rgba(128, 128, 128, 0.242);
+  border-radius: 5px;
+  width: 250px;
+  height: 100%;
+  padding: .6rem;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.TeamCards .Card {
+  margin: auto;
+  width: 100%;
+}
+
+.TeamCards .card-deit {
+  margin-block: .5rem;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.TeamCards .card-deit .socials {
+  margin-block: .5rem;
+}
+
+.TeamCards .card-deit .socials svg {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+}
+
+.TeamCards .card-deit h4 {
+  letter-spacing: 1px;
+}
+
+.TeamCards .card-deit span {
+  font-style: italic;
+  font-size: 13px;
+}
+
+.TeamCards:hover {
+  -webkit-box-shadow: 0px 3px 2px #4d001f9e;
+          box-shadow: 0px 3px 2px #4d001f9e;
+}
+/*# sourceMappingURL=TeamCards.css.map */

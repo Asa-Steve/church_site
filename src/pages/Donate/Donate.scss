@@ -1,0 +1,48 @@
+.donate.form-section {
+  #cur_icon {
+    color: rgb(94, 94, 94);
+  }
+  #Donation_sum {
+    width: 95%;
+    margin-left: 2px;
+  }
+
+  .row {
+    .card_deits {
+      display: flex;
+      gap: 20px;
+
+      input:nth-of-type(1) {
+        flex: 3;
+      }
+      input:not(input:nth-of-type(1)) {
+        flex: 1;
+      }
+    }
+
+    &:last-of-type{
+      border-bottom: 1px solid rgba(6, 6, 6, 0.235);
+      margin-bottom: 2rem;
+
+      input{
+        border: none;
+      }
+    }
+  }
+
+  .resp {
+    color: initial;
+    border: 1px solid;
+    padding: 0.5rem 1rem;
+    margin-top: 0.2rem;
+    width: max-content;
+    &.err {
+        background-color: red;
+        color: white;
+    }
+    &.succ {
+        background-color: greenyellow;
+        border-color: white;
+    }
+  }
+}

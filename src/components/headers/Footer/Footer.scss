@@ -1,0 +1,134 @@
+@import "../../../styles/responsive.scss";
+
+.Footer {
+  // height: 300px;
+  display: flex;
+  flex-direction: column;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.502);
+
+  .wrapper {
+    display: flex;
+    .col-1 {
+      flex: 1;
+      padding: 0.5rem;
+      display: flex;
+      row-gap: 10px;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .logo-bottom {
+        width: max-content;
+        height: 60px;
+        padding: .3rem;
+
+        .nav-logo-bottom {
+          width: max-content;
+          height: 100%;
+          gap: 10px;
+          padding-inline-end: .5rem;
+
+          .img-wrap-logo {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+          span {
+            font-family: logo;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+          }
+        }
+      }
+      p {
+        max-width: 400px;
+      }
+      .socials {
+        height: 40px;
+        margin-top: 0.4rem;
+        width: max-content;
+
+        span {
+          display: inline-block;
+          border: 1px solid;
+          margin-inline-end: 1rem;
+          padding: 0.5rem;
+          height: 100%;
+          width: max-content;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .divider {
+      border: 1px solid grey;
+      height: 80%;
+      align-self: center;
+    }
+    .col-2 {
+      flex: 1;
+      padding: 0.5rem;
+
+      .diff {
+        font-size: 1rem;
+        margin-block: 0.5rem;
+      }
+
+      .links {
+        width: 50%;
+        place-items: center;
+        padding: 0.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        a {
+          display: block;
+          width: fit-content;
+          border: 1px solid;
+          padding: 0.5rem 1rem;
+          margin-block-end: 0.5rem;
+          color: white;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: #ff0066;
+          }
+        }
+
+        @include md {
+          width: 90%;
+        }
+      }
+    }
+
+    @include xxsm {
+      height: fit-content;
+      flex-direction: column;
+
+      .col-1 {
+        flex: none;
+        height: 220px;
+      }
+
+      .divider {
+        display: none;
+      }
+    }
+  }
+
+  .copy {
+    text-align: center;
+    padding-block: 0.5rem;
+    background-color: #fff;
+    color: #001220;
+  }
+}
