@@ -62,7 +62,7 @@ const Baptism = () => {
     const payload = {
       email: formData.email,
       amount: formData.amount * 100,
-      callback_url: "http://localhost:5173/payment_status",
+      callback_url: "https://mount-zion.onrender.com/payment_status",
       metadata: { ...formData },
     };
     try {
