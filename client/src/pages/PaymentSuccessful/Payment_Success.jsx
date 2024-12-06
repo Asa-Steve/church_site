@@ -17,7 +17,7 @@ const Payment_Success = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/v1/verifyPayment",
+          "https://church-site-server.onrender.com/api/v1/verifyPayment",
           { reference }
         );
         setIsSuccessful(true);

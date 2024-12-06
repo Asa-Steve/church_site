@@ -24,7 +24,7 @@ exports.verifyPayment = async (req, res) => {
       }
     );
 
-    if (response.data.status) {
+    if (response?.data?.status) {
       // Getting the Required Details from the Paystack Returned Data
       const dataPaystack = {
         ...response?.data?.data?.metadata,
@@ -230,7 +230,7 @@ exports.initializePayment = async (req, res) => {
   } catch (error) {
     console.error(
       "Error initializing transaction:",
-      error.response?.data || error.message
+      error.response?.data || error?.message
     );
     return res
       .status(error.response?.status || 500)

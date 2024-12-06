@@ -65,7 +65,7 @@ const Donate = () => {
     try {
       setisLoading(true);
       const response = await axios.post(
-        "http://localhost:3000/api/v1/makePayment",
+        "https://church-site-server.onrender.com/api/v1/makePayment",
         payload
       );
       const {
