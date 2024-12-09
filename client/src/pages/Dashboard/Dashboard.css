@@ -301,8 +301,8 @@
   cursor: pointer;
 }
 
-.dash .right_dash .main .chart .left .left_info .filter div.wk,
-.dash .right_dash .main .stat .left .left_info .filter div.wk {
+.dash .right_dash .main .chart .left .left_info .filter div.active,
+.dash .right_dash .main .stat .left .left_info .filter div.active {
   background-color: rgba(128, 128, 128, 0.235);
   margin-inline: .1rem;
 }
@@ -310,7 +310,6 @@
 .dash .right_dash .main .chart .left .plot,
 .dash .right_dash .main .stat .left .plot {
   margin-top: 1rem;
-  background-color: tomato;
   height: calc(500px - 40px - 1.2rem);
 }
 

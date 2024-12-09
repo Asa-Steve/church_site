@@ -247,7 +247,7 @@
                                 padding: .5rem;
                                 cursor: pointer;
 
-                                &.wk {
+                                &.active {
                                     background-color: rgba(128, 128, 128, 0.235);
                                     margin-inline: .1rem;
                                 }
@@ -257,7 +257,7 @@
 
                     .plot {
                         margin-top: 1rem;
-                        background-color: tomato;
+                        // background-color: tomato;
                         height: calc(500px - 40px - 1.2rem);
                     }
                 }
