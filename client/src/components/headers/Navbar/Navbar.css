@@ -23,7 +23,8 @@ nav {
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  position: absolute;
+  position: fixed;
+  border: 1px solid;
   z-index: 999;
   top: 15px;
   color: white;
@@ -152,7 +153,7 @@ nav .nav-links-mb a.cta:last-of-type {
   width: 90%;
   height: 50px;
   place-items: center;
-  padding: .5rem;
+  padding: 0.5rem;
   text-align: center;
   margin: 1rem 1rem 0;
 }

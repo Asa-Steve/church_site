@@ -1,9 +1,15 @@
 import "./Popup.scss";
 
-const PopUp = ({ showPopup, handleCancel, handleProceed, isLoading ,message,price}) => {
-  
+const PopUp = ({
+  showPopup,
+  handleCancel,
+  handleProceed,
+  isLoading,
+  message,
+  price,
+}) => {
   return (
-    <>
+    <div className={showPopup ? "popup-wrapper" : "popup-wrapper hide"}>
       <div className={showPopup ? "popup-overlay" : "popup-overlay hide"}></div>
       <div className={showPopup ? "popup" : "popup hide"}>
         <h2>PAYMENT REQUIRED</h2>
@@ -20,7 +26,7 @@ const PopUp = ({ showPopup, handleCancel, handleProceed, isLoading ,message,pric
           </p>
         }
       </div>
-    </>
+    </div>
   );
 };
 

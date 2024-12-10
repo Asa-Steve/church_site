@@ -15,7 +15,7 @@ const HomePage = () => {
     setActiveFaq(activeFaq === idx ? null : idx);
   };
   return (
-    <div>
+    <>
       <section className="hero flex-me overlay">
         <div className="left">
           <h1>Welcome to church</h1>
@@ -252,7 +252,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 

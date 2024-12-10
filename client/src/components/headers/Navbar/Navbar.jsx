@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [slideIn, setSlideIn] = useState(false);
   const [showDropMb, setShowDropMb] = useState(false);
 
+  const { pathname } = useLocation();
+
   const handleSlideIN = () => {
     setSlideIn(!slideIn);
     setShowDropMb(false);
   };
+
+  useEffect(() => {
+    setSlideIn(false);
+  }, [pathname]);
+
+  
   return (
     <>
       <nav className="flex-me">

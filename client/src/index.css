@@ -22,12 +22,12 @@ body #root {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  border: 2px solid green;
 }
 
-body #root .Footer {
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
+body #root footer.Footer {
   margin-top: auto;
 }
 

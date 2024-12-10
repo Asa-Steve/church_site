@@ -1,0 +1,18 @@
+// body{
+//     // overflow: hidden;
+// }
+// .content{
+//     border: 3px solid blue;
+//     height: 100vh;
+//     overflow-x: hidden;
+// }
+
+.content {
+  flex: 1;
+  height: 100%;
+  // margin-top: 60px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

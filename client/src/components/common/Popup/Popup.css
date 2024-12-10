@@ -1,4 +1,13 @@
-.popup {
+.popup-wrapper {
+  border: 3px solid greenyellow;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100vh;
+}
+
+.popup-wrapper .popup {
   border: 1px solid;
   background-color: white;
   color: black;
@@ -29,7 +38,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.popup div {
+.popup-wrapper .popup div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -42,7 +51,7 @@
       flex-wrap: wrap;
 }
 
-.popup div button {
+.popup-wrapper .popup div button {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   border: 1px solid;
@@ -52,57 +61,64 @@
   cursor: pointer;
 }
 
-.popup div button:nth-child(1) {
+.popup-wrapper .popup div button:nth-child(1) {
   background-color: red;
 }
 
-.popup div button:nth-child(1):hover {
+.popup-wrapper .popup div button:nth-child(1):hover {
   background-color: rgba(255, 0, 0, 0.662);
 }
 
-.popup div button:nth-child(1):disabled {
+.popup-wrapper .popup div button:nth-child(1):disabled {
   background-color: rgba(255, 0, 0, 0.662);
 }
 
-.popup div button:nth-child(1):disabled:hover {
+.popup-wrapper .popup div button:nth-child(1):disabled:hover {
   background-color: rgba(255, 0, 0, 0.662);
   cursor: not-allowed;
 }
 
-.popup div button:nth-child(2) {
+.popup-wrapper .popup div button:nth-child(2) {
   background-color: green;
 }
 
-.popup div button:nth-child(2):hover {
+.popup-wrapper .popup div button:nth-child(2):hover {
   background-color: rgba(0, 128, 0, 0.662);
 }
 
-.popup div button:nth-child(2):disabled {
+.popup-wrapper .popup div button:nth-child(2):disabled {
   background-color: rgba(0, 128, 0, 0.662);
 }
 
-.popup div button:nth-child(2):disabled:hover {
+.popup-wrapper .popup div button:nth-child(2):disabled:hover {
   background-color: rgba(0, 128, 0, 0.662);
   cursor: not-allowed;
 }
 
-.popup .popup-load {
+.popup-wrapper .popup .popup-load {
   margin-top: 0.5rem;
   letter-spacing: 2px;
   height: 30px;
 }
 
-.popup.hide {
+@media (max-width: 736px) {
+  .popup-wrapper .popup .popup-load {
+    text-align: center;
+    letter-spacing: 1.2px;
+  }
+}
+
+.popup-wrapper .popup.hide {
   display: none;
 }
 
 @media (max-width: 524px) {
-  .popup {
+  .popup-wrapper .popup {
     width: 96%;
   }
 }
 
-.popup-overlay {
+.popup-wrapper .popup-overlay {
   position: absolute;
   left: 0;
   right: 0;
@@ -116,7 +132,11 @@
   z-index: 30000;
 }
 
-.popup-overlay.hide {
+.popup-wrapper .popup-overlay.hide {
+  display: none;
+}
+
+.popup-wrapper.hide {
   display: none;
 }
 /*# sourceMappingURL=Popup.css.map */

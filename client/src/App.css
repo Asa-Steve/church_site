@@ -1,1 +1,13 @@
-/* No CSS *//*# sourceMappingURL=App.css.map */
+.content {
+  border: 2px solid red;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+/*# sourceMappingURL=App.css.map */

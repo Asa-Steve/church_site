@@ -17,10 +17,10 @@
 nav {
   width: 100%;
   justify-content: space-between;
+  position: relative;
   flex-wrap: wrap;
-  position: absolute;
   z-index: 999;
-  top: 15px;
+  top: 0;
   color: white;
   height: 60px; // subject to change , this was added when working on dashboard
 
@@ -59,7 +59,6 @@ nav {
     display: none;
     position: relative;
     transition: all 0.3s ease;
-
 
     .nav-item-drop-mb {
       font-size: 1.5rem;
@@ -119,9 +118,9 @@ nav {
       width: 90%;
       height: 50px;
       place-items: center;
-      padding: .5rem;
+      padding: 0.5rem;
       text-align: center;
-      margin: 1rem 1rem 0 ; 
+      margin: 1rem 1rem 0;
 
       &::after {
         display: none;
@@ -134,14 +133,13 @@ nav {
       }
     }
 
-    .links-mb{
+    .links-mb {
       margin-top: 3rem;
       display: flex;
       gap: 2px;
       height: 700px;
       flex-direction: column;
       justify-content: center;
-
     }
 
     a.active {
@@ -219,6 +217,7 @@ nav {
           width: 100%;
           position: relative;
           left: -200px;
+          background-color: #001220;
         }
       }
 
@@ -299,10 +298,10 @@ nav {
     }
   }
 
-    a.active {
+  a.active {
     &::after {
       background-color: #ff5197de !important;
-      width: 100% ;
+      width: 100%;
     }
   }
 }
