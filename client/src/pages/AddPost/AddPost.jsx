@@ -10,7 +10,7 @@ const AddPost = () => {
 
 
   return (
-    <div>
+    <div className="add_post">
       <main>
         <Link to={"/admin"} className="btn-back">
           Go to Dashboard
