@@ -16,6 +16,7 @@ import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import DashboardLayout from "./DashboradLayout.jsx";
 import Baptism from "./pages/Baptism/Baptism.jsx";
 import PaymentSuccess from "./pages/PaymentSuccessful/Payment_Success.jsx";
+import AddPost from "./pages/AddPost/AddPost.jsx";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
+      },
+      {
+        path: "/admin/addpost",
+        element: <AddPost />,
       },
     ],
   },

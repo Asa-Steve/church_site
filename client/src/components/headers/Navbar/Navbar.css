@@ -21,12 +21,11 @@ nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  position: relative;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  position: fixed;
-  border: 1px solid;
   z-index: 999;
-  top: 15px;
+  top: 0;
   color: white;
   height: 60px;
 }
@@ -273,6 +272,7 @@ nav .nav-links .nav-item.dropdown ul a {
   width: 100%;
   position: relative;
   left: -200px;
+  background-color: #001220;
 }
 
 nav .nav-links .nav-item.dropdown:hover ul {

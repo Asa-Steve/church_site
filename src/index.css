@@ -24,10 +24,7 @@ body #root {
           flex-direction: column;
 }
 
-body #root .Footer {
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
+body #root footer.Footer {
   margin-top: auto;
 }
 
