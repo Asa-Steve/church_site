@@ -1,89 +1,116 @@
 import React, { useState } from "react";
 import "./AddPost.scss";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+const categories = ["Event", "Feast", "Upcoming"];
 
 const AddPost = () => {
-  const [value, setValue] = useState("");
+  const [formData, setFormData] = useState({
+    postTitle: "",
+    content: "",
+    category: "Feast",
+    postImg: null,
+  });
 
+  const handleChange = (e) => {
+    const { value, name, files } = e.target;
+
+    if (name === "postImg")
+      setFormData((prevData) => ({ ...prevData, postImg: files[0] }));
+    else setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const payload = { ...formData };
+    console.log(payload);
+
+    if (
+      formData.postTitle &&
+      formData.content &&
+      formData.postImg &&
+      formData.category
+    ) {
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/post/create",
+        payload,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+    }
+  };
 
   return (
     <div className="add_post">
+      <Link to={"/admin"} className="btn-back">
+        Go Back
+      </Link>
       <main>
-        <Link to={"/admin"} className="btn-back">
-          Go to Dashboard
-        </Link>
-
-        <section className="addpost form-section">
+        <section className="form-section">
           <div className="wrap">
             <div className="form-header">
-              <h2>ADD POST</h2>
+              <h2>CREATE NEW POST</h2>
             </div>
 
-            <form action="" onSubmit={""}>
+            <form action="" onSubmit={handleSubmit}>
               <div className="row">
                 <label htmlFor="title_post">Post Title</label>
                 <input
                   type="text"
-                  name="title_post"
+                  name="postTitle"
                   id="title_post"
                   placeholder="Enter Title"
-                  //   value={formData.fullName}
-                  //   onChange={handleChange}
+                  value={formData.postTitle}
+                  onChange={handleChange}
                   required
                 />
               </div>
               <div className="row input-grp">
                 <div>
-                  <label htmlFor="ph">Phone Number</label>
+                  <label htmlFor="post_img">Post Image</label>
                   <input
-                    type="number"
-                    name="phoneNo"
-                    id="ph"
-                    min={0}
-                    placeholder="Phone Number"
-                    // value={formData.phoneNo}
-                    // onChange={handleChange}
+                    type="file"
+                    name="postImg"
+                    id="post_img"
+                    onChange={handleChange}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="email">E-mail</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                    // value={formData.email}
-                    // onChange={handleChange}
-                    required
-                  />
+                  <label htmlFor="category">Category</label>
+                  <select
+                    name="category"
+                    id="category"
+                    value={formData.category}
+                    onChange={(e) =>
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        category: e.target.value,
+                      }))
+                    }
+                  >
+                    {categories.map((category, idx) => (
+                      <option value={category} key={idx}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div className="row">
-                <label htmlFor="Donation_sum">
-                  How Much Do you Wish To Donate ?
-                </label>
-                <span id="cur_icon">₦</span>
-                <input
-                  type="number"
-                  id="Donation_sum"
-                  placeholder="Donation Amount"
-                  name="amount"
-                  min={1000}
-                  //   value={formData.amount}
-                  //   onChange={handleChange}
+                <label htmlFor="content">Post Content</label>
+                <textarea
+                  type="text"
+                  id="content"
+                  placeholder="Write something interesting..."
+                  name="content"
+                  value={formData.content}
+                  onChange={handleChange}
                   required
-                />
+                ></textarea>
               </div>
-              <ReactQuill
-                theme="snow"
-                value={value}
-                onChange={setValue}
-              />
-              <button>Donate Now !</button>
+              <button>Publish Post</button>
             </form>
           </div>
         </section>

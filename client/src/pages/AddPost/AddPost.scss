@@ -1,13 +1,70 @@
-.add_post main {
+@import "../../styles/responsive.scss";
+
+.add_post {
   height: 100vh;
-  width: 100%;
-  padding: 0.5rem;
   overflow-y: auto;
+  position: relative;
+
+  main {
+    height: 100%;
+
+    .form-section {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      .wrap {
+
+        input[type="file"] {
+          cursor: pointer;
+          padding: 0.2rem;
+          height: fit-content;
+        }
+
+        .input-grp {
+          div:first-of-type {
+            flex: 2.5 !important;
+          }
+          div:last-of-type {
+            align-self: flex-end;
+          }
+        }
+
+        select {
+          width: 100%;
+          cursor: pointer;
+
+          @include xsm{
+            width: initial;
+          }
+        }
+
+        textarea {
+          // display: none;
+          height: 200px;
+        }
+      }
+    }
+    @include xsm {
+      .wrap {
+        margin-top: 2rem ;
+        padding: 0.2rem;
+      }
+    }
+  }
 
   a.btn-back {
     border: 1px solid;
-    color: white;
-    padding: 0.5rem 2rem;
+    color: #001220;
+    padding: 0.2rem 1.2rem;
     border-radius: 20px;
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #001220;
+      color: white;
+    }
   }
 }

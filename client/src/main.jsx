@@ -17,6 +17,7 @@ import DashboardLayout from "./DashboradLayout.jsx";
 import Baptism from "./pages/Baptism/Baptism.jsx";
 import PaymentSuccess from "./pages/PaymentSuccessful/Payment_Success.jsx";
 import AddPost from "./pages/AddPost/AddPost.jsx";
+import Login from "./pages/Login/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/payment_status",
         element: <PaymentSuccess />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

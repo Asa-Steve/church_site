@@ -1,7 +1,7 @@
 const axios = require("axios");
-const Payment = require("../models/paymentDB");
-const massReq = require("../models/massRequest.DB");
-const InfantReg = require("../models/infantBaptismDB");
+const Payment = require("../models/paymentSchema");
+const massReq = require("../models/massRequest.Schema");
+const InfantReg = require("../models/infantBaptismSchema");
 
 //initialize a Paystack transaction
 const mongoose = require("mongoose");
