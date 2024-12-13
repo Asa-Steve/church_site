@@ -1,13 +1,13 @@
 .loader {
   position: absolute;
   top: 0;
-  bottom: 0;
+  height: 100dvh;
   width: 100%;
   display: -ms-grid;
   display: grid;
   place-items: center;
   z-index: 300;
-  background: -webkit-gradient(linear, left top, left bottom, from(#001220b7), to(rgba(43, 4, 4, 0.554)));
-  background: linear-gradient(#001220b7, rgba(43, 4, 4, 0.554));
+  background: -webkit-gradient(linear, left top, left bottom, from(#001220), to(#2b0404));
+  background: linear-gradient(#001220, #2b0404);
 }
 /*# sourceMappingURL=Loader.css.map */

@@ -30,9 +30,9 @@ const ProtectedRoute = () => {
     verifyToken();
   }, []);
 
-  if (isVerified === null) {
-    return <div>Loading...</div>; // Optional: Show a loading spinner while verifying
-  }
+  // if (isVerified === null) {
+  //   return <div>Loading...</div>; // Optional: Show a loading spinner while verifying
+  // }
 
   return isVerified ? (
     <Outlet />
