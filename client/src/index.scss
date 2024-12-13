@@ -153,6 +153,15 @@ section.top {
 
     z-index: 1;
   }
+
+  @include xsm {
+    height: 250px;
+    .text {
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  }
 }
 
 // Added this chunk after commenting the .scss for Baptism

@@ -9,4 +9,9 @@
 .content::-webkit-scrollbar {
   display: none;
 }
+
+.content .outlet_wrap {
+  min-height: 700px;
+  margin-block: auto;
+}
 /*# sourceMappingURL=App.css.map */

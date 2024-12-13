@@ -12,9 +12,9 @@ const team = [
     imgUrl: "../imgs/pastor2.jpg",
   },
   {
-    name: "Rev. Fr. Keilah ",
+    name: "Rev. Sr. Rosemary D.",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores quisquam quo Numquam.",
-    title: "Visiting Priest",
+    title: "Principal",
     imgUrl: "../imgs/pastor1.jpg",
   },
   {

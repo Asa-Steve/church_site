@@ -1,12 +1,3 @@
-// body{
-//     // overflow: hidden;
-// }
-// .content{
-//     border: 3px solid blue;
-//     height: 100vh;
-//     overflow-x: hidden;
-// }
-
 .content {
   flex: 1;
   height: 100%;
@@ -14,5 +5,11 @@
   overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  .outlet_wrap {
+    min-height: 700px;
+    margin-block: auto;
+    // overflow-y: auto;
   }
 }

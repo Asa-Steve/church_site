@@ -1,8 +1,18 @@
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
+
 const login = (req, res) => {
-  console.log("Sucessfully Logged in");
-  return res
-    .status(200)
-    .json({ message: "successfully logged In, redirecting..." });
+  const { user } = req;
+
+  const token = jwt.sign(user, JWT_SECRET, { expiresIn: "1hr" });
+  return res.status(200).json({ message: "successfully logged In", token });
 };
 
-module.exports = { login };
+const verify = (req, res) => {
+  return res
+    .status(200)
+    .json({ success: true, user: req.user, message: "Acess Granted." });
+};
+
+module.exports = { login, verify };

@@ -1,0 +1,11 @@
+.loader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  z-index: 300;
+  background: linear-gradient(#001220b7, rgba(43, 4, 4, 0.554));
+  //   background-color: red;
+}

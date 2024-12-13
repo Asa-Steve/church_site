@@ -1,3 +1,15 @@
+.top.article h1 {
+  min-width: 600px;
+  width: 60%;
+  margin: auto;
+}
+
+@media (max-width: 632px) {
+  .top.article h1 {
+    min-width: 80%;
+  }
+}
+
 .stick .event_sect {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5,9 +17,8 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 500px;
+  position: relative;
 }
 
 .stick .event_sect .left {
@@ -18,10 +29,7 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  -ms-flex-item-align: stretch;
-      -ms-grid-row-align: stretch;
-      align-self: stretch;
-  max-height: 100dvh;
+  height: 100%;
 }
 
 .stick .event_sect .left img {
@@ -38,9 +46,10 @@
   padding: 0.2rem;
   background-color: #fff;
   color: black;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+  max-height: 100dvh;
 }
 
 .stick .event_sect .right .event-head {
@@ -119,6 +128,7 @@
 
 @media (max-width: 632px) {
   .stick .event_sect {
+    height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -128,9 +138,11 @@
     display: block;
     width: 100%;
     position: relative;
+    height: 30%;
   }
   .stick .event_sect .right {
-    overflow: hidden;
+    overflow-y: auto;
+    height: 70%;
     padding-bottom: 2rem;
   }
   .stick .event_sect .right .event-body {
@@ -138,6 +150,12 @@
     overflow-y: scroll;
     -webkit-box-shadow: none;
             box-shadow: none;
+  }
+}
+
+@media (max-width: 632px) {
+  .stick {
+    height: 800px;
   }
 }
 /*# sourceMappingURL=Article.css.map */

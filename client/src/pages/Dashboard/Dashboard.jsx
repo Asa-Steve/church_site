@@ -1,5 +1,7 @@
 import "./Dashboard.scss";
 import { Link } from "react-router-dom";
+import usePageLoad from "../../components/Utils/usePageLoad";
+import Loader from "../../components/common/Loader/Loader";
 
 import React, { PureComponent, useState } from "react";
 import {
@@ -134,6 +136,9 @@ const Dashboard = () => {
     },
   ]);
   const [activeFilter, setActiveFilter] = useState(3);
+  // Handling Page Loading Spinner
+  const isPageLoaded = usePageLoad();
+
   const handleWeekly = () => {
     const weeklyData = [
       {
@@ -298,305 +303,309 @@ const Dashboard = () => {
     setData(MonthlyData);
     setActiveFilter(3);
   };
-  return (
-    <>
-      <div className="dash">
-        <div className="left_dash">
-          <div className="logo">
-            <div className="logo_img">
-              <img src="./imgs/1.png" alt="logo" />
+  {
+    return !isPageLoaded ? (
+      <Loader />
+    ) : (
+      <>
+        <div className="dash">
+          <div className="left_dash">
+            <div className="logo">
+              <div className="logo_img">
+                <img src="./imgs/1.png" alt="logo" />
+              </div>
+              <div className="admin_name">
+                <h1>ADMIN</h1>
+                <i>Dev Steve</i>
+              </div>
             </div>
-            <div className="admin_name">
-              <h1>ADMIN</h1>
-              <i>Dev Steve</i>
-            </div>
-          </div>
-          <div className="menu">
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/1.png" alt="" />
-                Dashboard
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/1.png" alt="" />
-                Dashboard
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/2.png" alt="" />
-                Directory
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/3.png" alt="" />
-                Pages
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/4.png" alt="" />
-                Application
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/12.png" alt="" />
-                Component
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/3.png" alt="" />
-                Pages
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/4.png" alt="" />
-                Application
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/12.png" alt="" />
-                Component
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/3.png" alt="" />
-                Pages
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/4.png" alt="" />
-                Application
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link>
-                <img src="./imgs/dash_ic/12.png" alt="" />
-                Component
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="right_dash">
-          <div className="top-bar">
-            <form action="">
-              <input type="text" placeholder="search here..." />
-              <button>
-                <img src="./imgs/dash_ic/search.png" alt="" />
-              </button>
-            </form>
-            <div className="user_deit">
-              <div className="icons">
-                <div className="icon">
-                  <img src="./imgs/dash_ic/9.png" alt="" />
-                </div>
-                <div className="icon">
+            <div className="menu">
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/1.png" alt="" />
+                  Dashboard
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/1.png" alt="" />
+                  Dashboard
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/2.png" alt="" />
+                  Directory
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/3.png" alt="" />
+                  Pages
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
                   <img src="./imgs/dash_ic/4.png" alt="" />
-                </div>
-                <div className="profile-pic">
-                  <img src="./imgs/pastor3.jpg" alt="" />
-                </div>
+                  Application
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/12.png" alt="" />
+                  Component
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/3.png" alt="" />
+                  Pages
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/4.png" alt="" />
+                  Application
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/12.png" alt="" />
+                  Component
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/3.png" alt="" />
+                  Pages
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/4.png" alt="" />
+                  Application
+                </Link>
+              </div>
+              <div className="linked">
+                <div className="blob"></div>
+                <Link>
+                  <img src="./imgs/dash_ic/12.png" alt="" />
+                  Component
+                </Link>
               </div>
             </div>
           </div>
+          <div className="right_dash">
+            <div className="top-bar">
+              <form action="">
+                <input type="text" placeholder="search here..." />
+                <button>
+                  <img src="./imgs/dash_ic/search.png" alt="" />
+                </button>
+              </form>
+              <div className="user_deit">
+                <div className="icons">
+                  <div className="icon">
+                    <img src="./imgs/dash_ic/9.png" alt="" />
+                  </div>
+                  <div className="icon">
+                    <img src="./imgs/dash_ic/4.png" alt="" />
+                  </div>
+                  <div className="profile-pic">
+                    <img src="./imgs/pastor3.jpg" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          <div className="mid-bar">
-            <div className="dash-subtitle">
-              <h2>Directory Dashboard</h2>
+            <div className="mid-bar">
+              <div className="dash-subtitle">
+                <h2>Directory Dashboard</h2>
+              </div>
+              <div className="dash-breadcrumb">
+                <p>Dashboard ► Address</p>
+              </div>
             </div>
-            <div className="dash-breadcrumb">
-              <p>Dashboard ► Address</p>
-            </div>
-          </div>
 
-          <div className="main">
-            <div className="chart">
-              <div className="left">
-                <div className="left_info">
-                  <div className="info_txt">
-                    <h4>Monthly income stat for September 2024</h4>
+            <div className="main">
+              <div className="chart">
+                <div className="left">
+                  <div className="left_info">
+                    <div className="info_txt">
+                      <h4>Monthly income stat for September 2024</h4>
+                    </div>
+                    <div className="filter">
+                      <div
+                        className={activeFilter === 1 ? "td active" : "td"}
+                        onClick={handleDaily}
+                      >
+                        Today
+                      </div>
+                      <div
+                        className={activeFilter === 2 ? "wk active" : "wk"}
+                        onClick={handleWeekly}
+                      >
+                        Weekly
+                      </div>
+                      <div
+                        className={activeFilter === 3 ? "mt active" : "mt"}
+                        onClick={handleMonthly}
+                      >
+                        Monthly
+                      </div>
+                    </div>
                   </div>
-                  <div className="filter">
-                    <div
-                      className={activeFilter === 1 ? "td active" : "td"}
-                      onClick={handleDaily}
-                    >
-                      Today
-                    </div>
-                    <div
-                      className={activeFilter === 2 ? "wk active" : "wk"}
-                      onClick={handleWeekly}
-                    >
-                      Weekly
-                    </div>
-                    <div
-                      className={activeFilter === 3 ? "mt active" : "mt"}
-                      onClick={handleMonthly}
-                    >
-                      Monthly
-                    </div>
+                  <div className="plot">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart
+                        width={100}
+                        height={200}
+                        data={data}
+                        margin={{
+                          top: 25,
+                          right: 10,
+                          left: 10,
+                          bottom: 5,
+                        }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line
+                          type="monotone"
+                          dataKey="inf_baptism"
+                          stroke="#ff0066"
+                          activeDot={{ r: 8 }}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="donations"
+                          stroke="#001220"
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
                   </div>
                 </div>
-                <div className="plot">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                      width={100}
-                      height={200}
-                      data={data}
-                      margin={{
-                        top: 25,
-                        right: 10,
-                        left: 10,
-                        bottom: 5,
-                      }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Line
-                        type="monotone"
-                        dataKey="inf_baptism"
-                        stroke="#ff0066"
-                        activeDot={{ r: 8 }}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="donations"
-                        stroke="#001220"
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-              <div className="right">
-                <div className="cats">
-                  <div className="cat">
-                    <h3>5,000+</h3>
-                    <p>Total Enrollment</p>
-                  </div>
-                  <div className="cat">
-                    <h3>500+</h3>
-                    <p>Total Listings</p>
-                  </div>
-                  <div className="cat">
-                    <h3>1,000+</h3>
-                    <p>Claimed Listings</p>
-                  </div>
-                  <div className="cat">
-                    <h3>1,000+</h3>
-                    <p>Reported Listings</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="stat">
-              <div className="left">
-                <div className="left_info">
-                  <div className="info_txt">
-                    <h4>Monthly income stat for September 2024</h4>
-                  </div>
-                  <div className="filter">
-                    <div
-                      className={activeFilter === 1 ? "td active" : "td"}
-                      onClick={handleDaily}
-                    >
-                      Today
+                <div className="right">
+                  <div className="cats">
+                    <div className="cat">
+                      <h3>5,000+</h3>
+                      <p>Total Enrollment</p>
                     </div>
-                    <div
-                      className={activeFilter === 2 ? "wk active" : "wk"}
-                      onClick={handleWeekly}
-                    >
-                      Weekly
+                    <div className="cat">
+                      <h3>500+</h3>
+                      <p>Total Listings</p>
                     </div>
-                    <div
-                      className={activeFilter === 3 ? "mt active" : "mt"}
-                      onClick={handleMonthly}
-                    >
-                      Monthly
+                    <div className="cat">
+                      <h3>1,000+</h3>
+                      <p>Claimed Listings</p>
+                    </div>
+                    <div className="cat">
+                      <h3>1,000+</h3>
+                      <p>Reported Listings</p>
                     </div>
                   </div>
-                </div>
-                <div className="plot">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart
-                      width={500}
-                      height={300}
-                      data={data}
-                      margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                      }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Bar
-                        dataKey="inf_baptism"
-                        fill="#ff0066"
-                        activeBar={<Rectangle fill="pink" stroke="blue" />}
-                      />
-                      <Bar
-                        dataKey="donations"
-                        fill="#001220"
-                        activeBar={<Rectangle fill="gold" stroke="purple" />}
-                      />
-                    </BarChart>
-                  </ResponsiveContainer>
                 </div>
               </div>
-              <div className="right">
-                <div className="cats">
-                  <div className="cat">
-                    <h3>5,000+</h3>
-                    <p>Total Enrollment</p>
+              <div className="stat">
+                <div className="left">
+                  <div className="left_info">
+                    <div className="info_txt">
+                      <h4>Monthly income stat for September 2024</h4>
+                    </div>
+                    <div className="filter">
+                      <div
+                        className={activeFilter === 1 ? "td active" : "td"}
+                        onClick={handleDaily}
+                      >
+                        Today
+                      </div>
+                      <div
+                        className={activeFilter === 2 ? "wk active" : "wk"}
+                        onClick={handleWeekly}
+                      >
+                        Weekly
+                      </div>
+                      <div
+                        className={activeFilter === 3 ? "mt active" : "mt"}
+                        onClick={handleMonthly}
+                      >
+                        Monthly
+                      </div>
+                    </div>
                   </div>
-                  <div className="cat">
-                    <h3>500+</h3>
-                    <p>Total Listings</p>
+                  <div className="plot">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        width={500}
+                        height={300}
+                        data={data}
+                        margin={{
+                          top: 5,
+                          right: 30,
+                          left: 20,
+                          bottom: 5,
+                        }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar
+                          dataKey="inf_baptism"
+                          fill="#ff0066"
+                          activeBar={<Rectangle fill="pink" stroke="blue" />}
+                        />
+                        <Bar
+                          dataKey="donations"
+                          fill="#001220"
+                          activeBar={<Rectangle fill="gold" stroke="purple" />}
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
                   </div>
-                  <div className="cat">
-                    <h3>1,000+</h3>
-                    <p>Claimed Listings</p>
-                  </div>
-                  <div className="cat">
-                    <h3>1,000+</h3>
-                    <p>Reported Listings</p>
+                </div>
+                <div className="right">
+                  <div className="cats">
+                    <div className="cat">
+                      <h3>5,000+</h3>
+                      <p>Total Enrollment</p>
+                    </div>
+                    <div className="cat">
+                      <h3>500+</h3>
+                      <p>Total Listings</p>
+                    </div>
+                    <div className="cat">
+                      <h3>1,000+</h3>
+                      <p>Claimed Listings</p>
+                    </div>
+                    <div className="cat">
+                      <h3>1,000+</h3>
+                      <p>Reported Listings</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default Dashboard;

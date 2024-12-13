@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./AddPost.scss";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../../components/Utils/axiosInstance";
+import usePageLoad from "../../components/Utils/usePageLoad";
+import Loader from "../../components/common/Loader/Loader";
 
 const categories = ["Event", "Feast", "Upcoming"];
 
@@ -12,6 +14,12 @@ const AddPost = () => {
     category: "Feast",
     postImg: null,
   });
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [message, setMessage] = useState(null);
+  const navigate = useNavigate();
+  const isPageLoaded = usePageLoad();
 
   const handleChange = (e) => {
     const { value, name, files } = e.target;
@@ -25,7 +33,6 @@ const AddPost = () => {
     e.preventDefault();
 
     const payload = { ...formData };
-    console.log(payload);
 
     if (
       formData.postTitle &&
@@ -33,90 +40,118 @@ const AddPost = () => {
       formData.postImg &&
       formData.category
     ) {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/post/create",
-        payload,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
+      try {
+        setIsLoading(true);
+        const response = await axiosInstance.post("/posts/create", payload, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+
+        const { status, message } = response.data;
+
+        setMessage({ status, message });
+        navigate("/articles");
+      } catch (error) {
+        const { status, message } = error?.message || "Something went wrong";
+        setMessage({ status, message });
+      }
+
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
     }
   };
 
-  return (
-    <div className="add_post">
-      <Link to={"/admin"} className="btn-back">
-        Go Back
-      </Link>
-      <main>
-        <section className="form-section">
-          <div className="wrap">
-            <div className="form-header">
-              <h2>CREATE NEW POST</h2>
-            </div>
-
-            <form action="" onSubmit={handleSubmit}>
-              <div className="row">
-                <label htmlFor="title_post">Post Title</label>
-                <input
-                  type="text"
-                  name="postTitle"
-                  id="title_post"
-                  placeholder="Enter Title"
-                  value={formData.postTitle}
-                  onChange={handleChange}
-                  required
-                />
+  {
+    return !isPageLoaded ? (
+      <Loader />
+    ) : (
+      <div className="add_post">
+        <Link to={"/admin"} className="btn-back">
+          Go Back
+        </Link>
+        <main className="addpost">
+          <section className="form-section">
+            <div className="wrap">
+              <div className="form-header">
+                <h2>CREATE NEW POST</h2>
               </div>
-              <div className="row input-grp">
-                <div>
-                  <label htmlFor="post_img">Post Image</label>
+
+              <form action="" onSubmit={handleSubmit}>
+                <div className="row">
+                  <label htmlFor="title_post">Post Title</label>
                   <input
-                    type="file"
-                    name="postImg"
-                    id="post_img"
+                    type="text"
+                    name="postTitle"
+                    id="title_post"
+                    placeholder="Enter Title"
+                    value={formData.postTitle}
                     onChange={handleChange}
                     required
                   />
                 </div>
-                <div>
-                  <label htmlFor="category">Category</label>
-                  <select
-                    name="category"
-                    id="category"
-                    value={formData.category}
-                    onChange={(e) =>
-                      setFormData((prevData) => ({
-                        ...prevData,
-                        category: e.target.value,
-                      }))
-                    }
-                  >
-                    {categories.map((category, idx) => (
-                      <option value={category} key={idx}>
-                        {category}
-                      </option>
-                    ))}
-                  </select>
+                <div className="row input-grp">
+                  <div>
+                    <label htmlFor="post_img">Post Image</label>
+                    <input
+                      type="file"
+                      name="postImg"
+                      id="post_img"
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="category">Category</label>
+                    <select
+                      name="category"
+                      id="category"
+                      value={formData.category}
+                      onChange={(e) =>
+                        setFormData((prevData) => ({
+                          ...prevData,
+                          category: e.target.value,
+                        }))
+                      }
+                    >
+                      {categories.map((category, idx) => (
+                        <option value={category} key={idx}>
+                          {category}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <label htmlFor="content">Post Content</label>
-                <textarea
-                  type="text"
-                  id="content"
-                  placeholder="Write something interesting..."
-                  name="content"
-                  value={formData.content}
-                  onChange={handleChange}
-                  required
-                ></textarea>
-              </div>
-              <button>Publish Post</button>
-            </form>
-          </div>
-        </section>
-      </main>
-    </div>
-  );
+                <div className="row">
+                  <label htmlFor="content">Post Content</label>
+                  <textarea
+                    type="text"
+                    id="content"
+                    placeholder="Write something interesting..."
+                    name="content"
+                    value={formData.content}
+                    onChange={handleChange}
+                    required
+                  ></textarea>
+                </div>
+                <button disabled={isLoading}>Publish Post</button>
+                <p
+                  className={
+                    !message?.status
+                      ? "message hide"
+                      : message?.status === "success"
+                      ? "message success"
+                      : "message failure"
+                  }
+                >
+                  {message?.message}
+                </p>
+              </form>
+            </div>
+          </section>
+        </main>
+      </div>
+    );
+  }
 };
 
 export default AddPost;

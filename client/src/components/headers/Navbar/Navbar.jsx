@@ -19,7 +19,6 @@ const Navbar = () => {
     setSlideIn(false);
   }, [pathname]);
 
-  
   return (
     <>
       <nav className="flex-me">
@@ -46,7 +45,7 @@ const Navbar = () => {
             About Us
           </NavLink>
           <NavLink
-            to="/article"
+            to="/articles"
             className={({ isActive }) => (isActive ? "active" : undefined)}
           >
             Articles
@@ -115,7 +114,7 @@ const Navbar = () => {
             </NavLink>
             <NavLink
               onClick={handleSlideIN}
-              to="/article"
+              to="/articles"
               className={({ isActive }) => (isActive ? "active" : undefined)}
             >
               Articles

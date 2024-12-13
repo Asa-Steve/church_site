@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1", paymentRoute);
-app.use("/api/v1/post", postRoute);
+app.use("/api/v1/posts", postRoute);
 app.use("/api/v1/user", userRoute);
 // app.use("/api/v1", mailRoute);
 

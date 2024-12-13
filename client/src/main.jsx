@@ -11,13 +11,14 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 import Priest from "./pages/priest/Priest.jsx";
 import Mass from "./pages/Mass/Mass.jsx";
 import Donate from "./pages/Donate/Donate.jsx";
+import Articles from "./pages/Articles/Articles.jsx";
 import Article from "./pages/Article/Article.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
-import DashboardLayout from "./DashboradLayout.jsx";
 import Baptism from "./pages/Baptism/Baptism.jsx";
 import PaymentSuccess from "./pages/PaymentSuccessful/Payment_Success.jsx";
 import AddPost from "./pages/AddPost/AddPost.jsx";
 import Login from "./pages/Login/Login.jsx";
+import ProtectedRoute from "./ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/article",
+        path: "/articles",
+        element: <Articles />,
+      },
+      {
+        path: "/articles/:articleSlug",
         element: <Article />,
       },
       {
@@ -78,7 +83,7 @@ const router = createBrowserRouter([
     //   },
     // ],
     path: "/admin",
-    element: <DashboardLayout />,
+    element: <ProtectedRoute />,
     errorElement: <Error />,
     children: [
       {

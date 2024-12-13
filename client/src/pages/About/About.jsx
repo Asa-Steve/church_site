@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./About.scss";
 import Faq from "../../components/common/Faq/Faq";
 import TeamCards from "../../components/common/teamCard/TeamCards";
@@ -7,12 +7,17 @@ import TeamCards from "../../components/common/teamCard/TeamCards";
 import team from "../../components/Utils/team";
 import faqs from "../../components/Utils/faqs";
 import missionStatement from "../../components/Utils/missionStatement";
+import usePageLoad from "../../components/Utils/usePageLoad";
+import Loader from "../../components/common/Loader/Loader";
 
 const About = () => {
   // State Managed Variables
   const [activeFaq, setActiveFaq] = useState(0);
   const [data, setData] = useState(null);
   const [showMessage, setShowMessage] = useState(null);
+
+  // Handling Page Loading Spinner
+  const isPageLoaded = usePageLoad();
 
   // Handling Input Change when typing
   const handleChange = (e) => {
@@ -78,45 +83,20 @@ const About = () => {
     setActiveFaq(activeFaq === idx ? activeFaq : idx);
   };
 
-  return (
-    <>
-      <section className="top">
-        <div className="overlay"></div>
-        <div className="text">
-          <h1>About</h1>
-        </div>
-      </section>
-      <section className="about_sect">
-        <div className="header_title">
-          <h2>We love God. We believe in God.</h2>
-          <div className="subtitle">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut seedor labore. Excepteur sint
-              occaecat.
-            </p>
+  {
+    return !isPageLoaded ? (
+      <Loader />
+    ) : (
+      <>
+        <section className="top">
+          <div className="overlay"></div>
+          <div className="text">
+            <h1>About</h1>
           </div>
-        </div>
-        <div className="mission_stat">
-          <div className="left">
-            {missionStatement.map((item) => (
-              <div className="stat" key={item.id}>
-                <span className="num">{item.id}</span>
-                <div className="stat-info">
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="right">
-            <img src="./imgs/about-us-bg.webp" alt="" />
-          </div>
-        </div>
-
-        <div className="about_faq">
+        </section>
+        <section className="about_sect">
           <div className="header_title">
-            <h2>Questions About the Church</h2>
+            <h2>We love God. We believe in God.</h2>
             <div className="subtitle">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -125,131 +105,160 @@ const About = () => {
               </p>
             </div>
           </div>
-          <div className="contact_info_sect">
+          <div className="mission_stat">
             <div className="left">
-              <div className="form-section">
-                <div className="wrap">
-                  <form action="" method="post" onSubmit={handleSubmit}>
-                    <div className="row">
-                      <label htmlFor="name">Full Name</label>
-                      <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        onChange={handleChange}
-                        placeholder="Full Name"
-                        value={formData.name}
-                        required
-                      />
-                    </div>
-                    <div className="row input-grp">
-                      <div>
-                        <label htmlFor="email">Your Email</label>
-                        <input
-                          type="email"
-                          name="email"
-                          id="email"
-                          onChange={handleChange}
-                          placeholder="Your email"
-                          value={formData.email}
-                          required
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="subject">Msg Subject</label>
-                        <input
-                          type="text"
-                          name="subject"
-                          id="subject"
-                          onChange={handleChange}
-                          placeholder="Subject"
-                          value={formData.subject}
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <label htmlFor="message">Message</label>
-                      <textarea
-                        name="message"
-                        id="message"
-                        onChange={handleChange}
-                        placeholder="Write Message Here....."
-                        value={formData.message}
-                        required
-                      >
-                        {formData.message}{" "}
-                      </textarea>
-                    </div>
-
-                    <div className="row input-grp">
-                      <div>
-                        <button>Submit Message</button>
-                      </div>
-                      {showMessage && (
-                        <div
-                          style={
-                            data && {
-                              border: "1px solid black",
-                              textAlign: "center",
-                            }
-                          }
-                        >
-                          {" "}
-                          {<p>{data.msg}</p>}
-                        </div>
-                      )}
-                    </div>
-                  </form>
+              {missionStatement.map((item) => (
+                <div className="stat" key={item.id}>
+                  <span className="num">{item.id}</span>
+                  <div className="stat-info">
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
             <div className="right">
-              <div className="faqs">
-                {faqs.map((question, idx) => {
-                  return (
-                    <Faq
-                      key={idx}
-                      handleToggle={() => toggleFaq(idx)}
-                      title={question.title}
-                      question={question.que}
-                      isActive={activeFaq === idx}
-                    />
-                  );
-                })}
+              <img src="./imgs/about-us-bg.webp" alt="" />
+            </div>
+          </div>
+
+          <div className="about_faq">
+            <div className="header_title">
+              <h2>Questions About the Church</h2>
+              <div className="subtitle">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut seedor labore. Excepteur sint
+                  occaecat.
+                </p>
+              </div>
+            </div>
+            <div className="contact_info_sect">
+              <div className="left">
+                <div className="form-section">
+                  <div className="wrap">
+                    <form action="" method="post" onSubmit={handleSubmit}>
+                      <div className="row">
+                        <label htmlFor="name">Full Name</label>
+                        <input
+                          type="text"
+                          name="name"
+                          id="name"
+                          onChange={handleChange}
+                          placeholder="Full Name"
+                          value={formData.name}
+                          required
+                        />
+                      </div>
+                      <div className="row input-grp">
+                        <div>
+                          <label htmlFor="email">Your Email</label>
+                          <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            onChange={handleChange}
+                            placeholder="Your email"
+                            value={formData.email}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="subject">Msg Subject</label>
+                          <input
+                            type="text"
+                            name="subject"
+                            id="subject"
+                            onChange={handleChange}
+                            placeholder="Subject"
+                            value={formData.subject}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <label htmlFor="message">Message</label>
+                        <textarea
+                          name="message"
+                          id="message"
+                          onChange={handleChange}
+                          placeholder="Write Message Here....."
+                          value={formData.message}
+                          required
+                        >
+                          {formData.message}{" "}
+                        </textarea>
+                      </div>
+
+                      <div className="row input-grp">
+                        <div>
+                          <button>Submit Message</button>
+                        </div>
+                        {showMessage && (
+                          <div
+                            style={
+                              data && {
+                                border: "1px solid black",
+                                textAlign: "center",
+                              }
+                            }
+                          >
+                            {" "}
+                            {<p>{data.msg}</p>}
+                          </div>
+                        )}
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div className="right">
+                <div className="faqs">
+                  {faqs.map((question, idx) => {
+                    return (
+                      <Faq
+                        key={idx}
+                        handleToggle={() => toggleFaq(idx)}
+                        title={question.title}
+                        question={question.que}
+                        isActive={activeFaq === idx}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="about_our_team">
-          <div className="header_title">
-            <h2>Meet Our Priests & Religious</h2>
-            <div className="subtitle">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut seedor labore. Excepteur sint
-                occaecat.
-              </p>
+          <div className="about_our_team">
+            <div className="header_title">
+              <h2>Meet Our Priests & Religious</h2>
+              <div className="subtitle">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut seedor labore. Excepteur sint
+                  occaecat.
+                </p>
+              </div>
+            </div>
+
+            <div className="cards">
+              {team.map((teamMember, idx) => (
+                <TeamCards
+                  key={idx}
+                  to={`/priest/${idx + 1}`}
+                  img={teamMember.imgUrl}
+                  name={teamMember.name}
+                  desc={teamMember.desc}
+                  title={teamMember.title}
+                />
+              ))}
             </div>
           </div>
-
-          <div className="cards">
-            {team.map((teamMember, idx) => (
-              <TeamCards
-                key={idx}
-                to={`/priest/${idx + 1}`}
-                img={teamMember.imgUrl}
-                name={teamMember.name}
-                desc={teamMember.desc}
-                title={teamMember.title}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
-  );
+        </section>
+      </>
+    );
+  }
 };
 
 export default About;

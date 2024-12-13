@@ -173,6 +173,15 @@ section.top .text h2 {
   font-weight: 100;
 }
 
+@media (max-width: 632px) {
+  section.top {
+    height: 250px;
+  }
+  section.top .text h1 {
+    font-size: 2.2rem;
+  }
+}
+
 section.top {
   border-image-source: linear-gradient(red, black);
   border-image-slice: 1 fill;

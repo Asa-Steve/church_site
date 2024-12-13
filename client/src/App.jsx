@@ -12,7 +12,9 @@ function App() {
       <Navbar />
       <div ref={containerRef} className="content">
         <ScrollToTop targetRef={containerRef} />
-        <Outlet />
+        <div className="outlet_wrap">
+          <Outlet />
+        </div>
         <Footer />
       </div>
     </>

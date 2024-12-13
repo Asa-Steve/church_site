@@ -4,18 +4,18 @@
   position: relative;
 }
 
-.add_post main {
+.add_post main.addpost {
   height: 100%;
 }
 
-.add_post main .form-section {
+.add_post main.addpost .form-section {
   height: 100%;
   display: -ms-grid;
   display: grid;
   place-items: center;
 }
 
-.add_post main .form-section .wrap input[type="file"] {
+.add_post main.addpost .form-section .wrap input[type="file"] {
   cursor: pointer;
   padding: 0.2rem;
   height: -webkit-fit-content;
@@ -23,34 +23,60 @@
   height: fit-content;
 }
 
-.add_post main .form-section .wrap .input-grp div:first-of-type {
+.add_post main.addpost .form-section .wrap .input-grp div:first-of-type {
   -webkit-box-flex: 2.5 !important;
       -ms-flex: 2.5 !important;
           flex: 2.5 !important;
 }
 
-.add_post main .form-section .wrap .input-grp div:last-of-type {
+.add_post main.addpost .form-section .wrap .input-grp div:last-of-type {
   -ms-flex-item-align: end;
       align-self: flex-end;
 }
 
-.add_post main .form-section .wrap select {
+.add_post main.addpost .form-section .wrap select {
   width: 100%;
   cursor: pointer;
 }
 
 @media (max-width: 632px) {
-  .add_post main .form-section .wrap select {
+  .add_post main.addpost .form-section .wrap select {
     width: initial;
   }
 }
 
-.add_post main .form-section .wrap textarea {
+.add_post main.addpost .form-section .wrap textarea {
   height: 200px;
 }
 
+.add_post main.addpost .form-section .wrap button:disabled {
+  cursor: not-allowed;
+  background-color: #00122069;
+}
+
+.add_post main.addpost .form-section .wrap .message {
+  border: 1px solid;
+  text-align: center;
+  margin-top: 0.3rem;
+  padding: 0.3rem;
+  color: white;
+  font-size: 1rem;
+}
+
+.add_post main.addpost .form-section .wrap .message.hide {
+  display: none;
+}
+
+.add_post main.addpost .form-section .wrap .message.success {
+  background-color: #98e02d;
+}
+
+.add_post main.addpost .form-section .wrap .message.failure {
+  background-color: red;
+}
+
 @media (max-width: 632px) {
-  .add_post main .wrap {
+  .add_post main.addpost .wrap {
     margin-top: 2rem;
     padding: 0.2rem;
   }

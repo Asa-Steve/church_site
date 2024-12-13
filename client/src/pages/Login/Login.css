@@ -1,5 +1,5 @@
 .login {
-  max-height: 90vh;
+  height: 90vh;
   overflow-y: auto;
   position: relative;
 }
@@ -203,7 +203,7 @@
   border-radius: 0;
   padding: 0.5rem 5rem;
   width: 100%;
-  margin: 3rem auto;
+  margin: 3rem auto 0;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   background-color: #ff0066;
@@ -213,6 +213,32 @@
   background-color: black;
   border-color: transparent;
   color: white;
+}
+
+.login .form-section .wrap .right form button:disabled {
+  cursor: not-allowed;
+  background-color: #00122069;
+}
+
+.login .form-section .wrap .right form .message {
+  border: 1px solid;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 0.3rem;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.login .form-section .wrap .right form .message.hide {
+  display: none;
+}
+
+.login .form-section .wrap .right form .message.success {
+  background-color: #98e02d;
+}
+
+.login .form-section .wrap .right form .message.failure {
+  background-color: red;
 }
 
 @media (max-width: 905px) {

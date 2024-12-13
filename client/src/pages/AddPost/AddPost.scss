@@ -5,7 +5,7 @@
   overflow-y: auto;
   position: relative;
 
-  main {
+  main.addpost {
     height: 100%;
 
     .form-section {
@@ -13,7 +13,6 @@
       display: grid;
       place-items: center;
       .wrap {
-
         input[type="file"] {
           cursor: pointer;
           padding: 0.2rem;
@@ -33,7 +32,7 @@
           width: 100%;
           cursor: pointer;
 
-          @include xsm{
+          @include xsm {
             width: initial;
           }
         }
@@ -42,11 +41,34 @@
           // display: none;
           height: 200px;
         }
+
+        button:disabled {
+          cursor: not-allowed;
+          background-color: #00122069;
+        }
+
+        .message {
+          border: 1px solid;
+          text-align: center;
+          margin-top: 0.3rem;
+          padding: 0.3rem;
+          color: white;
+          font-size: 1rem;
+          &.hide {
+            display: none;
+          }
+          &.success {
+            background-color: rgb(152, 224, 45);
+          }
+          &.failure {
+            background-color: red;
+          }
+        }
       }
     }
     @include xsm {
       .wrap {
-        margin-top: 2rem ;
+        margin-top: 2rem;
         padding: 0.2rem;
       }
     }

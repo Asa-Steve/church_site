@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import "./Footer.scss";
+import { useState } from "react";
 
 const Footer = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
+
   return (
     <footer className="Footer">
       <div className="wrapper">
@@ -32,6 +40,13 @@ const Footer = () => {
             <Link to="/about">About Us</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/donate">Donate</Link>
+            {isLoggedIn ? (
+              <Link to="/" onClick={handleLogout}>
+                Logout
+              </Link>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </div>
         </div>
       </div>

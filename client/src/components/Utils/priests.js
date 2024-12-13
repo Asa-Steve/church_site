@@ -47,8 +47,8 @@ const priests = [
   },
   {
     id: 3,
-    name: "Rev. Fr. Francis Ikwakam",
-    title: "Ass. parish priest",
+    name: "Rev. Sr. Rosemary D.",
+    title: "Principal - Parish School",
     imgUrl: "pastor1",
     DOB: "August 11, 1978, in Bayelsa, Nigeria",
     Ordained: "July 22, 2007, for the Archdiocese of Lagos",
