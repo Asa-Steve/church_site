@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import axiosInstance from "./components/Utils/axiosInstance";
+import Loader from "./components/common/Loader/Loader";
 
 const ProtectedRoute = () => {
   const [isVerified, setIsVerified] = useState(null);
@@ -30,9 +31,9 @@ const ProtectedRoute = () => {
     verifyToken();
   }, []);
 
-  // if (isVerified === null) {
-  //   return <div>Loading...</div>; // Optional: Show a loading spinner while verifying
-  // }
+  if (isVerified === null) {
+    return <Loader />; // Optional: Show a loading spinner while verifying
+  }
 
   return isVerified ? (
     <Outlet />
