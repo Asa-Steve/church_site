@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Login.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../../components/Utils/axiosInstance";
+// import axios from "axios";
 import Loader from "../../components/common/Loader/Loader";
 
 const Login = () => {
@@ -17,7 +18,7 @@ const Login = () => {
   const location = useLocation();
 
   // Retrieving the "from" route or fallback to home ("/")
-  const redirectPath = location.state?.from?.pathname || "/admin";
+  const redirectPath = location.state?.from?.pathname || "/admin/addpost";
 
   useEffect(() => {
     const token = localStorage.getItem("token");

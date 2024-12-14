@@ -4,8 +4,8 @@ const LoaderComp = () => {
   return (
     <div className="loader">
       <TailSpin
-        height="80"
-        width="80"
+        height="40"
+        width="40"
         color="#ff0066"
         ariaLabel="tail-spin-loading"
         radius="1"

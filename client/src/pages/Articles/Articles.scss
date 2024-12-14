@@ -1,5 +1,17 @@
 @import "../../styles/responsive.scss";
 
+.msg {
+  display: grid;
+  place-items: center;
+  height: 700px;
+  text-align: center;
+
+  @include sm{
+    h1{
+      font-size: 1.2rem;
+    }
+  }
+}
 main.posts {
   overflow-y: auto;
   display: flex;
@@ -64,19 +76,18 @@ main.posts {
     }
   }
 
-
-  @include xxsm{
-    .post{
-      img{
+  @include xxsm {
+    .post {
+      img {
         width: 150px;
         display: none;
       }
-      h2{
+      h2 {
         font-size: 1.4rem;
       }
-      .post-body{
+      .post-body {
         width: 100%;
-        .post-content{
+        .post-content {
           height: fit-content !important;
         }
       }

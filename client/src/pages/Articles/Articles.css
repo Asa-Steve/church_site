@@ -1,3 +1,17 @@
+.msg {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  height: 700px;
+  text-align: center;
+}
+
+@media (max-width: 736px) {
+  .msg h1 {
+    font-size: 1.2rem;
+  }
+}
+
 main.posts {
   overflow-y: auto;
   display: -webkit-box;

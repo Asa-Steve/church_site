@@ -1,3 +1,4 @@
+const cloudinary = require("../utils/cloudinary");
 const Post = require("../models/postSchema");
 
 const createPost = async (req, res) => {
@@ -48,12 +49,11 @@ const getPost = async (req, res) => {
     const foundPost = await Post.findOne({ slug: postSlug })
       .populate("author", "username role")
       .exec();
+
     if (!foundPost)
       return res
         .status(404)
         .json({ status: "failed", message: "Post Not Found!" });
-
-    console.log(foundPost);
 
     return res.status(200).json({ status: "success", data: foundPost });
   } catch (err) {
@@ -64,4 +64,63 @@ const getPost = async (req, res) => {
   }
 };
 
-module.exports = { createPost, allPosts, getPost };
+const editPost = async (req, res) => {
+  try {
+    const { postSlug } = req.params;
+    const { postTitle, content, category } = req.body;
+
+    // Updating other Fields
+    const postUpdate = { postTitle, content, category };
+
+    // Fetching Post Data from server
+    const foundPost = await Post.findOne({ slug: postSlug });
+
+    if (!foundPost) {
+      return res
+        .status(404)
+        .json({ status: "failed", message: "Post Not Found" });
+    }
+
+    // Checking if a new Post img was uploaded
+    if (req.file) {
+      // Deleting the Old image
+      const oldImgUrl = foundPost?.file;
+      if (oldImgUrl) {
+        // Extracting the public ID from the old image URL
+        const imgPublicId = oldImgUrl?.split("/")?.pop()?.split(".")[0];
+        await cloudinary?.uploader?.destroy(imgPublicId);
+      }
+
+      // Saving the new Image
+      const newImgUrl = req?.file?.path;
+      postUpdate.file = newImgUrl;
+    }
+
+    await Post.findOneAndUpdate({ slug: postSlug }, postUpdate);
+    return res
+      .status(200)
+      .json({ status: "success", message: "Updated successfully." });
+  } catch (err) {
+    return res.status(500).json({
+      status: "failed",
+      message: err?.message || "Something went wrong while updating",
+    });
+  }
+};
+
+const deletePost = async (req, res) => {
+  try {
+    const { postSlug } = req.params;
+    const deleteResult = await Post.findOneAndDelete({ slug: postSlug });
+
+    return res
+      .status(200)
+      .json({ status: "success", message: "Deleted Successfully" });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ status: "failed", message: "Deletion not Successful" });
+  }
+};
+
+module.exports = { createPost, allPosts, getPost, editPost, deletePost };

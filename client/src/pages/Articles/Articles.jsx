@@ -7,16 +7,18 @@ import Loader from "../../components/common/Loader/Loader";
 const Articles = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const getPosts = async () => {
       try {
+        setMessage("");
         const response = await axiosInstance.get("/posts");
         setPosts(response?.data?.data);
         setLoading(false);
       } catch (error) {
-        console.error(error);
         setLoading(false);
+        setMessage("Couldn't get post at the moment try again later");
       }
     };
     getPosts();
@@ -25,6 +27,10 @@ const Articles = () => {
   {
     return loading ? (
       <Loader />
+    ) : posts.length < 1 ? (
+      <div className="msg">
+        <h1>{message ? message : "No Post Found."}</h1>
+      </div>
     ) : (
       <div className="articles">
         <section className="top ">

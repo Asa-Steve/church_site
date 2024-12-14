@@ -1,13 +1,17 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "./Article.scss";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../components/Utils/axiosInstance";
 import Loader from "../../components/common/Loader/Loader";
+import { jwtDecode } from "jwt-decode";
 
 const Article = () => {
   const { articleSlug } = useParams();
   const [loading, setLoading] = useState(true);
   const [post, setPost] = useState([]);
+  const [isAuthor, setIsAuthor] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -18,9 +22,37 @@ const Article = () => {
         setLoading(false);
       }
     };
+
     getPost();
   }, []);
 
+  useEffect(() => {
+    const decodeToken = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        if (token) {
+          const { id } = jwtDecode(token);
+          if (id === post.author._id) {
+            setIsAuthor(true);
+          }
+        } else {
+          setIsAuthor(false);
+        }
+      } catch (error) {
+        setIsAuthor(false);
+      }
+    };
+    decodeToken();
+  }, [post]);
+
+  const handleDelete = async () => {
+    try {
+      const response = axiosInstance.delete(`/posts/${articleSlug}`);
+      navigate("/articles");
+    } catch (error) {
+      console.log("error", err?.message);
+    }
+  };
   {
     return loading ? (
       <Loader />
@@ -68,6 +100,13 @@ const Article = () => {
                   <li>1 X Pack Of Candle for each Youth and Child. </li>
                 </div> */}
               </div>
+
+              {isAuthor && (
+                <div className="btns">
+                  <Link to={`/admin/article/edit/${post.slug}`}>Edit</Link>
+                  <button onClick={handleDelete}>Delete</button>
+                </div>
+              )}
             </div>
           </div>
         </div>

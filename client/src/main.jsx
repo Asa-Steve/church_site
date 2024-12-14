@@ -19,6 +19,7 @@ import PaymentSuccess from "./pages/PaymentSuccessful/Payment_Success.jsx";
 import AddPost from "./pages/AddPost/AddPost.jsx";
 import Login from "./pages/Login/Login.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
+import EditPost from "./pages/EditPost/EditPost.jsx";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/addpost",
         element: <AddPost />,
+      },
+      {
+        path: "/admin/article/edit/:articleSlug",
+        element: <EditPost />,
       },
     ],
   },
