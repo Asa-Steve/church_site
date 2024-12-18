@@ -78,12 +78,11 @@
   }
 
   @include md {
-    .chart,.stat {
-      border: 1px solid red;
+    .chart,
+    .stat {
       flex-direction: column-reverse;
 
       .left {
-        border: 3px solid green;
         width: 100% !important;
       }
 
@@ -93,11 +92,9 @@
 
         .cats {
           flex-direction: row !important;
-          border: 2px solid;
           flex-wrap: wrap;
           gap: 10px !important;
           .cat {
-            border: 1px solid;
             width: 46%;
             h3 {
               font-size: 1.5rem !important;
@@ -114,8 +111,8 @@
   @include sm {
     .left {
       height: fit-content !important;
+
       .left_info {
-        border: 1px solid;
         flex-wrap: wrap;
         height: fit-content !important;
         gap: 10px;
@@ -128,14 +125,23 @@
         }
       }
       .plot {
-        border: 3px solid blue;
-        background-color: rgb(255, 255, 255);
         height: 500px;
+      }
+    }
+
+    .right{
+      .cat {
+        border: 1px solid rgba(128, 128, 128, 0.432);
       }
     }
   }
 
   @include xsm {
+    .left{
+      .left_info {
+        padding-inline: 0 !important;
+      }
+    }
     .cats {
       .cat {
         width: 100% !important;
