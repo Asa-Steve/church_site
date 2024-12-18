@@ -66,9 +66,6 @@ const AddPost = () => {
       <Loader />
     ) : (
       <div className="add_post">
-        <Link to={"/admin"} className="btn-back">
-          Go Back
-        </Link>
         <main className="addpost">
           <section className="form-section">
             <div className="wrap">

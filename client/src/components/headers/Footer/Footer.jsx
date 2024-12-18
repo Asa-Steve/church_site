@@ -41,9 +41,12 @@ const Footer = () => {
             <Link to="/contact">Contact</Link>
             <Link to="/donate">Donate</Link>
             {isLoggedIn ? (
-              <Link to="/" onClick={handleLogout}>
-                Logout
-              </Link>
+              <>
+                <Link to="/" onClick={handleLogout}>
+                  Logout
+                </Link>
+                <Link to="/admin">Go to Dashboard</Link>
+              </>
             ) : (
               <Link to="/login">Login</Link>
             )}

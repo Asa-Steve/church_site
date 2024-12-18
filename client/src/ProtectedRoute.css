@@ -1,1 +1,270 @@
-/* No CSS *//*# sourceMappingURL=ProtectedRoute.css.map */
+.dash {
+  height: 100dvh;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #001220;
+  scrollbar-width: none;
+}
+
+.dash .left_dash {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-color: white;
+}
+
+.dash .left_dash .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0.5rem;
+  gap: 10px;
+  height: 90px;
+}
+
+.dash .left_dash .logo .logo_img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.dash .left_dash .logo .logo_img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+.dash .left_dash .logo .admin_name {
+  text-align: center;
+}
+
+.dash .left_dash .logo .admin_name h1 {
+  margin-bottom: -8px;
+}
+
+.dash .left_dash .logo .admin_name i {
+  color: tomato;
+}
+
+.dash .left_dash .menu {
+  overflow-y: scroll;
+  height: calc(100dvh - 90px);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dash .left_dash .menu::-webkit-scrollbar {
+  display: none;
+}
+
+.dash .left_dash .menu .linked {
+  height: 50px;
+  padding: 0.1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.dash .left_dash .menu .linked a {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  border-bottom-color: rgba(128, 128, 128, 0.269);
+  display: block;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  place-items: center;
+  color: #6e6e6e;
+}
+
+.dash .left_dash .menu .linked a img {
+  width: 25px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-right: 0.5rem;
+}
+
+.dash .left_dash .menu .linked a:hover {
+  background-color: tomato;
+  color: white;
+  border-radius: 10px;
+}
+
+.dash .left_dash .menu .linked .blob {
+  border: 1px solid transparent;
+  border-radius: 20px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  width: 0px;
+}
+
+.dash .left_dash .menu .linked:hover .blob {
+  border: 1px solid;
+  width: 5px;
+  margin-right: 0.7rem;
+  background-color: #001220;
+}
+
+.dash .right_dash {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  background-color: #f1f1f1;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.dash .right_dash .top-bar {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 40px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.292);
+  width: 100%;
+  padding-inline: 2rem;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  margin-inline: auto;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 300;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.256);
+}
+
+.dash .right_dash .top-bar form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+.dash .right_dash .top-bar form input {
+  width: 90%;
+  height: 40px;
+  border: none;
+  padding: 0.5rem;
+  background-color: transparent;
+}
+
+.dash .right_dash .top-bar form input:focus {
+  outline: none;
+}
+
+.dash .right_dash .top-bar form button {
+  height: 40px;
+  width: 40px;
+  border: none;
+  background-color: transparent;
+  border-left: 1px solid #999595;
+  cursor: pointer;
+}
+
+.dash .right_dash .top-bar form button img {
+  width: 50%;
+  height: 50%;
+}
+
+.dash .right_dash .top-bar .user_deit {
+  -webkit-box-flex: 0.5;
+      -ms-flex: 0.5;
+          flex: 0.5;
+}
+
+.dash .right_dash .top-bar .user_deit img {
+  width: 100%;
+  height: 100%;
+}
+
+.dash .right_dash .top-bar .user_deit .icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.dash .right_dash .top-bar .user_deit .icons .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.dash .right_dash .top-bar .user_deit .icons .icon img {
+  -webkit-transform: scale(0.6);
+          transform: scale(0.6);
+}
+
+.dash .right_dash .top-bar .user_deit .icons .profile-pic {
+  width: 40px;
+  height: 40px;
+  border: 1px solid;
+  border-radius: 50%;
+}
+
+.dash .right_dash .top-bar .user_deit .icons .profile-pic img {
+  border-radius: 50%;
+}
+
+.dash .right_dash .mid-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 200;
+  top: 50px;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.256);
+}
+
+.dash .right_dash .mid-bar h2 {
+  font-weight: 100;
+}
+
+.dash .right_dash .mid-bar .dash-breadcrumb p {
+  color: grey;
+  font-size: 10px;
+}
+
+.dash .right_dash .main {
+  padding: 0.5rem;
+}
+/*# sourceMappingURL=ProtectedRoute.css.map */

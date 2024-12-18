@@ -48,7 +48,7 @@ const Article = () => {
   const handleDelete = async () => {
     try {
       const response = axiosInstance.delete(`/posts/${articleSlug}`);
-      navigate("/articles");
+      navigate("/admin");
     } catch (error) {
       console.log("error", err?.message);
     }

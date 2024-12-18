@@ -2,6 +2,12 @@
   height: 100vh;
   overflow-y: auto;
   position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.add_post::-webkit-scrollbar {
+  display: none;
 }
 
 .add_post main.addpost {
@@ -13,6 +19,10 @@
   display: -ms-grid;
   display: grid;
   place-items: center;
+}
+
+.add_post main.addpost .form-section .wrap {
+  width: 80%;
 }
 
 .add_post main.addpost .form-section .wrap input[type="file"] {
@@ -32,6 +42,10 @@
 .add_post main.addpost .form-section .wrap .input-grp div:last-of-type {
   -ms-flex-item-align: end;
       align-self: flex-end;
+}
+
+.add_post main.addpost .form-section .wrap .form-header h2 {
+  color: white;
 }
 
 .add_post main.addpost .form-section .wrap select {

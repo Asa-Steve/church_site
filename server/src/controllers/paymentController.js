@@ -1,6 +1,6 @@
 const axios = require("axios");
 const Payment = require("../models/paymentSchema");
-const massReq = require("../models/massRequest.Schema");
+const massReq = require("../models/massRequestSchema");
 const InfantReg = require("../models/infantBaptismSchema");
 
 //initialize a Paystack transaction

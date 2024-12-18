@@ -72,7 +72,7 @@ const Baptism = () => {
     };
     try {
       setisLoading(true);
-      const response = await axiosInstance.post("/api/v1/makePayment", payload);
+      const response = await axiosInstance.post("/makePayment", payload);
       const {
         status,
         data: { authorization_url: authUrl },

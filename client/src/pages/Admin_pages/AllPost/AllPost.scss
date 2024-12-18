@@ -1,0 +1,144 @@
+@import "../../../styles/responsive.scss";
+
+h1.all_postheader {
+  font-weight: 100;
+}
+
+.msg.admin {
+  height: 400px;
+}
+.admin_posts {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  height: 480px;
+  max-height: 100dvh;
+  overflow: auto;
+  overflow-y: auto;
+  border-top: 1px solid rgba(128, 128, 128, 0.333);
+
+  .post {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    border: 1px solid rgba(128, 128, 128, 0.326);
+    padding: .3rem;
+    .post-body {
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 200px);
+      a{
+        color: #001220;
+        transition: all .3s ease;
+
+        &:hover{
+          color: #ff0066;
+        }
+      }
+    }
+    .post-img {
+      width: 200px;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .post-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      height: 60px;
+
+      .author-deit {
+        display: flex;
+        align-self: center;
+      }
+    }
+
+    .btns {
+      align-self: center;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-inline: .2rem;
+
+      a,
+      button {
+        padding: 0.5rem 2rem;
+        border: none;
+        color: white;
+        font-size: 1rem;
+      }
+      a {
+        display: inline-block;
+        background-color: green;
+        &:hover {
+          background-color: white;
+          border: 1px solid #001220;
+          color: #001220;
+        }
+      }
+      button {
+        cursor: pointer;
+        background-color: #ff0066;
+        &:hover {
+          background-color: #001220;
+        }
+      }
+    }
+  }
+
+
+  @include md {
+    .post {
+      height: 130px;
+
+      a {
+        font-size: 1.3rem;
+      }
+
+      .post-footer {
+        .author-deit {
+          gap: 10px;
+        }
+        margin-top: auto;
+        a,
+        button {
+          padding: 0.1rem 1rem;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    .post {
+      .post-body {
+        width: 100%;
+      }
+      .author-deit {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  @include xsm {
+    .post {
+      height: fit-content;
+
+      .post-img {
+        display: none;
+      }
+      .post-footer {
+        margin-top: auto;
+        a,
+        button {
+          padding: 0.2rem 1rem;
+        }
+      }
+    }
+  }
+}

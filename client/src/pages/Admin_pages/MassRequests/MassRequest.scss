@@ -1,0 +1,60 @@
+@import "../../../styles/responsive.scss";
+
+.all-request {
+  display: flex;
+  flex-direction: column;
+  min-height: 81vh;
+
+  .requests {
+    display: flex;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .request {
+      border: 1px solid rgba(128, 128, 128, 0.459);
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 49%;
+
+      span {
+        color: #ff006697;
+        text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.082);
+        font-style: italic;
+        font-weight: bold;
+      }
+      .requested-header {
+        display: flex;
+        // border: 1px solid;
+        justify-content: space-between;
+        align-items: center;
+
+        .extras {
+          text-align: end;
+        }
+      }
+      .request-body {
+        // border: 1px solid;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 0.2rem;
+        height: 200px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      @include sm {
+        width: 100%;
+      }
+    }
+  }
+  .request-footer {
+    margin-top: auto;
+  }
+}

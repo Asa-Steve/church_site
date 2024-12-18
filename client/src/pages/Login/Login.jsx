@@ -18,7 +18,7 @@ const Login = () => {
   const location = useLocation();
 
   // Retrieving the "from" route or fallback to home ("/")
-  const redirectPath = location.state?.from?.pathname || "/admin/addpost";
+  const redirectPath = location.state?.from?.pathname || "/admin";
 
   useEffect(() => {
     const token = localStorage.getItem("token");
