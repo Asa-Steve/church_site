@@ -308,8 +308,7 @@ const Dashboard = () => {
       <Loader />
     ) : (
       <>
-        <div className="dash">
-          <div className="right_dash">
+        <div className="dashboard">
             <div className="main">
               <div className="chart">
                 <div className="left">
@@ -342,12 +341,12 @@ const Dashboard = () => {
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart
                         width={100}
-                        height={200}
+                        height={100}
                         data={data}
                         margin={{
                           top: 25,
                           right: 10,
-                          left: 10,
+                          left: -7,
                           bottom: 5,
                         }}
                       >
@@ -473,7 +472,6 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </>
     );

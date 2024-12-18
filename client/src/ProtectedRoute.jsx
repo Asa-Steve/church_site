@@ -117,6 +117,13 @@ const ProtectedRoute = () => {
                 Mass Requests
               </Link>
             </div>
+            <div className="linked">
+              <div className="blob"></div>
+              <Link to={"/"} onClick={handleClick}>
+                <img src="/icons/undo.png" alt="" />
+                Return to website
+              </Link>
+            </div>
 
             <div className="linked">
               <div className="blob"></div>
