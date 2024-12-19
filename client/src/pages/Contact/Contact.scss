@@ -1,62 +1,73 @@
 @import "../../styles/responsive.scss";
 
 .contact_section {
-    border: 1px solid;
-    min-height: 100vh;
-    background-color: rgba(255, 255, 255, 0.945);
-    color: black;
+  min-height: 100vh;
+  background-color: rgba(255, 255, 255, 0.945);
+  color: black;
 
-    .header_title {
+  .header_title {
+    margin: 1rem 0 3rem;
 
-        margin: 1rem 0 3rem;
-
-        h2,
-        p {
-            text-align: center;
-            padding: .5rem;
-        }
-
-        h2 {
-            font-size: 3.5rem;
-            font-weight: 100;
-        }
-
-        p {
-            max-width: 800px;
-            margin: auto;
-            font-size: 1.2rem;
-            color: rgb(96, 95, 95)
-        }
+    h2,
+    p {
+      text-align: center;
+      padding: 0.5rem;
     }
 
-
-
-    .map {
-        height: 600px;
-        width: 80%;
-        margin-inline: auto;
-        margin-bottom: 3rem;
-
-        .wrap {
-            height: 100%;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-                transition: all .3s ease-in;
-                cursor: pointer;
-
-                &:hover {
-                    filter: grayscale(10);
-                }
-            }
-        }
-
-        @include sm {
-            height: 400px;
-            width: 98%;
-            margin-block: 2rem ;
-        }
+    h2 {
+      font-size: 3.5rem;
+      font-weight: 100;
     }
+
+    p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.2rem;
+      color: rgb(96, 95, 95);
+    }
+
+    @include sm {
+        margin-bottom: 1rem;
+        margin-top: 0;
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .map {
+    height: 600px;
+    width: 80%;
+    margin-inline: auto;
+    margin-bottom: 3rem;
+
+    .wrap {
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+
+        &:hover {
+          filter: grayscale(10);
+        }
+      }
+    }
+
+    @include sm {
+      height: 400px;
+      width: 98%;
+      margin-block: 2rem;
+    }
+  }
+
+
+  .right{
+    .channels{
+        padding: .5rem;
+    }
+  }
 }
