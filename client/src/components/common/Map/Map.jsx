@@ -10,7 +10,11 @@ const RecenterButton = ({ position }) => {
     map.setView(position, 100); // Recenter with zoom (100)
   };
 
-  return <button  className={"recenter-btn"}onClick={handleRecenter}>Recenter</button>;
+  return (
+    <button className={"recenter-btn"} onClick={handleRecenter}>
+      Recenter
+    </button>
+  );
 };
 
 const Map = () => {
@@ -29,7 +33,7 @@ const Map = () => {
         attribution="Map data © Google"
       />
       <Marker position={markerPosition}>
-        <Popup>St. Matthias Church</Popup>
+        <Popup>St. Matthias Catholic Church</Popup>
       </Marker>
       <RecenterButton position={markerPosition} />
     </MapContainer>
