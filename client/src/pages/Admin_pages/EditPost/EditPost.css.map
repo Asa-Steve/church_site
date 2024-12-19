@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAEI,SAFK,CACP,KAAK,CACH,EAAE,CAAC;EACD,KAAK,EAAE,KAAK;EACZ,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,GAAG;EAChB,aAAa,EAAE,IAAI;CACpB;;AAGL,AAAA,YAAY,AAAA,KAAK,CAAC;EAChB,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,KAAK;CAMd;;AARD,AAGE,YAHU,AAAA,KAAK,CAGf,GAAG,CAAC;EACF,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,KAAK;CAClB",
+    "sources": [
+        "EditPost.scss",
+        "../../../styles/responsive.scss"
+    ],
+    "names": [],
+    "file": "EditPost.css"
+}

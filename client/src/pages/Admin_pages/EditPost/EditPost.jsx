@@ -1,66 +1,93 @@
 import React, { useEffect, useState } from "react";
-import "./AddPost.scss";
-import { Link, useNavigate } from "react-router-dom";
-import axiosInstance from "../../components/Utils/axiosInstance";
-import usePageLoad from "../../components/Utils/usePageLoad";
-import Loader from "../../components/common/Loader/Loader";
+import "./EditPost.scss";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axiosInstance from "../../../components/Utils/axiosInstance";
+// import usePageLoad from "../../../components/Utils/usePageLoad";
+import Loader from "../../../components/common/Loader/Loader";
 
 const categories = ["Event", "Feast", "Upcoming"];
 
-const AddPost = () => {
-  const [formData, setFormData] = useState({
+const EditPost = () => {
+  const [userFormData, setUserFormData] = useState({
     postTitle: "",
     content: "",
     category: "Feast",
     postImg: null,
   });
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
-  const isPageLoaded = usePageLoad();
+  const { articleSlug } = useParams();
+  const [currentFile, setCurrentFile] = useState("");
+
+  useEffect(() => {
+    const getPost = async () => {
+      try {
+        const response = await axiosInstance.get(`/posts/${articleSlug}`);
+        setUserFormData({
+          ...response?.data?.data,
+          postImg: response?.data?.data?.file,
+        });
+
+        setCurrentFile(response?.data?.data?.file);
+
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err?.message);
+      }
+    };
+
+    getPost();
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
-      setMessage(null);
-    }, 3000);
+      setMessage("");
+    }, 2000);
   }, [message]);
 
   const handleChange = (e) => {
     const { value, name, files } = e.target;
 
     if (name === "postImg")
-      setFormData((prevData) => ({ ...prevData, postImg: files[0] }));
-    else setFormData((prevData) => ({ ...prevData, [name]: value }));
+      setUserFormData((prevData) => ({ ...prevData, postImg: files[0] }));
+    else setUserFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = { ...formData };
+    // Append form data properly using FormData API
+    const payload = new FormData();
+    payload.append("postTitle", userFormData.postTitle);
+    payload.append("content", userFormData.content);
+    payload.append("category", userFormData.category);
+
+    if (userFormData.postImg) {
+      payload.append("postImg", userFormData.postImg); // Appending the file
+    }
 
     if (
-      formData.postTitle &&
-      formData.content &&
-      formData.postImg &&
-      formData.category
+      userFormData.postTitle &&
+      userFormData.content &&
+      userFormData.category
     ) {
       try {
         setIsLoading(true);
-        const response = await axiosInstance.post("/posts/create", payload, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
-
+        const response = await axiosInstance.put(
+          `/posts/${articleSlug}`,
+          payload,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
         const { status, message } = response.data;
-
-        setMessage({ status, message: `${message}, Redirecting...` });
+        setMessage({ status, message });
         setIsLoading(false);
 
-        navigate("/articles");
-        setTimeout(() => {
-          navigate("/articles");
-        }, 2000);
+        navigate("/articles/");
       } catch ({ response: { data: err } }) {
         const { status = "failed", message = "Something went wrong" } = err;
         setMessage({ status, message });
@@ -70,15 +97,19 @@ const AddPost = () => {
   };
 
   {
-    return !isPageLoaded ? (
-      <Loader />
+    return isLoading ? (
+      <div className="load">
+        <Loader />
+      </div>
     ) : (
       <div className="add_post">
         <main className="addpost">
           <section className="form-section">
             <div className="wrap">
-              <div className="form-header">
-                <h2>CREATE NEW POST</h2>
+              <h2>EDIT POST</h2>
+
+              <div className="form-header edit">
+                <img src={`${currentFile}`} alt="" />
               </div>
 
               <form action="" onSubmit={handleSubmit}>
@@ -89,7 +120,7 @@ const AddPost = () => {
                     name="postTitle"
                     id="title_post"
                     placeholder="Enter Title"
-                    value={formData.postTitle}
+                    value={userFormData.postTitle}
                     onChange={handleChange}
                     required
                   />
@@ -102,7 +133,6 @@ const AddPost = () => {
                       name="postImg"
                       id="post_img"
                       onChange={handleChange}
-                      required
                     />
                   </div>
                   <div>
@@ -110,9 +140,9 @@ const AddPost = () => {
                     <select
                       name="category"
                       id="category"
-                      value={formData.category}
+                      value={userFormData.category}
                       onChange={(e) =>
-                        setFormData((prevData) => ({
+                        setUserFormData((prevData) => ({
                           ...prevData,
                           category: e.target.value,
                         }))
@@ -133,12 +163,12 @@ const AddPost = () => {
                     id="content"
                     placeholder="Write something interesting..."
                     name="content"
-                    value={formData.content}
+                    value={userFormData.content}
                     onChange={handleChange}
                     required
                   ></textarea>
                 </div>
-                <button disabled={isLoading}>Publish Post</button>
+                <button disabled={isLoading}>Publish Edited Post</button>
                 <p
                   className={
                     !message?.status
@@ -159,4 +189,4 @@ const AddPost = () => {
   }
 };
 
-export default AddPost;
+export default EditPost;

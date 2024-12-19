@@ -19,10 +19,7 @@ const Priest = () => {
       <Loader />
     ) : (
       <>
-        <section
-          className="top"
-          style={{ backgroundImage: `url(../imgs/${priest.imgUrl}.jpg)` }}
-        >
+        <section className="top">
           <div className="overlay"></div>
           <div className="text">
             <h1>{priest.name}</h1>

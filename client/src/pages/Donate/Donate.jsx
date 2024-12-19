@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Donate.scss";
 import axiosInstance from "../../components/Utils/axiosInstance";
 import Popup from "../../components/common/Popup/Popup";
@@ -29,13 +29,13 @@ const Donate = () => {
   };
 
   // Setting a display message for user
-  const setPop = (msg) => {
-    setMessage(msg);
+  // const setPop = (msg) => {
+  //   setMessage(msg);
 
-    // setTimeout(() => {
-    //   setMessage("");
-    // }, 3000);
-  };
+  //   // setTimeout(() => {
+  //   //   setMessage("");
+  //   // }, 3000);
+  // };
 
   const handleCancel = () => {
     setMessage("");
@@ -52,6 +52,12 @@ const Donate = () => {
       [name]: value, // Update only the field that changed
     }));
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
+  }, [message]);
 
   // Initializing transaction
   const handleProceed = async () => {
@@ -77,18 +83,18 @@ const Donate = () => {
 
       if (status) {
         console.log("Transaction Initialized:", authUrl);
-        setPop("Transaction Initialized, Redirecting...");
+        setMessage("Transaction Initialized, Redirecting...");
         window.location.href = authUrl;
       } else {
         setisLoading(false);
-        setPop(
+        setMessage(
           error?.response?.data?.error ??
             "🛑 Error initializing transaction, try again"
         );
       }
     } catch (error) {
       setisLoading(false);
-      setPop(
+      setMessage(
         error?.response?.data?.error ??
           "🛑 Failed to initializing transaction, try again"
       );

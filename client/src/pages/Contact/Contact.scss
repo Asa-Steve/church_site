@@ -32,7 +32,7 @@
 
 
     .map {
-        height: 400px;
+        height: 600px;
         width: 80%;
         margin-inline: auto;
         margin-bottom: 3rem;
@@ -54,7 +54,8 @@
         }
 
         @include sm {
-            height: fit-content;
+            height: 400px;
+            width: 98%;
             margin-block: 2rem ;
         }
     }

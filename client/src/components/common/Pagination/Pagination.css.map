@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,WAAW,CAAC;EACV,OAAO,EAAE,MAAM;EACf,UAAU,EAAE,MAAM;CAenB;;AAjBD,AAGE,WAHS,CAGT,MAAM,CAAC;EACL,OAAO,EAAE,WAAW;EACpB,MAAM,EAAE,OAAO;EACf,aAAa,EAAE,IAAI;CACpB;;ACKC,MAAM,EAAC,SAAS,EAAE,KAAK;EDZ3B,AAAA,WAAW,CAAC;IAUR,OAAO,EAAE,IAAI;IACb,WAAW,EAAE,MAAM;IACnB,eAAe,EAAE,MAAM;GAK1B;EAjBD,AAaI,WAbO,CAaP,MAAM,CAAC;IACP,OAAO,EAAE,WAAW;GACrB",
+    "sources": [
+        "Pagination.scss",
+        "../../../styles/responsive.scss"
+    ],
+    "names": [],
+    "file": "Pagination.css"
+}

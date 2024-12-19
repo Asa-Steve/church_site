@@ -1,10 +1,5 @@
 @import "../../styles/responsive.scss";
 
-section.top {
-  border-image-source: linear-gradient(hsl(0, 100%, 50%), hsl(0, 0%, 0%));
-  border-image-slice: 1 fill;
-}
-
 .form-section {
   // border: 1px solid;
   min-height: max-content;
@@ -19,6 +14,7 @@ section.top {
       padding: 2rem;
       background-color: black; //#ff5197
       font-weight: 100;
+      // color: white;
     }
   }
 

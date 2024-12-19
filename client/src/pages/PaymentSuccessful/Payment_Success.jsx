@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Payment_Success.scss";
 
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axiosInstance from "../../components/Utils/axiosInstance";
 import Loader from "../../components/common/Loader/Loader";
 
@@ -10,11 +10,12 @@ const Payment_Success = () => {
 
   const [isSuccessful, setIsSuccessful] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const verifyPayment = async () => {
       const reference = searchParams.get("reference"); // Get the transaction reference
-      if (!reference) return;
+      if (!reference) return navigate("/");
 
       try {
         const response = await axiosInstance.post("/verifyPayment", {

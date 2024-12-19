@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopUp from "../../components/common/Popup/Popup";
 import "./Mass.scss";
 import axiosInstance from "../../components/Utils/axiosInstance";
@@ -33,15 +33,15 @@ const Mass = () => {
   };
 
   // Setting a display message for user
-  const setPop = (msg) => {
-    console.log("got called with msg :", msg);
+  // const setPop = (msg) => {
+  //   console.log("got called with msg :", msg);
 
-    setMessage(msg);
+  //   setMessage(msg);
 
-    // setTimeout(() => {
-    //   setMessage("");
-    // }, 3000);
-  };
+  //   // setTimeout(() => {
+  //   //   setMessage("");
+  //   // }, 3000);
+  // };
 
   const handleCancel = () => {
     setMessage("");
@@ -59,20 +59,25 @@ const Mass = () => {
     }));
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+  }, [message]);
+
   // Initializing transaction
   const handleProceed = async () => {
-    const payload = {
-      email: formData.email,
-      amount: formData.amount * 100,
-      callback_url: "https://mount-zion.onrender.com/payment_status",
-      metadata: { ...formData },
-    };
-    setMessage("");
-
-    console.log(payload);
-    // setisLoading(true);
-
     try {
+      const payload = {
+        email: formData.email,
+        amount: formData.amount * 100,
+        callback_url: "https://mount-zion.onrender.com/payment_status",
+        metadata: { ...formData },
+      };
+      setMessage("");
+
+      // setisLoading(true);
+
       setisLoading(true);
       const response = await axiosInstance.post("/makePayment", payload);
       const {
@@ -81,18 +86,18 @@ const Mass = () => {
       } = response.data;
 
       if (status) {
-        setPop("Transaction Initialized, Redirecting...");
+        setMessage("Transaction Initialized, Redirecting...");
         window.location.href = authUrl;
       } else {
         setisLoading(false);
-        setPop(
+        setMessage(
           error?.response?.data?.error ??
             "🛑 Error initializing transaction, try again"
         );
       }
     } catch (error) {
       setisLoading(false);
-      setPop(
+      setMessage(
         error?.response?.data?.error ??
           "🛑 Failed to initializing transaction, try again"
       );

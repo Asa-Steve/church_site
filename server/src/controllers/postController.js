@@ -18,9 +18,11 @@ const createPost = async (req, res) => {
       await newPost.save();
       return res
         .status(200)
-        .json({ status: "success", message: "Post Created Successfully..." });
+        .json({ status: "success", message: "Post Created Successfully" });
     } catch (err) {
-      console.log(err);
+      if (err.errorResponse.code === 11000) {
+        err.message = "post title already exists";
+      }
       return res.status(500).json({
         status: "failure",
         message: err?.message || "Couldn't Create Post...",

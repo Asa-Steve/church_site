@@ -90,9 +90,10 @@
 }
 
 @media (max-width: 632px) {
-  .add_post main.addpost .wrap {
+  .add_post main.addpost .form-section .wrap {
     margin-top: 2rem;
     padding: 0.2rem;
+    width: 95%;
   }
 }
 

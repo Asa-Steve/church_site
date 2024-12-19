@@ -23,6 +23,7 @@ const team = [
     title: "Visiting Priest",
     imgUrl: "../imgs/p2.jpg",
   },
+  
 ];
 
 export default team;

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./MassRequest.scss";
 import axiosInstance from "../../../components/Utils/axiosInstance";
 import Pagination from "../../../components/common/Pagination/Pagination";
+import Loader from "../../../components/common/Loader/Loader";
+
 const MassRequest = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,12 +13,11 @@ const MassRequest = () => {
 
   const getRequests = async (page) => {
     try {
-      console.log(page);
       setMessage("");
+      setLoading(true);
       const response = await axiosInstance.get(
         `/requests?page=${page}&limit=4`
       );
-      console.log("requests", response?.data);
       setRequests(response?.data?.data);
       setTotalPages(response?.data.totalPages);
 
@@ -38,9 +39,13 @@ const MassRequest = () => {
   }, [currentPage]);
 
   {
-    return !loading && requests.length < 1 ? (
+    return loading ? (
+      <div className="load">
+        <Loader />
+      </div>
+    ) : !loading && requests.length < 1 ? (
       <div className="msg admin">
-        <h1>{message ? message : "No Requests Found."}</h1>
+        <h1>{message ? message : "No Request Found."}</h1>
       </div>
     ) : (
       <div className="all-request">

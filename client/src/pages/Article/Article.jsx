@@ -8,7 +8,8 @@ import { jwtDecode } from "jwt-decode";
 const Article = () => {
   const { articleSlug } = useParams();
   const [loading, setLoading] = useState(true);
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState(null);
+  const [message, setMessage] = useState(null);
   const [isAuthor, setIsAuthor] = useState(null);
   const navigate = useNavigate();
 
@@ -18,8 +19,9 @@ const Article = () => {
         const response = await axiosInstance.get(`/posts/${articleSlug}`);
         setPost(response?.data?.data);
         setLoading(false);
-      } catch (error) {
+      } catch ({ response: { data: err } }) {
         setLoading(false);
+        setMessage(err?.message || "Post Not Found!!");
       }
     };
 
@@ -47,15 +49,20 @@ const Article = () => {
 
   const handleDelete = async () => {
     try {
-      const response = axiosInstance.delete(`/posts/${articleSlug}`);
+      setLoading(true);
+      await axiosInstance.delete(`/posts/${articleSlug}`);
       navigate("/admin");
     } catch (error) {
-      console.log("error", err?.message);
+      console.log("error", error);
     }
   };
   {
     return loading ? (
       <Loader />
+    ) : !post ? (
+      <div className="msg">
+        <h1>{message}</h1>
+      </div>
     ) : (
       <>
         <section className="top article">

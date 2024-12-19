@@ -1,0 +1,94 @@
+.load {
+  position: relative;
+  height: 81dvh;
+  overflow: hidden;
+}
+
+.all-request {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 81vh;
+}
+
+.all-request .requests {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  row-gap: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.all-request .requests .request {
+  border: 1px solid rgba(128, 128, 128, 0.459);
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+  width: 49%;
+}
+
+.all-request .requests .request span {
+  color: #ff006697;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.082);
+  font-style: italic;
+  font-weight: bold;
+}
+
+.all-request .requests .request .requested-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.all-request .requests .request .requested-header .extras {
+  text-align: end;
+}
+
+.all-request .requests .request .request-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 12px;
+  padding: 0.2rem;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.all-request .requests .request .request-body::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 736px) {
+  .all-request .requests .request {
+    width: 100%;
+  }
+}
+
+.all-request .request-footer {
+  margin-top: auto;
+}
+/*# sourceMappingURL=MassRequest.css.map */

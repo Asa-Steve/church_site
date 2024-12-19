@@ -1,5 +1,11 @@
 @import "../../../styles/responsive.scss";
 
+.load {
+  position: relative;
+  height: 81dvh;
+  overflow: hidden;
+
+}
 .all-request {
   display: flex;
   flex-direction: column;

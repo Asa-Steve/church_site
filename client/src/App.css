@@ -11,7 +11,9 @@
 }
 
 .content .outlet_wrap {
-  min-height: 700px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   margin-block: auto;
 }
 /*# sourceMappingURL=App.css.map */

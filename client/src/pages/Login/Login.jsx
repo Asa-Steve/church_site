@@ -29,6 +29,12 @@ const Login = () => {
     setChecking(false);
   }, [navigate]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+  }, [message]);
+
   const handleChange = (e) => {
     const { value, name } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -45,7 +51,7 @@ const Login = () => {
         const data = response?.data;
         setMessage({
           status: "success",
-          message: data?.message || "Login Successful",
+          message: data?.message || "Login Successful, Redirecting...",
         });
         localStorage.setItem("token", data.token);
         // Navigate to the originally requested route or home
@@ -59,9 +65,6 @@ const Login = () => {
       });
       setIsLoading(false);
     }
-    setTimeout(() => {
-      setMessage(null);
-    }, 3000);
   };
 
   {

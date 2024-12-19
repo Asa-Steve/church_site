@@ -12,7 +12,7 @@ const TeamCards = ({ img, name, desc, title, to }) => {
       <div className="card-deit">
         <h4>{name}</h4>
         <span>{title}</span>
-        <div className="socials">
+        {/* <div className="socials">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="-100.7682 -167.947 873.3244 1007.682"
@@ -38,7 +38,7 @@ const TeamCards = ({ img, name, desc, title, to }) => {
               fill="#141b34"
             />
           </svg>
-        </div>
+        </div> */}
         {/* <p>{desc}</p> */}
       </div>
     </div>

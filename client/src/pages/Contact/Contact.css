@@ -28,7 +28,7 @@
 }
 
 .contact_section .map {
-  height: 400px;
+  height: 600px;
   width: 80%;
   margin-inline: auto;
   margin-bottom: 3rem;
@@ -55,9 +55,8 @@
 
 @media (max-width: 736px) {
   .contact_section .map {
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+    height: 400px;
+    width: 98%;
     margin-block: 2rem;
   }
 }

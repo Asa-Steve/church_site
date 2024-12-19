@@ -3,6 +3,7 @@ import axiosInstance from "../../../components/Utils/axiosInstance";
 import "./AllPost.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Pagination from "../../../components/common/Pagination/Pagination";
+import Loader from "../../../components/common/Loader/Loader";
 
 const AllPost = () => {
   const [posts, setPosts] = useState([]);
@@ -10,7 +11,6 @@ const AllPost = () => {
   const [message, setMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const navigate = useNavigate();
 
   const handlePageChange = async (page) => {
     if (page > 0 && page <= totalPages) {
@@ -25,9 +25,12 @@ const AllPost = () => {
       setPosts(response?.data?.data);
       setTotalPages(response?.data?.totalPages);
       setLoading(false);
-    } catch (error) {
+    } catch ({ response: { data: err } }) {
       setLoading(false);
-      setMessage("Couldn't get post at the moment try again later");
+      console.log(err);
+      setMessage(
+        err?.message || "Couldn't get any post at the moment try again later"
+      );
     }
   };
 
@@ -37,14 +40,20 @@ const AllPost = () => {
 
   const handleDelete = async (articleSlug) => {
     try {
+      setLoading(true);
       await axiosInstance.delete(`/posts/${articleSlug}`);
-      navigate("/articles");
-    } catch (error) {
-      console.log("error", error?.message);
+      getPosts();
+    } catch ({ response: { data: err } }) {
+      setLoading(false);
+      console.log("error", err?.message || "something went wrong");
     }
   };
   {
-    return posts.length < 1 ? (
+    return loading ? (
+      <div className="load">
+        <Loader />
+      </div>
+    ) : !loading && posts.length < 1 ? (
       <div className="msg admin">
         <h1>{message ? message : "No Post Found."}</h1>
       </div>
@@ -76,7 +85,7 @@ const AllPost = () => {
                         <Link to={`/admin/article/edit/${post.slug}`}>
                           Edit
                         </Link>
-                        <button onClick={() => handleDelete(post.slug)}>
+                        <button onClick={() => handleDelete(post.slug)} disabled={loading}>
                           Delete
                         </button>
                       </div>

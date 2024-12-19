@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axiosInstance from "../../components/Utils/axiosInstance";
 import "./Baptism.scss";
 import PopUp from "../../components/common/Popup/Popup";
@@ -51,16 +51,20 @@ const Baptism = () => {
     setShowPopup(true);
   };
 
-  // Setting a display message for user
-  const setPop = (msg) => {
-    console.log("got called with msg :", msg);
+  // // Setting a display message for user
+  // const setPop = (msg) => {
+  //   setMessage(msg);
 
-    setMessage(msg);
+  //   // setTimeout(() => {
+  //   //   setMessage("");
+  //   // }, 3000);
+  // };
 
-    // setTimeout(() => {
-    //   setMessage("");
-    // }, 3000);
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage("");
+    }, 2000);
+  }, [message]);
 
   // Initializing transaction
   const handleProceed = async () => {
@@ -79,15 +83,15 @@ const Baptism = () => {
       } = response.data;
 
       if (status) {
-        setPop("Transaction Initialized, Redirecting...");
+        setMessage("Transaction Initialized, Redirecting...");
         window.location.href = authUrl;
       } else {
         setisLoading(false);
-        setPop("🛑 Error initializing transaction, try again");
+        setMessage("🛑 Error initializing transaction, try again");
       }
     } catch (error) {
       setisLoading(false);
-      setPop("🛑 Failed to initializing transaction, try again");
+      setMessage("🛑 Failed to initializing transaction, try again");
     }
   };
 
@@ -350,8 +354,6 @@ const Baptism = () => {
                     />
                   </div>
                 </div>
-
-                {/* <PaystackButton {...componentProps} /> */}
                 <button>Proceed To Make Payment</button>
               </form>
             </div>

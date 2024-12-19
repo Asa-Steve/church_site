@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Contact.scss";
 import usePageLoad from "../../components/Utils/usePageLoad";
 import Loader from "../../components/common/Loader/Loader";
+import Map from "../../components/common/Map/Map";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -142,7 +143,7 @@ const Contact = () => {
 
           <div className="map">
             <div className="wrap">
-              <img src="/imgs/map.png" alt="" />
+              <Map />
             </div>
           </div>
         </section>

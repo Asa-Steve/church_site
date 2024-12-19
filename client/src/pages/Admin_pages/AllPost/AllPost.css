@@ -15,17 +15,23 @@ h1.all_postheader {
       -ms-flex-direction: column;
           flex-direction: column;
   row-gap: 20px;
+  height: 480px;
+  max-height: 100dvh;
+  overflow: auto;
+  overflow-y: auto;
+  border-top: 1px solid rgba(128, 128, 128, 0.333);
 }
 
 .admin_posts .post {
-  border: 1px solid;
   width: 100%;
   height: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border: 1px solid rgba(128, 128, 128, 0.326);
+  padding: .3rem;
 }
 
 .admin_posts .post .post-body {
@@ -36,8 +42,17 @@ h1.all_postheader {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border: 2px solid;
   width: calc(100% - 200px);
+}
+
+.admin_posts .post .post-body a {
+  color: #001220;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.admin_posts .post .post-body a:hover {
+  color: #ff0066;
 }
 
 .admin_posts .post .post-img {
@@ -53,10 +68,11 @@ h1.all_postheader {
 }
 
 .admin_posts .post .post-footer {
-  border: 1px solid red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -67,13 +83,11 @@ h1.all_postheader {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: 1px solid green;
   -ms-flex-item-align: center;
       align-self: center;
 }
 
 .admin_posts .post .btns {
-  border: 2px solid blue;
   -ms-flex-item-align: center;
       align-self: center;
   display: -webkit-box;
@@ -83,13 +97,15 @@ h1.all_postheader {
       -ms-flex-pack: end;
           justify-content: flex-end;
   gap: 10px;
+  padding-inline: .2rem;
 }
 
 .admin_posts .post .btns a,
 .admin_posts .post .btns button {
   padding: 0.5rem 2rem;
-  border: 1px solid;
+  border: none;
   color: white;
+  font-size: 1rem;
 }
 
 .admin_posts .post .btns a {
@@ -110,5 +126,51 @@ h1.all_postheader {
 
 .admin_posts .post .btns button:hover {
   background-color: #001220;
+}
+
+@media (max-width: 905px) {
+  .admin_posts .post {
+    height: 130px;
+  }
+  .admin_posts .post a {
+    font-size: 1.3rem;
+  }
+  .admin_posts .post .post-footer {
+    margin-top: auto;
+  }
+  .admin_posts .post .post-footer .author-deit {
+    gap: 10px;
+  }
+  .admin_posts .post .post-footer a,
+  .admin_posts .post .post-footer button {
+    padding: 0.1rem 1rem;
+  }
+}
+
+@media (max-width: 736px) {
+  .admin_posts .post .post-body {
+    width: 100%;
+  }
+  .admin_posts .post .author-deit {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 632px) {
+  .admin_posts .post {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .admin_posts .post .post-img {
+    display: none;
+  }
+  .admin_posts .post .post-footer {
+    margin-top: auto;
+  }
+  .admin_posts .post .post-footer a,
+  .admin_posts .post .post-footer button {
+    padding: 0.2rem 1rem;
+  }
 }
 /*# sourceMappingURL=AllPost.css.map */
