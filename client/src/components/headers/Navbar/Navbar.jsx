@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="nav-logo-wrap">
           <NavLink to="/" className={"nav-logo flex-me"}>
             <div className="img-wrap-logo">
-              <img src="/imgs/logo3.png" alt="" />
+              <img src="/imgs/logo3.png" alt="logo" />
             </div>
             <span>st.matthias</span>
           </NavLink>

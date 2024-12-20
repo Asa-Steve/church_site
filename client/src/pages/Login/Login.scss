@@ -171,24 +171,7 @@
             }
           }
 
-          .message {
-            border: 1px solid;
-            text-align: center;
-            margin-top: 0.5rem;
-            padding: 0.3rem;
-            color: white;
-            font-size: 0.8rem;
-
-            &.hide {
-              display: none;
-            }
-            &.success {
-              background-color: rgb(152, 224, 45);
-            }
-            &.failure {
-              background-color: red;
-            }
-          }
+          
 
           @include md {
             width: 90%;

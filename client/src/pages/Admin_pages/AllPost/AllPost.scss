@@ -23,16 +23,16 @@ h1.all_postheader {
     display: flex;
     flex-wrap: nowrap;
     border: 1px solid rgba(128, 128, 128, 0.326);
-    padding: .3rem;
+    padding: 0.3rem;
     .post-body {
       display: flex;
       flex-direction: column;
       width: calc(100% - 200px);
-      a{
+      a {
         color: #001220;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
 
-        &:hover{
+        &:hover {
           color: #ff0066;
         }
       }
@@ -56,15 +56,16 @@ h1.all_postheader {
       .author-deit {
         display: flex;
         align-self: center;
+        gap: 10px;
       }
     }
 
-    .btns {
+    .btns{
       align-self: center;
       display: flex;
       justify-content: flex-end;
       gap: 10px;
-      padding-inline: .2rem;
+      padding-inline: 0.2rem;
 
       a,
       button {
@@ -72,10 +73,13 @@ h1.all_postheader {
         border: none;
         color: white;
         font-size: 1rem;
+        border: 1px solid transparent;
+        transition: all .3s ease;
       }
       a {
         display: inline-block;
-        background-color: green;
+        background-color: #fff;
+        color: #001220;
         &:hover {
           background-color: white;
           border: 1px solid #001220;
@@ -84,14 +88,16 @@ h1.all_postheader {
       }
       button {
         cursor: pointer;
-        background-color: #ff0066;
+        background-color: #001220;
         &:hover {
-          background-color: #001220;
+          background-color: #ff0066;
+          color: #fff;
         }
       }
     }
-  }
 
+    
+  }
 
   @include md {
     .post {

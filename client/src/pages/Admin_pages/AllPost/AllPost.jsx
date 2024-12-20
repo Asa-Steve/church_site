@@ -78,14 +78,20 @@ const AllPost = () => {
                       <div className="author-deit">
                         <p>Tag : {post?.category}</p>
                         <p className="author">
-                          posted by : {post?.author?.username}
+                          posted by :{" "}
+                          {post?.author?.username
+                            ? post?.author?.username
+                            : "Admin"}
                         </p>
                       </div>
                       <div className="btns">
                         <Link to={`/admin/article/edit/${post.slug}`}>
                           Edit
                         </Link>
-                        <button onClick={() => handleDelete(post.slug)} disabled={loading}>
+                        <button
+                          onClick={() => handleDelete(post.slug)}
+                          disabled={loading}
+                        >
                           Delete
                         </button>
                       </div>

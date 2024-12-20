@@ -21,7 +21,7 @@ app.use(express.json());
 
 app.use("/api/v1", paymentRoute);
 app.use("/api/v1/posts", postRoute);
-app.use("/api/v1/user", userRoute);
+app.use("/api/v1/users", userRoute);
 app.use("/api/v1/requests", requestRoute);
 // app.use("/api/v1", mailRoute);
 

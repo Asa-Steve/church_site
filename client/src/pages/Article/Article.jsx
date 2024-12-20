@@ -19,9 +19,9 @@ const Article = () => {
         const response = await axiosInstance.get(`/posts/${articleSlug}`);
         setPost(response?.data?.data);
         setLoading(false);
-      } catch ({ response: { data: err } }) {
+      } catch (err) {
         setLoading(false);
-        setMessage(err?.message || "Post Not Found!!");
+        setMessage("Something went wrong,try again later");
       }
     };
 
@@ -53,7 +53,6 @@ const Article = () => {
       await axiosInstance.delete(`/posts/${articleSlug}`);
       navigate("/admin");
     } catch (error) {
-      console.log("error", error);
     }
   };
   {

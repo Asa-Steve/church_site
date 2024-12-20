@@ -1,19 +1,20 @@
 const mongoose = require("mongoose");
-// const connectDB = require("../database/db");
-// connectDB();
-
-// Define the schema
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  role: {
-    type: String,
-    required: true,
-    enum: ["SuperAdmin", "Editor"],
-    default: "Editor",
+// Defining the schema
+const userSchema = new mongoose.Schema(
+  {
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: {
+      type: String,
+      required: true,
+      enum: ["SuperAdmin", "Editor"],
+      default: "Editor",
+    },
+    img: { type: String },
   },
-});
+  { timestamps: true }
+);
 
-// Create the model
+// Creating the model
 module.exports = mongoose.model("User", userSchema);

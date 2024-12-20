@@ -19,7 +19,7 @@ const upload = multer({
 
 // Enhanced Middleware to Handle Errors Gracefully
 const uploadMiddleware = (req, res, next) => {
-  upload.single("postImg")(req, res, (err) => {
+  upload.single("img")(req, res, (err) => {
     if (err) {
       if (err.code === "LIMIT_FILE_SIZE") {
         return res.status(400).json({

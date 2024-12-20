@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./EditPost.scss";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../../components/Utils/axiosInstance";
-// import usePageLoad from "../../../components/Utils/usePageLoad";
 import Loader from "../../../components/common/Loader/Loader";
 
 const categories = ["Event", "Feast", "Upcoming"];
@@ -12,7 +11,7 @@ const EditPost = () => {
     postTitle: "",
     content: "",
     category: "Feast",
-    postImg: null,
+    img: null,
   });
 
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +27,7 @@ const EditPost = () => {
         const response = await axiosInstance.get(`/posts/${articleSlug}`);
         setUserFormData({
           ...response?.data?.data,
-          postImg: response?.data?.data?.file,
+          img: response?.data?.data?.file,
         });
 
         setCurrentFile(response?.data?.data?.file);
@@ -51,8 +50,8 @@ const EditPost = () => {
   const handleChange = (e) => {
     const { value, name, files } = e.target;
 
-    if (name === "postImg")
-      setUserFormData((prevData) => ({ ...prevData, postImg: files[0] }));
+    if (name === "img")
+      setUserFormData((prevData) => ({ ...prevData, img: files[0] }));
     else setUserFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -65,8 +64,8 @@ const EditPost = () => {
     payload.append("content", userFormData.content);
     payload.append("category", userFormData.category);
 
-    if (userFormData.postImg) {
-      payload.append("postImg", userFormData.postImg); // Appending the file
+    if (userFormData.img) {
+      payload.append("img", userFormData.img); // Appending the file
     }
 
     if (
@@ -127,11 +126,11 @@ const EditPost = () => {
                 </div>
                 <div className="row input-grp">
                   <div>
-                    <label htmlFor="post_img">Post Image</label>
+                    <label htmlFor="img">Post Image</label>
                     <input
                       type="file"
-                      name="postImg"
-                      id="post_img"
+                      name="img"
+                      id="img"
                       onChange={handleChange}
                     />
                   </div>

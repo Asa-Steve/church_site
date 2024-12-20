@@ -1,0 +1,112 @@
+@import "../../../styles//responsive.scss";
+
+.add_user {
+  height: 81dvh;
+  //   height: fit-content;
+  overflow: hidden;
+
+  .form-section {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    .wrap {
+      text-align: center;
+      position: relative;
+      width: 40%;
+      overflow: hidden;
+      border: 1px solid rgba(128, 128, 128, 0.42);
+      padding: 0.5rem 0.2rem;
+
+      .tag {
+        width: 200px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        background-color: #001220;
+        position: absolute;
+        right: -65px;
+        top: 25px;
+        transform: rotate(45deg);
+        color: white;
+        font-size: 1.2rem;
+        box-shadow: 0px 2px 0px -0.5px #ff0066;
+      }
+
+      .profile-pic {
+        height: 150px;
+        width: 150px;
+        margin: auto;
+        border-radius: 50%;
+        padding: 0.1rem;
+        background-color: #001220;
+        position: relative;
+
+        img:not(.camera) {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border: 2px solid #001220;
+          border-radius: 50%;
+          background-color: #fff;
+          transition: object-position 0.3s ease;
+
+          &.pad-img {
+            object-position: 0 5px;
+          }
+        }
+        img.camera {
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          bottom: 5px;
+          right: 10px;
+          cursor: pointer;
+          border: 1px solid;
+          padding: 0.1rem;
+          border-radius: 50%;
+          background-color: #fff;
+        }
+      }
+
+      form {
+        margin-top: 1rem;
+        padding: 0;
+        padding-bottom: 1rem;
+        height: 260px;
+
+        .row {
+          margin: 0.3rem 0;
+        }
+
+        input {
+          text-align: center;
+          width: 80% !important;
+          height: 30px;
+          margin-bottom: 0.5rem;
+          
+          &[type="file"] {
+            display: none;
+          }
+        }
+        button {
+          width: 80%;
+        }
+
+        select {
+          text-align: center;
+          width: 80%;
+          padding: 0.3rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      @include md {
+        width: 80%;
+      }
+
+      @include xsm {
+        width: 98%;
+      }
+    }
+  }
+}

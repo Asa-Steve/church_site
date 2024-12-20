@@ -9,7 +9,7 @@ const {
 const uploadMiddleware = require("../middleware/UploadMiddleware");
 const verifyToken = require("../middleware/verifyToken");
 
-router.get("/", allPosts);
+router.get("/", verifyToken, allPosts);
 router.get("/:postSlug", getPost);
 router.post("/create", verifyToken, uploadMiddleware, createPost);
 

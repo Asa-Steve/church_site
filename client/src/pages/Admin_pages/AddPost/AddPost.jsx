@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./AddPost.scss";
 import { Link, useNavigate } from "react-router-dom";
-import axiosInstance from "../../components/Utils/axiosInstance";
-import usePageLoad from "../../components/Utils/usePageLoad";
-import Loader from "../../components/common/Loader/Loader";
+import axiosInstance from "../../../components/Utils/axiosInstance";
+import usePageLoad from "../../../components/Utils/usePageLoad";
+import Loader from "../../../components/common/Loader/Loader";
 
 const categories = ["Event", "Feast", "Upcoming"];
 
@@ -12,7 +12,7 @@ const AddPost = () => {
     postTitle: "",
     content: "",
     category: "Feast",
-    postImg: null,
+    img: null,
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -30,8 +30,8 @@ const AddPost = () => {
   const handleChange = (e) => {
     const { value, name, files } = e.target;
 
-    if (name === "postImg")
-      setFormData((prevData) => ({ ...prevData, postImg: files[0] }));
+    if (name === "img")
+      setFormData((prevData) => ({ ...prevData, img: files[0] }));
     else setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -43,7 +43,7 @@ const AddPost = () => {
     if (
       formData.postTitle &&
       formData.content &&
-      formData.postImg &&
+      formData.img &&
       formData.category
     ) {
       try {
@@ -96,11 +96,11 @@ const AddPost = () => {
                 </div>
                 <div className="row input-grp">
                   <div>
-                    <label htmlFor="post_img">Post Image</label>
+                    <label htmlFor="img">Post Image</label>
                     <input
                       type="file"
-                      name="postImg"
-                      id="post_img"
+                      name="img"
+                      id="img"
                       onChange={handleChange}
                       required
                     />

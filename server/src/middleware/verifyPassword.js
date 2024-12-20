@@ -3,14 +3,17 @@ const User = require("../models/userSchema");
 
 const verifyPassword = async (req, res, next) => {
   const { username, password } = req.body;
-
   try {
     const foundUser = await User.findOne({ username: username }).lean();
-
     if (foundUser) {
       const match = await bcrypt.compare(password, foundUser.password);
       if (match) {
-        req.user = { id: foundUser._id, username: foundUser.username };
+        req.user = {
+          id: foundUser._id,
+          username: foundUser.username,
+          role: foundUser.role,
+          img: foundUser.img,
+        };
         next();
       } else {
         return res
@@ -23,8 +26,6 @@ const verifyPassword = async (req, res, next) => {
   } catch (err) {
     return res.status(500).json({ message: "Something went wrong." });
   }
-
-
 };
 
 module.exports = verifyPassword;

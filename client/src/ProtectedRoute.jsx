@@ -9,13 +9,16 @@ import {
 import axiosInstance from "./components/Utils/axiosInstance";
 import Loader from "./components/common/Loader/Loader";
 import "./ProtectedRoute.scss";
+import { jwtDecode } from "jwt-decode";
 
 const ProtectedRoute = () => {
   const [isVerified, setIsVerified] = useState(null);
   const [showToggle, setShowToggle] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
+
   useEffect(() => {
     const verifyToken = async () => {
       const token = localStorage.getItem("token");
@@ -25,7 +28,14 @@ const ProtectedRoute = () => {
       }
 
       try {
-        const response = await axiosInstance.post("/user/verify-token");
+        const user = jwtDecode(token);
+        setCurrentUser(user);
+
+        if (user?.role === "superAdmin") {
+          setIsAdmin(true);
+        }
+
+        const response = await axiosInstance.post("/users/verify-token");
 
         if (response.data.success) {
           setIsVerified(true); // Token is valid
@@ -33,6 +43,7 @@ const ProtectedRoute = () => {
           setIsVerified(false); // Token is invalid
         }
       } catch (error) {
+        console.error("Error verifying token:", error);
         setIsVerified(false);
       }
     };
@@ -42,7 +53,6 @@ const ProtectedRoute = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsLoggedIn(false);
     handleClick();
     navigate("/");
   };
@@ -67,16 +77,18 @@ const ProtectedRoute = () => {
         </div>
         <div className={!showToggle ? "left_dash active" : "left_dash"}>
           <div className="close" onClick={() => setShowToggle((prev) => !prev)}>
-            {" "}
-            X{" "}
+            X
           </div>
           <div className="logo">
             <div className="logo_img">
-              <img src="/imgs/1.png" alt="logo" />
+              <img
+                src={currentUser.img ? currentUser.img : "/imgs/login.png"}
+                alt={currentUser.username}
+              />
             </div>
             <div className="admin_name">
-              <h1>ADMIN</h1>
-              <i>Dev Steve</i>
+              <h1>{currentUser.username}</h1>
+              <i>{currentUser.role}</i>
             </div>
           </div>
 
@@ -88,16 +100,27 @@ const ProtectedRoute = () => {
                 Dashboard
               </Link>
             </div>
+            {isAdmin && (
+              <div className="linked">
+                <div className="blob"></div>
+                <Link to={"/admin/users/create"} onClick={handleClick}>
+                  <img src="/imgs/dash_ic/1.png" alt="" />
+                  Add User
+                </Link>
+              </div>
+            )}
+            {isAdmin && (
+              <div className="linked">
+                <div className="blob"></div>
+                <Link to={"/admin/users/"} onClick={handleClick}>
+                  <img src="/imgs/dash_ic/1.png" alt="" />
+                  View All Users
+                </Link>
+              </div>
+            )}
             <div className="linked">
               <div className="blob"></div>
-              <Link onClick={handleClick}>
-                <img src="/imgs/dash_ic/1.png" alt="" />
-                Add User
-              </Link>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <Link to={"/admin/article/addpost"} onClick={handleClick}>
+              <Link to={"/admin/article/create"} onClick={handleClick}>
                 <img src="/imgs/dash_ic/2.png" alt="" />
                 Add Post
               </Link>

@@ -12,7 +12,7 @@ const verifyToken = async (req, res, next) => {
   }
 
   try {
-    const decoded = await jwt.verify(token, process.env.JWT_SECRET); // verifying with JWT secret
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // verifying with JWT secret
     req.user = decoded;
     next();
   } catch (err) {
