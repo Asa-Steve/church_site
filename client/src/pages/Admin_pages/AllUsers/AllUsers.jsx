@@ -12,21 +12,21 @@ const AllUsers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
+  // Handling Page Change [pagination]
   const handlePageChange = async (page) => {
     if (page > 0 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
 
+  // Logic for Getting all users from server
   const getUsers = async (page) => {
     try {
       setMessage("");
-      const response = await axiosInstance.get(`/users?page=${page}&limit=8`);
-      console.log(response.data.data);
+      const response = await axiosInstance.get(`/users?page=${page}&limit=8`); // sending Queries alongside
       setUsers(response?.data?.data);
       setTotalPages(response?.data?.totalPages);
 
-      console.log(response);
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -36,16 +36,18 @@ const AllUsers = () => {
     }
   };
 
+  // Getting all User from Server with respect to Page [Pagination]
   useEffect(() => {
     getUsers(currentPage);
   }, [currentPage]);
 
+  // Handling Delete
   const handleDelete = async (articleSlug) => {
     try {
       setLoading(true);
       await axiosInstance.delete(`/users/${articleSlug}`);
       getUsers();
-    } catch ({ response: { data: err } }) {
+    } catch (err) {
       setLoading(false);
       console.log("error", err?.message || "something went wrong");
     }

@@ -1,9 +1,11 @@
 import "./Dashboard.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import usePageLoad from "../../../components/Utils/usePageLoad";
 import Loader from "../../../components/common/Loader/Loader";
+import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
 
-import React, { PureComponent, useState } from "react";
+// Import for Chart Component
 import {
   LineChart,
   Line,
@@ -57,6 +59,10 @@ import {
 //     amt: genRand(),
 //   },
 // ];
+
+// Checking if User is Admin and authorized to view Page
+
+// Checking if User is Admin and authorized to view Page
 
 const genRand = () => Math.floor(Math.random() * 8000 + 2000);
 
@@ -136,8 +142,36 @@ const Dashboard = () => {
     },
   ]);
   const [activeFilter, setActiveFilter] = useState(3);
+  const [message, setMessage] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(null);
+  const navigate = useNavigate();
+
   // Handling Page Loading Spinner
   const isPageLoaded = usePageLoad();
+
+  // Checking if User is Admin and authorized to view Page
+  useEffect(() => {
+    const verifyUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          return navigate("/login"); // No token, user is not authenticated
+        }
+        const user = jwtDecode(token);
+        if (user.role !== "superAdmin") {
+          setIsAdmin(false);
+          throw new Error("Youre Not Authorized to view this page.");
+        } else {
+          setIsAdmin(true);
+        }
+      } catch (error) {
+        setMessage(error.message);
+        return;
+      }
+    };
+
+    verifyUser();
+  }, []);
 
   const handleWeekly = () => {
     const weeklyData = [
@@ -306,174 +340,178 @@ const Dashboard = () => {
   {
     return !isPageLoaded ? (
       <Loader />
-    ) : (
+    ) : isAdmin ? (
       <>
         <div className="dashboard">
-            <div className="main">
-              <div className="chart">
-                <div className="left">
-                  <div className="left_info">
-                    <div className="info_txt">
-                      <h4>Monthly income stat for September 2024</h4>
-                    </div>
-                    <div className="filter">
-                      <div
-                        className={activeFilter === 1 ? "td active" : "td"}
-                        onClick={handleDaily}
-                      >
-                        Today
-                      </div>
-                      <div
-                        className={activeFilter === 2 ? "wk active" : "wk"}
-                        onClick={handleWeekly}
-                      >
-                        Weekly
-                      </div>
-                      <div
-                        className={activeFilter === 3 ? "mt active" : "mt"}
-                        onClick={handleMonthly}
-                      >
-                        Monthly
-                      </div>
-                    </div>
+          <div className="main">
+            <div className="chart">
+              <div className="left">
+                <div className="left_info">
+                  <div className="info_txt">
+                    <h4>Monthly income stat for September 2024</h4>
                   </div>
-                  <div className="plot">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart
-                        width={100}
-                        height={100}
-                        data={data}
-                        margin={{
-                          top: 25,
-                          right: 10,
-                          left: -7,
-                          bottom: 5,
-                        }}
-                      >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line
-                          type="monotone"
-                          dataKey="inf_baptism"
-                          stroke="#ff0066"
-                          activeDot={{ r: 8 }}
-                        />
-                        <Line
-                          type="monotone"
-                          dataKey="donations"
-                          stroke="#001220"
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
+                  <div className="filter">
+                    <div
+                      className={activeFilter === 1 ? "td active" : "td"}
+                      onClick={handleDaily}
+                    >
+                      Today
+                    </div>
+                    <div
+                      className={activeFilter === 2 ? "wk active" : "wk"}
+                      onClick={handleWeekly}
+                    >
+                      Weekly
+                    </div>
+                    <div
+                      className={activeFilter === 3 ? "mt active" : "mt"}
+                      onClick={handleMonthly}
+                    >
+                      Monthly
+                    </div>
                   </div>
                 </div>
-                <div className="right">
-                  <div className="cats">
-                    <div className="cat">
-                      <h3>5,000+</h3>
-                      <p>Total Enrollment</p>
-                    </div>
-                    <div className="cat">
-                      <h3>500+</h3>
-                      <p>Total Listings</p>
-                    </div>
-                    <div className="cat">
-                      <h3>1,000+</h3>
-                      <p>Claimed Listings</p>
-                    </div>
-                    <div className="cat">
-                      <h3>1,000+</h3>
-                      <p>Reported Listings</p>
-                    </div>
-                  </div>
+                <div className="plot">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      width={100}
+                      height={100}
+                      data={data}
+                      margin={{
+                        top: 25,
+                        right: 10,
+                        left: -7,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="inf_baptism"
+                        stroke="#ff0066"
+                        activeDot={{ r: 8 }}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="donations"
+                        stroke="#001220"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
                 </div>
               </div>
-              <div className="stat">
-                <div className="left">
-                  <div className="left_info">
-                    <div className="info_txt">
-                      <h4>Monthly income stat for September 2024</h4>
-                    </div>
-                    <div className="filter">
-                      <div
-                        className={activeFilter === 1 ? "td active" : "td"}
-                        onClick={handleDaily}
-                      >
-                        Today
-                      </div>
-                      <div
-                        className={activeFilter === 2 ? "wk active" : "wk"}
-                        onClick={handleWeekly}
-                      >
-                        Weekly
-                      </div>
-                      <div
-                        className={activeFilter === 3 ? "mt active" : "mt"}
-                        onClick={handleMonthly}
-                      >
-                        Monthly
-                      </div>
-                    </div>
+              <div className="right">
+                <div className="cats">
+                  <div className="cat">
+                    <h3>5,000+</h3>
+                    <p>Total Enrollment</p>
                   </div>
-                  <div className="plot">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart
-                        width={100}
-                        height={100}
-                        data={data}
-                        margin={{
-                          top: 5,
-                          right: 30,
-                          left: -10,
-                          bottom: 5,
-                        }}
-                      >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar
-                          dataKey="inf_baptism"
-                          fill="#ff0066"
-                          activeBar={<Rectangle fill="pink" stroke="blue" />}
-                        />
-                        <Bar
-                          dataKey="donations"
-                          fill="#001220"
-                          activeBar={<Rectangle fill="gold" stroke="purple" />}
-                        />
-                      </BarChart>
-                    </ResponsiveContainer>
+                  <div className="cat">
+                    <h3>500+</h3>
+                    <p>Total Listings</p>
                   </div>
-                </div>
-                <div className="right">
-                  <div className="cats">
-                    <div className="cat">
-                      <h3>5,000+</h3>
-                      <p>Total Enrollment</p>
-                    </div>
-                    <div className="cat">
-                      <h3>500+</h3>
-                      <p>Total Listings</p>
-                    </div>
-                    <div className="cat">
-                      <h3>1,000+</h3>
-                      <p>Claimed Listings</p>
-                    </div>
-                    <div className="cat">
-                      <h3>1,000+</h3>
-                      <p>Reported Listings</p>
-                    </div>
+                  <div className="cat">
+                    <h3>1,000+</h3>
+                    <p>Claimed Listings</p>
+                  </div>
+                  <div className="cat">
+                    <h3>1,000+</h3>
+                    <p>Reported Listings</p>
                   </div>
                 </div>
               </div>
             </div>
+            <div className="stat">
+              <div className="left">
+                <div className="left_info">
+                  <div className="info_txt">
+                    <h4>Monthly income stat for September 2024</h4>
+                  </div>
+                  <div className="filter">
+                    <div
+                      className={activeFilter === 1 ? "td active" : "td"}
+                      onClick={handleDaily}
+                    >
+                      Today
+                    </div>
+                    <div
+                      className={activeFilter === 2 ? "wk active" : "wk"}
+                      onClick={handleWeekly}
+                    >
+                      Weekly
+                    </div>
+                    <div
+                      className={activeFilter === 3 ? "mt active" : "mt"}
+                      onClick={handleMonthly}
+                    >
+                      Monthly
+                    </div>
+                  </div>
+                </div>
+                <div className="plot">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      width={100}
+                      height={100}
+                      data={data}
+                      margin={{
+                        top: 5,
+                        right: 30,
+                        left: -10,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Bar
+                        dataKey="inf_baptism"
+                        fill="#ff0066"
+                        activeBar={<Rectangle fill="pink" stroke="blue" />}
+                      />
+                      <Bar
+                        dataKey="donations"
+                        fill="#001220"
+                        activeBar={<Rectangle fill="gold" stroke="purple" />}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+              <div className="right">
+                <div className="cats">
+                  <div className="cat">
+                    <h3>5,000+</h3>
+                    <p>Total Enrollment</p>
+                  </div>
+                  <div className="cat">
+                    <h3>500+</h3>
+                    <p>Total Listings</p>
+                  </div>
+                  <div className="cat">
+                    <h3>1,000+</h3>
+                    <p>Claimed Listings</p>
+                  </div>
+                  <div className="cat">
+                    <h3>1,000+</h3>
+                    <p>Reported Listings</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </>
+    ) : (
+      <div className="msg admin">
+        <h1>{message ? message : "Something Went Wrong!"}</h1>
+      </div>
     );
   }
 };

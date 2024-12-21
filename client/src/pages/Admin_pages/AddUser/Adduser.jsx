@@ -3,9 +3,9 @@ import axiosInstance from "../../../components/Utils/axiosInstance";
 import usePageLoad from "../../../components/Utils/usePageLoad";
 import Loader from "../../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 import "./AddUser.scss";
-import { useNavigate } from "react-router-dom";
 
 const Adduser = () => {
   const [userData, setUserData] = useState({
@@ -23,6 +23,7 @@ const Adduser = () => {
   const isPageLoaded = usePageLoad();
   const navigate = useNavigate();
 
+  // Checking if User is Admin and authorized to view Page
   useEffect(() => {
     const verifyUser = async () => {
       try {
@@ -46,19 +47,23 @@ const Adduser = () => {
     verifyUser();
   }, []);
 
+  // Handling input change
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "profile-pic" && files) {
+      // Checking if an image was uplaoded, noting change and generating a preview
       setPreview(URL.createObjectURL(files[0]));
       return setUserData((prevData) => ({ ...prevData, img: files[0] }));
     }
     return setUserData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  // Handling Page Uplaod / Logic for hidden img input
   const handleImageUplaod = () => {
     hiddenFileUploader.current.click();
   };
 
+  // Handling Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -80,7 +85,7 @@ const Adduser = () => {
         img: "",
       });
       setIsLoading(false);
-    } catch ({ response: { data: err } }) {
+    } catch (err) {
       setMessage({ ...err });
       setIsLoading(false);
     }

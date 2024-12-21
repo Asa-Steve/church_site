@@ -93,13 +93,15 @@ const ProtectedRoute = () => {
           </div>
 
           <div className="menu">
-            <div className="linked">
-              <div className="blob"></div>
-              <Link to={"/admin/dashboard"} onClick={handleClick}>
-                <img src="/imgs/dash_ic/1.png" alt="" />
-                Dashboard
-              </Link>
-            </div>
+            {isAdmin && (
+              <div className="linked">
+                <div className="blob"></div>
+                <Link to={"/admin/dashboard"} onClick={handleClick}>
+                  <img src="/imgs/dash_ic/1.png" alt="" />
+                  Dashboard
+                </Link>
+              </div>
+            )}
             {isAdmin && (
               <div className="linked">
                 <div className="blob"></div>

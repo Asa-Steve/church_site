@@ -4,6 +4,7 @@ import "./AllPost.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Pagination from "../../../components/common/Pagination/Pagination";
 import Loader from "../../../components/common/Loader/Loader";
+import { jwtDecode } from "jwt-decode";
 
 const AllPost = () => {
   const [posts, setPosts] = useState([]);
@@ -12,20 +13,31 @@ const AllPost = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
+  // Logic For Page Changes
   const handlePageChange = async (page) => {
     if (page > 0 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
 
+  // Getting Posts from server
   const getPosts = async (page) => {
     try {
+      // Checking current user
+      const token = localStorage.getItem("token");
+      let id = null;
+      if (token) {
+        // Getting users Id if exists
+        id = jwtDecode(token).id;
+      }
       setMessage("");
-      const response = await axiosInstance.get(`/posts?page=${page}&limit=4`);
+      const response = await axiosInstance.get(
+        `/posts?page=${page}&limit=4&id=${id}` //Making a request with page no, limits and userId if logged in
+      );
       setPosts(response?.data?.data);
       setTotalPages(response?.data?.totalPages);
       setLoading(false);
-    } catch ({ response: { data: err } }) {
+    } catch (err) {
       setLoading(false);
       console.log(err);
       setMessage(
@@ -34,10 +46,12 @@ const AllPost = () => {
     }
   };
 
+  // Fetching Post with regards to Page
   useEffect(() => {
     getPosts(currentPage);
   }, [currentPage]);
 
+  // Handling Delete
   const handleDelete = async (articleSlug) => {
     try {
       setLoading(true);
