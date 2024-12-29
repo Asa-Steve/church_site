@@ -28,6 +28,11 @@ h1.all_postheader {
       display: flex;
       flex-direction: column;
       width: calc(100% - 200px);
+      padding-left: .4rem;
+
+      h2 {
+        font-size: 1.3rem;
+      }
       a {
         color: #001220;
         transition: all 0.3s ease;
@@ -60,7 +65,7 @@ h1.all_postheader {
       }
     }
 
-    .btns{
+    .btns {
       align-self: center;
       display: flex;
       justify-content: flex-end;
@@ -74,7 +79,7 @@ h1.all_postheader {
         color: white;
         font-size: 1rem;
         border: 1px solid transparent;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
       }
       a {
         display: inline-block;
@@ -95,8 +100,6 @@ h1.all_postheader {
         }
       }
     }
-
-    
   }
 
   @include md {

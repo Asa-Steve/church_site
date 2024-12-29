@@ -47,6 +47,7 @@ const Login = () => {
     try {
       if (formData.username && formData.username) {
         setIsLoading(true);
+        console.log(payload);
         const response = await axiosInstance.post("/users/login", payload);
         const data = response?.data;
         setMessage({

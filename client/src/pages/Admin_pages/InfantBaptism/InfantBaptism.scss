@@ -1,0 +1,89 @@
+@import "../../../styles/responsive.scss";
+
+.infants {
+  padding: 0.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: 660px;
+  overflow-y: auto;
+  justify-content: space-between;
+
+  .infant {
+    border: 1px solid rgba(128, 128, 128, 0.374);
+    width: 49%;
+    background-color: #fff;
+    padding: 0 0.5rem;
+    border-radius: 10px;
+    height: 320px;
+    padding: 0.5rem;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    h3 {
+      padding-left: 0.5rem;
+    }
+
+    cursor: pointer;
+
+    &:hover {
+      span,
+      h3 span {
+        color: #ff0066;
+      }
+    }
+    .infant-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-wrap: wrap;
+      column-gap: 5px;
+      row-gap: 10px;
+      padding: 0.3rem;
+
+      & > p {
+        min-width: fit-content;
+        max-width: 50%;
+        padding: 0.2rem 1rem;
+        flex: 1;
+
+        background-color: black;
+        color: white;
+        border-radius: 20px;
+
+        span {
+          transition: all 0.3s ease;
+          margin-right: 0.2rem;
+        }
+      }
+    }
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+
+  @include lg {
+    row-gap: 20px;
+    .infant {
+      width: 100%;
+      h3 {
+        text-align: center;
+        padding: 0.5rem;
+      }
+
+      .infant-body {
+        & > p {
+          flex: none;
+          width: fit-content;
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,6 @@
 const cloudinary = require("../utils/cloudinary");
 const Post = require("../models/postSchema");
 const User = require("../models/userSchema");
-const { default: mongoose } = require("mongoose");
 
 const createPost = async (req, res) => {
   const { postTitle, content, category } = req.body;
@@ -34,12 +33,11 @@ const createPost = async (req, res) => {
 };
 
 const allPosts = async (req, res) => {
-  const { page = 1, limit = 10, id = null } = req.query; // Default page = 1 and limit = 10
-
-  if (id) {
-    const foundUser = await User.findById(id);
-    if (foundUser.role !== "superAdmin") {
-      try {
+  try {
+    const { page = 1, limit = 10, id = null } = req.query; // Default page = 1 and limit = 10
+    if (id) {
+      const foundUser = await User.findById(id);
+      if (foundUser.role !== "superAdmin") {
         const allPosts = await Post.find({
           author: id,
         })
@@ -48,7 +46,7 @@ const allPosts = async (req, res) => {
           .limit(parseInt(limit)) // Limit number of documents per page;
           .populate("author", "username role")
           .exec();
-        const total = await Post.countDocuments(); // Total number of documents
+        const total = await Post.countDocuments({ author: id }); // Total number of documents for specific user
         return res.status(200).json({
           status: "success",
           data: allPosts,
@@ -56,14 +54,7 @@ const allPosts = async (req, res) => {
           currentPage: parseInt(page),
           totalItems: total,
         });
-      } catch (err) {
-        return res.status(500).json({
-          status: "failed",
-          message: err?.message || "An error occurred",
-        });
       }
-    }
-    try {
       const allPosts = await Post.find()
         .sort({ createdAt: -1 }) // Sort by latest first
         .skip((page - 1) * limit) // Skip documents for previous pages
@@ -80,14 +71,7 @@ const allPosts = async (req, res) => {
         currentPage: parseInt(page),
         totalItems: total,
       });
-    } catch (err) {
-      return res.status(500).json({
-        status: "failed",
-        message: err?.message || "An error occurred",
-      });
     }
-  }
-  try {
     const allPosts = await Post.find()
       .sort({ createdAt: -1 }) // Sort by latest first
       .skip((page - 1) * limit) // Skip documents for previous pages

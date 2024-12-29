@@ -5,9 +5,15 @@ const User = require("../models/userSchema");
 const bcrypt = require("bcrypt");
 
 const login = (req, res) => {
-  const { user } = req;
-  const token = jwt.sign(user, JWT_SECRET, { expiresIn: "1hr" });
-  return res.status(200).json({ message: "successfully logged In", token });
+  try {
+    const { user } = req;
+    const token = jwt.sign(user, JWT_SECRET, { expiresIn: "1hr" });
+    return res.status(200).json({ message: "successfully logged In", token });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ status: "failure", message: "Couldn't Login." });
+  }
 };
 
 const verify = (req, res) => {
@@ -53,6 +59,20 @@ const create = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  try {
+    const { user } = req;
+    const payload  = req.body;
+
+    console.log(user,payload);
+  } catch (err) {
+    return res.status(500).json({
+      status: "failure",
+      message: err?.msg || "Something went wrong while updating user",
+    });
+  }
+};
+
 const users = async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query; // Default page = 1 and limit = 10
@@ -84,4 +104,5 @@ const users = async (req, res) => {
       .json({ status: "failed", message: err?.message || "An error occurred" });
   }
 };
-module.exports = { login, verify, create, users };
+
+module.exports = { login, verify, create, users, update };

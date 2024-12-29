@@ -13,6 +13,7 @@ const verifyPassword = async (req, res, next) => {
           username: foundUser.username,
           role: foundUser.role,
           img: foundUser.img,
+          email:foundUser.email
         };
         next();
       } else {

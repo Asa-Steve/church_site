@@ -1,3 +1,5 @@
+import "./EditProfile.scss";
+
 import { useEffect, useRef, useState } from "react";
 import axiosInstance from "../../../components/Utils/axiosInstance";
 import usePageLoad from "../../../components/Utils/usePageLoad";
@@ -5,20 +7,21 @@ import Loader from "../../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
-import "./AddUser.scss";
-
-const Adduser = () => {
+const EditProfile = () => {
   const [userData, setUserData] = useState({
     username: "",
-    password: "",
-    role: "Editor",
+    email: "",
+    newPassword: "",
+    confirmPassword: "",
+    role: "",
     img: "",
   });
   const [isLoading, setIsLoading] = useState(null);
   const hiddenFileUploader = useRef(null);
   const [preview, setPreview] = useState(null);
   const [message, setMessage] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(null);
+  const [user, setUser] = useState(null);
+
   // Handling Page Loading Spinner
   const isPageLoaded = usePageLoad();
   const navigate = useNavigate();
@@ -32,12 +35,14 @@ const Adduser = () => {
           return navigate("/login"); // No token, user is not authenticated
         }
         const user = jwtDecode(token);
-        if (user.role !== "superAdmin") {
-          setIsAdmin(false);
-          throw new Error("Youre Not Authorized to view this page.");
-        } else {
-          setIsAdmin(true);
-        }
+
+        setUserData((prevData) => ({
+          ...prevData,
+          username: user.username,
+          email: user.email,
+          role: user.role,
+          img: user.img,
+        }));
       } catch (error) {
         setMessage(error.message);
         return;
@@ -67,29 +72,40 @@ const Adduser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (userData.newPassword !== userData.confirmPassword) {
+      console.log("Passwords do not match");
+      console.log(userData.newPassword, userData.confirmPassword);
+      return setMessage({
+        status: "failure",
+        message: "Passwords do not match",
+      });
+    }
+
     try {
       const payload = new FormData();
       payload.set("username", userData?.username);
-      payload.set("password", userData?.password);
       payload.set("role", userData?.role);
-      payload.set("img", userData?.img);
+      userData.img && payload.set("img", userData?.img);
+
+      userData.newPassword && payload.set("newPassword", userData?.newPassword);
 
       setIsLoading(true);
-      const response = await axiosInstance.post("/users/create", payload);
+      const response = await axiosInstance.put("/users", payload);
       const { data } = response;
       setMessage({ ...data });
       setUserData({
         username: "",
         password: "",
-        role: "Editor",
+        role: "",
         img: "",
+        newPassword: "",
+        confirmPassword: "",
       });
       setIsLoading(false);
       setTimeout(() => {
         setMessage(null);
         navigate("/admin/users/");
       }, 3000);
-
     } catch (err) {
       console.log(err.response.data);
       setMessage({ ...err.response?.data });
@@ -105,14 +121,20 @@ const Adduser = () => {
       <div className="load">
         <Loader />
       </div>
-    ) : isAdmin ? (
-      <main className="add_user">
+    ) : userData ? (
+      <main className="user_profile">
         <section className="form-section">
           <div className="wrap">
-            <div className="tag"> New User</div>
+            <div className="tag"> {userData.role}</div>
             <div className="profile-pic">
               <img
-                src={preview ? preview : "/profile.webp"}
+                src={
+                  preview
+                    ? preview
+                    : userData.img
+                    ? userData.img
+                    : "/profile.webp"
+                }
                 className={!preview ? "pad-img" : undefined}
                 alt="profile-pic"
               />
@@ -125,7 +147,6 @@ const Adduser = () => {
             </div>
 
             <form action="" onSubmit={handleSubmit}>
-              {/* <h2>Add New User</h2> */}
               <div className="row">
                 <label htmlFor="username">Username</label>
                 <input
@@ -139,15 +160,42 @@ const Adduser = () => {
                 />
               </div>
               <div className="row">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="email">Email</label>
                 <input
-                  type="password"
-                  name="password"
-                  placeholder="enter your password"
-                  value={userData.password}
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="example@gmail.com"
+                  value={userData.email}
                   onChange={handleChange}
                   required
                 />
+              </div>
+              <div className="row input-grp">
+                <div>
+                  <label htmlFor="newPassword">New Password</label>
+                  <input
+                    type="password"
+                    name="newPassword"
+                    id="newPassword"
+                    placeholder="**************"
+                    value={userData.newPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="**************"
+                    id="confirmPassword"
+                    value={userData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
               <input
                 type="file"
@@ -157,24 +205,7 @@ const Adduser = () => {
                 onChange={handleChange}
               />
 
-              <div className="row">
-                <label htmlFor="role">Select Role</label>
-                <select
-                  id="role"
-                  name="role"
-                  value={userData.role}
-                  onChange={(e) =>
-                    setUserData((prevData) => ({
-                      ...prevData,
-                      role: e.target.value,
-                    }))
-                  }
-                >
-                  <option value="Editor">Editor</option>
-                  <option value="SuperAdmin">Super Admin</option>
-                </select>
-              </div>
-              <button disabled={isLoading}>Add User</button>
+              <button disabled={isLoading}>Update Profile</button>
               <p
                 className={
                   !message?.status
@@ -198,4 +229,4 @@ const Adduser = () => {
   }
 };
 
-export default Adduser;
+export default EditProfile;

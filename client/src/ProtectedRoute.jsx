@@ -144,6 +144,13 @@ const ProtectedRoute = () => {
             </div>
             <div className="linked">
               <div className="blob"></div>
+              <Link to={"/admin/infants"} onClick={handleClick}>
+                <img src="/imgs/dash_ic/3.png" alt="" />
+                Infant Registrations
+              </Link>
+            </div>
+            <div className="linked">
+              <div className="blob"></div>
               <Link to={"/"} onClick={handleClick}>
                 <img src="/icons/undo.png" alt="" />
                 Return to website

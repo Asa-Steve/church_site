@@ -36,6 +36,7 @@ const AllPost = () => {
       );
       setPosts(response?.data?.data);
       setTotalPages(response?.data?.totalPages);
+
       setLoading(false);
     } catch (err) {
       setLoading(false);

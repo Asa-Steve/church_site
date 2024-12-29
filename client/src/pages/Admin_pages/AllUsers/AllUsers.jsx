@@ -70,7 +70,6 @@ const AllUsers = () => {
               return (
                 <div key={user._id} className="user">
                   <div className="user-img">
-                    {console.log(user.img)}
                     <img
                       src={user.img ? `${user.img}` : "/profile.webp"}
                       alt={user.username}

@@ -25,8 +25,12 @@ import AllPost from "./pages/Admin_pages/AllPost/AllPost.jsx";
 import MassRequest from "./pages/Admin_pages/MassRequests/MassRequest.jsx";
 import Adduser from "./pages/Admin_pages/AddUser/Adduser.jsx";
 import AllUsers from "./pages/Admin_pages/AllUsers/AllUsers.jsx";
+import InfantBaptism from "./pages/Admin_pages/InfantBaptism/InfantBaptism.jsx";
+
 // Layout for Authenticated Users
 import ProtectedRoute from "./ProtectedRoute.jsx";
+import EditUser from "./pages/Admin_pages/EditUser/EditUser.jsx";
+import EditProfile from "./pages/Admin_pages/EditProfile/EditProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -118,10 +122,21 @@ const router = createBrowserRouter([
         path: "/admin/users/create",
         element: <Adduser />,
       },
-
+      {
+        path: "/admin/users/edit/:userId",
+        element: <EditUser />,
+      },
       {
         path: "/admin/requests",
         element: <MassRequest />,
+      },
+      {
+        path: "/admin/infants",
+        element: <InfantBaptism />,
+      },
+      {
+        path: "/admin/profile",
+        element: <EditProfile />,
       },
     ],
   },

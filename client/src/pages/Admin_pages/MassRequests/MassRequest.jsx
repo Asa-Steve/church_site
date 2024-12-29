@@ -58,7 +58,12 @@ const MassRequest = () => {
                   <h3>{request.fullName}</h3>
                 </div>
                 <div className="extras">
-                  <strong>₦ {request.amount}</strong>
+                  <strong>
+                    {new Intl.NumberFormat("en-NG", {
+                      style: "currency",
+                      currency: "NGN",
+                    }).format(request.amount)}
+                  </strong>
                   <p>
                     {new Date(request.createdAt).toLocaleDateString("en-US", {
                       year: "numeric",

@@ -4,7 +4,6 @@ const infantBaptismSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true, // Identifies the user submitting the form
-    match: /^\S+@\S+\.\S+$/, // Basic email validation
   },
   infant: {
     baptismName: { type: String, required: true }, // The child's baptismal name
@@ -16,7 +15,7 @@ const infantBaptismSchema = new mongoose.Schema({
   parents: {
     fatherName: { type: String, required: true }, // Father's name
     motherName: { type: String, required: true }, // Mother's name
-    contact: { type: String, required: true, match: /^[0-9]{10,15}$/ }, // Parent's phone number with validation
+    contact: { type: String, required: true}, // Parent's phone number
     residenceAddr: { type: String, required: true }, // Current residence address
     homeTown: { type: String, required: true }, // Family's hometown
     lga: { type: String, required: true }, // Local Government Area
