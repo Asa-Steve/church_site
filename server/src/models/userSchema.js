@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       required: true,
-      enum: ["SuperAdmin", "Editor"],
+      enum: ["superAdmin", "Editor"],
       default: "Editor",
     },
     img: { type: String },

@@ -151,6 +151,13 @@ const ProtectedRoute = () => {
             </div>
             <div className="linked">
               <div className="blob"></div>
+              <Link to={"/admin/users/profile"} onClick={handleClick}>
+                <img src="/imgs/dash_ic/3.png" alt="" />
+                Edit Profile
+              </Link>
+            </div>
+            <div className="linked">
+              <div className="blob"></div>
               <Link to={"/"} onClick={handleClick}>
                 <img src="/icons/undo.png" alt="" />
                 Return to website
@@ -210,16 +217,3 @@ const ProtectedRoute = () => {
 };
 
 export default ProtectedRoute;
-
-// function DashboardLayout() {
-//   return (
-//     <>
-//       {/* No Navbar */}
-//       <div className="content">
-//         <Outlet />
-//       </div>
-//     </>
-//   );
-// }
-
-// export default DashboardLayout;

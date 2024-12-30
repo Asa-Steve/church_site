@@ -1,0 +1,11 @@
+@import "../../../styles/responsive.scss";
+
+@include sm {
+  .user_profile {
+    .wrap {
+      form {
+        height: fit-content !important;
+      }
+    }
+  }
+}

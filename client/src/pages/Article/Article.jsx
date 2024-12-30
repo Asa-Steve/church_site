@@ -33,8 +33,8 @@ const Article = () => {
       const token = localStorage.getItem("token");
       try {
         if (token) {
-          const { id } = jwtDecode(token);
-          if (id === post.author._id) {
+          const { id, role } = jwtDecode(token);
+          if (id === post.author._id || role === "superAdmin") {
             setIsAuthor(true);
           }
         } else {
@@ -52,8 +52,7 @@ const Article = () => {
       setLoading(true);
       await axiosInstance.delete(`/posts/${articleSlug}`);
       navigate("/admin");
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   {
     return loading ? (

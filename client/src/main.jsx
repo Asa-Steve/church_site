@@ -135,7 +135,7 @@ const router = createBrowserRouter([
         element: <InfantBaptism />,
       },
       {
-        path: "/admin/profile",
+        path: "/admin/users/profile",
         element: <EditProfile />,
       },
     ],

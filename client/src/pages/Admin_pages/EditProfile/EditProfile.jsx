@@ -85,14 +85,21 @@ const EditProfile = () => {
       const payload = new FormData();
       payload.set("username", userData?.username);
       payload.set("role", userData?.role);
-      userData.img && payload.set("img", userData?.img);
+      userData?.img && payload.set("img", userData?.img);
+      payload.set("email", userData?.email);
 
       userData.newPassword && payload.set("newPassword", userData?.newPassword);
 
       setIsLoading(true);
       const response = await axiosInstance.put("/users", payload);
       const { data } = response;
-      setMessage({ ...data });
+
+      const { token: newToken } = data;
+
+      localStorage.setItem("token", newToken);
+
+      setMessage({ status: data.status, message: data.message });
+
       setUserData({
         username: "",
         password: "",
@@ -107,8 +114,12 @@ const EditProfile = () => {
         navigate("/admin/users/");
       }, 3000);
     } catch (err) {
-      console.log(err.response.data);
-      setMessage({ ...err.response?.data });
+      console.log(err);
+      const { data } = err?.response;
+      setMessage({
+        status: data?.status || "failure",
+        message: data?.message || "An error occurred",
+      });
       setIsLoading(false);
     }
     setTimeout(() => {
@@ -131,11 +142,11 @@ const EditProfile = () => {
                 src={
                   preview
                     ? preview
-                    : userData.img
-                    ? userData.img
+                    : userData?.img
+                    ? userData?.img
                     : "/profile.webp"
                 }
-                className={!preview ? "pad-img" : undefined}
+                className={!userData?.img ? "pad-img" : undefined}
                 alt="profile-pic"
               />
               <img
@@ -154,7 +165,7 @@ const EditProfile = () => {
                   id="username"
                   name="username"
                   placeholder="Jon Doe"
-                  value={userData.username}
+                  value={userData.username || ""}
                   onChange={handleChange}
                   required
                 />
@@ -166,7 +177,7 @@ const EditProfile = () => {
                   id="email"
                   name="email"
                   placeholder="example@gmail.com"
-                  value={userData.email}
+                  value={userData.email || ""}
                   onChange={handleChange}
                   required
                 />
@@ -179,9 +190,8 @@ const EditProfile = () => {
                     name="newPassword"
                     id="newPassword"
                     placeholder="**************"
-                    value={userData.newPassword}
+                    value={userData.newPassword || ""}
                     onChange={handleChange}
-                    required
                   />
                 </div>
                 <div>
@@ -191,9 +201,8 @@ const EditProfile = () => {
                     name="confirmPassword"
                     placeholder="**************"
                     id="confirmPassword"
-                    value={userData.confirmPassword}
+                    value={userData.confirmPassword || ""}
                     onChange={handleChange}
-                    required
                   />
                 </div>
               </div>
