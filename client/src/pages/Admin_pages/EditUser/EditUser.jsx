@@ -13,7 +13,6 @@ const EditUser = () => {
   const hiddenFileUploader = useRef(null);
   const [preview, setPreview] = useState(null);
   const [message, setMessage] = useState(null);
-  const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const { userId } = useParams();
 
@@ -56,8 +55,11 @@ const EditUser = () => {
         });
         setLoading(false);
       } catch (err) {
-        console.log(err.response.data);
-        setMessage({ ...err.response.data });
+        const { data } = err?.response;
+        setMessage({
+          status: data?.status || "failure",
+          message: data?.message || "An error occurred",
+        });
         setLoading(false);
       }
     };
@@ -85,8 +87,6 @@ const EditUser = () => {
     e.preventDefault();
 
     if (userData.newPassword !== userData.confirmPassword) {
-      console.log("Passwords do not match");
-      console.log(userData.newPassword, userData.confirmPassword);
       return setMessage({
         status: "failure",
         message: "Passwords do not match",
@@ -126,8 +126,11 @@ const EditUser = () => {
         navigate("/admin/users");
       }, 2000);
     } catch (err) {
-      console.log(err);
-
+      const { data } = err?.response;
+      setMessage({
+        status: data?.status || "failure",
+        message: data?.message || "An error occurred",
+      });
       setLoading(false);
     }
     setTimeout(() => {

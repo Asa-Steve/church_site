@@ -129,7 +129,14 @@
   .copy {
     text-align: center;
     padding-block: 0.5rem;
-    background-color: #fff;
-    color: #001220;
+    // background-color: #fff;
+    // color: #001220;
+    color: grey;
+    font-style: italic;
+
+    a{
+      color: #ff006684;
+      // font-weight: bold;
+    }
   }
 }

@@ -73,8 +73,6 @@ const EditProfile = () => {
     e.preventDefault();
 
     if (userData.newPassword !== userData.confirmPassword) {
-      console.log("Passwords do not match");
-      console.log(userData.newPassword, userData.confirmPassword);
       return setMessage({
         status: "failure",
         message: "Passwords do not match",
@@ -111,10 +109,9 @@ const EditProfile = () => {
       setIsLoading(false);
       setTimeout(() => {
         setMessage(null);
-        navigate("/admin/users/");
+        navigate("/admin");
       }, 3000);
     } catch (err) {
-      console.log(err);
       const { data } = err?.response;
       setMessage({
         status: data?.status || "failure",

@@ -63,7 +63,6 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const { userId } = req.query;
-
   try {
     const { user } = req; //Logged in User
 
@@ -82,8 +81,9 @@ const update = async (req, res) => {
       });
     }
 
-    // Using Logged in User to check if user is SuperAdmin
-    if (user.role !== "superAdmin" && user.id !== userId) {
+    console.log("is it my profile i am editing: ", userId === user.id);
+    // Using Logged in User to check if user is not SuperAdmin and not trying to change another user details
+    if (user.role !== "superAdmin" && user.id !== foundUser.id) {
       return res.status(403).json({
         status: "failed",
         message: "Youre Not Authorized to make changes to this User",
