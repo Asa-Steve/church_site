@@ -207,7 +207,7 @@ const HomePage = () => {
                   Sed tincidunt aliquam nibh at pulvinar.
                 </p>
 
-                <Link to="/article">Show more</Link>
+                <Link to="/donate">Show more</Link>
               </div>
             </div>
             <div className="program sec">
@@ -220,7 +220,7 @@ const HomePage = () => {
                   Sed tincidunt aliquam nibh at pulvinar.
                 </p>
 
-                <Link to="/article">Show more</Link>
+                <Link to="/activities">Show more</Link>
               </div>
             </div>
           </div>

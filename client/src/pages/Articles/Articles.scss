@@ -6,11 +6,16 @@
   height: 700px;
   text-align: center;
 
-  @include sm{
-    h1{
+  @include sm {
+    h1 {
       font-size: 1.2rem;
     }
   }
+}
+
+main {
+  min-height: 400px;
+  margin-bottom: 4rem;
 }
 main.posts {
   overflow-y: auto;

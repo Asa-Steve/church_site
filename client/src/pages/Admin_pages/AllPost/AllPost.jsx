@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../components/Utils/axiosInstance";
 import "./AllPost.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Pagination from "../../../components/common/Pagination/Pagination";
 import Loader from "../../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";

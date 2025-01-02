@@ -3,6 +3,7 @@ import {
   Navigate,
   Outlet,
   useLocation,
+  NavLink,
   Link,
   useNavigate,
 } from "react-router-dom";
@@ -96,72 +97,107 @@ const ProtectedRoute = () => {
             {isAdmin && (
               <div className="linked">
                 <div className="blob"></div>
-                <Link to={"/admin/dashboard"} onClick={handleClick}>
+                <NavLink end to={"/admin/dashboard"} onClick={handleClick}>
                   <img src="/imgs/dash_ic/1.png" alt="" />
                   Dashboard
-                </Link>
+                </NavLink>
               </div>
             )}
             {isAdmin && (
               <div className="linked">
                 <div className="blob"></div>
-                <Link to={"/admin/users/create"} onClick={handleClick}>
+                <NavLink end to={"/admin/users/create"} onClick={handleClick}>
                   <img src="/imgs/dash_ic/1.png" alt="" />
                   Add User
-                </Link>
+                </NavLink>
               </div>
             )}
             {isAdmin && (
               <div className="linked">
                 <div className="blob"></div>
-                <Link to={"/admin/users/"} onClick={handleClick}>
+                <NavLink
+                  to={"/admin/users/"}
+                  onClick={handleClick}
+                  end
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   <img src="/imgs/dash_ic/1.png" alt="" />
                   View All Users
-                </Link>
+                </NavLink>
               </div>
             )}
             <div className="linked">
               <div className="blob"></div>
-              <Link to={"/admin/article/create"} onClick={handleClick}>
+              <NavLink
+                to={"/admin/article/create"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
                 <img src="/imgs/dash_ic/2.png" alt="" />
                 Add Post
-              </Link>
+              </NavLink>
             </div>
             <div className="linked">
               <div className="blob"></div>
-              <Link to={"/admin"} onClick={handleClick}>
+              <NavLink
+                to={"/admin"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
                 <img src="/imgs/dash_ic/3.png" alt="" />
                 All Posts
-              </Link>
+              </NavLink>
             </div>
 
             <div className="linked">
               <div className="blob"></div>
-              <Link to={"/admin/requests"} onClick={handleClick}>
+              <NavLink
+                to={"/admin/requests"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
                 <img src="/imgs/dash_ic/3.png" alt="" />
                 Mass Requests
-              </Link>
+              </NavLink>
             </div>
             <div className="linked">
               <div className="blob"></div>
-              <Link to={"/admin/infants"} onClick={handleClick}>
+              <NavLink
+                to={"/admin/infants"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
                 <img src="/imgs/dash_ic/3.png" alt="" />
                 Infant Registrations
-              </Link>
+              </NavLink>
             </div>
             <div className="linked">
               <div className="blob"></div>
-              <Link to={"/admin/users/profile"} onClick={handleClick}>
+              <NavLink
+                to={"/admin/users/profile"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
                 <img src="/imgs/dash_ic/3.png" alt="" />
                 Edit Profile
-              </Link>
+              </NavLink>
             </div>
             <div className="linked">
               <div className="blob"></div>
-              <Link to={"/"} onClick={handleClick}>
+              <NavLink
+                to={"/"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
                 <img src="/icons/undo.png" alt="" />
                 Return to website
-              </Link>
+              </NavLink>
             </div>
 
             <div className="linked">

@@ -3,26 +3,45 @@ import "./Articles.scss";
 import axiosInstance from "../../components/Utils/axiosInstance";
 import { useEffect, useState } from "react";
 import Loader from "../../components/common/Loader/Loader";
+import Pagination from "../../components/common/Pagination/Pagination";
 
 const Articles = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
 
+  // Setting up for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  // Logic For Page Changes
+  const handlePageChange = async (page) => {
+    if (page > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  const getPosts = async (page) => {
+    try {
+      setMessage("");
+      setLoading(true);
+
+      const response = await axiosInstance.get(
+        `/posts?page=${page}&limit=10` //Making a request with page no, limits and userId if logged in
+      );
+
+      setPosts(response?.data?.data);
+      setTotalPages(response?.data?.totalPages);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setMessage("Couldn't get post at the moment try again later");
+    }
+  };
+
   useEffect(() => {
-    const getPosts = async () => {
-      try {
-        setMessage("");
-        const response = await axiosInstance.get("/posts");
-        setPosts(response?.data?.data);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        setMessage("Couldn't get post at the moment try again later");
-      }
-    };
-    getPosts();
-  }, []);
+    getPosts(currentPage);
+  }, [currentPage]);
 
   {
     return loading ? (
@@ -39,6 +58,7 @@ const Articles = () => {
             <h1>Articles</h1>
           </div>
         </section>
+
         <main className="posts">
           {posts?.length > 0 &&
             posts.map((post) => (
@@ -61,6 +81,13 @@ const Articles = () => {
               </div>
             ))}
         </main>
+        <div className="footer-pagination">
+          <Pagination
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        </div>
       </div>
     );
   }

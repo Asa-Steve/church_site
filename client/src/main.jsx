@@ -31,6 +31,7 @@ import InfantBaptism from "./pages/Admin_pages/InfantBaptism/InfantBaptism.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import EditUser from "./pages/Admin_pages/EditUser/EditUser.jsx";
 import EditProfile from "./pages/Admin_pages/EditProfile/EditProfile.jsx";
+import Activities from "./pages/Activities/Activities.jsx";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "/baptism",
         element: <Baptism />,
+      },
+      {
+        path: "/activities",
+        element: <Activities />,
       },
       {
         path: "/payment_status",
