@@ -51,7 +51,7 @@ const Navbar = () => {
             Articles
           </NavLink>
           <div className="nav-item dropdown">
-            Register
+            Quick Links
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
               <NavLink
                 to="/baptism"
@@ -60,6 +60,22 @@ const Navbar = () => {
                 }
               >
                 infant Baptism
+              </NavLink>
+              <NavLink
+                to="/searchrecord"
+                className={({ isActive }) =>
+                  isActive ? "dropdown-item active" : "dropdown-item"
+                }
+              >
+                Search Archive for Records
+              </NavLink>
+              <NavLink
+                to="/history"
+                className={({ isActive }) =>
+                  isActive ? "dropdown-item active" : "dropdown-item"
+                }
+              >
+                Church History
               </NavLink>
             </ul>
           </div>
@@ -158,12 +174,24 @@ const Navbar = () => {
                 >
                   infant Baptism
                 </NavLink>
-                <NavLink to="/" onClick={handleSlideIN}>
-                  Another action
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "dropdown-item active" : "dropdown-item"
+                  }
+                  onClick={handleSlideIN}
+                  to="/searchrecord"
+                >
+                  Search Archive for records
                 </NavLink>
                 <hr className="dropdown-divider" />
-                <NavLink to="/" onClick={handleSlideIN}>
-                  Something else here
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "dropdown-item active" : "dropdown-item"
+                  }
+                  onClick={handleSlideIN}
+                  to="/history"
+                >
+                  Church History
                 </NavLink>
               </ul>
             </div>
