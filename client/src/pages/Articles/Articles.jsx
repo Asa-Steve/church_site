@@ -15,7 +15,7 @@ const Articles = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   // Logic For Page Changes
-  const handlePageChange = async (page) => {
+  const handlePageChange = (page) => {
     if (page > 0 && page <= totalPages) {
       setCurrentPage(page);
     }

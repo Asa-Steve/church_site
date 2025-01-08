@@ -9,7 +9,10 @@ const postRoute = require("./src/routes/postRoute");
 const userRoute = require("./src/routes/userRoute");
 const requestRoute = require("./src/routes/requestRoute");
 const infantRoute = require("./src/routes/infantRoute");
+const recordRoute = require("./src/routes/recordRoute");
 // const mailRoute = require("./src/routes/mailRoute");
+
+const handleError = require("./src/middleware/handleError");
 
 // Import the Nodemailer library
 
@@ -25,6 +28,11 @@ app.use("/api/v1/posts", postRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/requests", requestRoute);
 app.use("/api/v1/infants", infantRoute);
+app.use("/api/v1/records", recordRoute);
+
 // app.use("/api/v1", mailRoute);
+
+// Error-handling middleware
+app.use(handleError);
 
 app.listen(PORT, console.log(`server is running on Port ${PORT}`));

@@ -26,6 +26,8 @@ import MassRequest from "./pages/Admin_pages/MassRequests/MassRequest.jsx";
 import Adduser from "./pages/Admin_pages/AddUser/Adduser.jsx";
 import AllUsers from "./pages/Admin_pages/AllUsers/AllUsers.jsx";
 import InfantBaptism from "./pages/Admin_pages/InfantBaptism/InfantBaptism.jsx";
+import Records from "./pages/Admin_pages/Records/Records.jsx";
+import SearchRecord from "./pages/SearchRecord/SearchRecord.jsx";
 
 // Layout for Authenticated Users
 import ProtectedRoute from "./ProtectedRoute.jsx";
@@ -60,6 +62,10 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
+        path: "/searchrecord",
+        element: <SearchRecord />,
+      },
+      {
         path: "/mass",
         element: <Mass />,
       },
@@ -90,15 +96,6 @@ const router = createBrowserRouter([
     ],
   },
   {
-    // path: "/admin",
-    // element: <DashboardLayout />,
-    // errorElement: <Error />,
-    // children: [
-    //   {
-    //     path: "",
-    //     element: <Dashboard />,
-    //   },
-    // ],
     path: "/admin",
     element: <ProtectedRoute />,
     errorElement: <Error />,
@@ -138,6 +135,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/infants",
         element: <InfantBaptism />,
+      },
+      {
+        path: "/admin/records",
+        element: <Records />,
       },
       {
         path: "/admin/users/profile",

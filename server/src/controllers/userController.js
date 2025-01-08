@@ -81,7 +81,6 @@ const update = async (req, res) => {
       });
     }
 
-    console.log("is it my profile i am editing: ", userId === user.id);
     // Using Logged in User to check if user is not SuperAdmin and not trying to change another user details
     if (user.role !== "superAdmin" && user.id !== foundUser.id) {
       return res.status(403).json({

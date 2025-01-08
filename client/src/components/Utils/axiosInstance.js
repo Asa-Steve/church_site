@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  // baseURL: "http://localhost:3000/api/v1/", //for local Operations
+  // baseURL: "http://localhost:3000/api/v1", //for local Operations
   baseURL: "https://church-site-server.onrender.com/api/v1",
 });
 

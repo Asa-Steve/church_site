@@ -1,0 +1,121 @@
+@import "../../styles/responsive.scss";
+
+.search_section {
+  min-height: 100dvh;
+  max-height: 140dvh;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.main_records.search {
+  .record-type {
+    border: 1px solid rgba(128, 128, 128, 0.293);
+  }
+  .search_by {
+    background-color: #001220 !important;
+    color: white;
+    padding-inline: 0;
+    .term {
+      &:hover:not(.activeterm) {
+        border: 1px solid #ff0066;
+      }
+      &.activeterm {
+        background-color: #ff0066;
+      }
+    }
+  }
+
+  form {
+    input[type="number"] {
+      width: 40%;
+    }
+  }
+
+  .archive_result {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 1rem;
+
+    h2 {
+      color: #001220;
+      margin-block: 1rem;
+    }
+  }
+
+  .no_records {
+    color: #001220;
+    height: 30px;
+    font-style: italic;
+  }
+
+  .pagination span {
+    color: #001220;
+  }
+
+  @include md {
+    .record-type {
+      display: flex;
+      row-gap: 10px;
+      align-items: center;
+      justify-content: center;
+
+      div:last-of-type {
+        margin-left: 0;
+      }
+    }
+    .search_by {
+      width: 100%;
+      display: flex;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .term.activeterm {
+      color: white;
+    }
+    form {
+      input[type="number"] {
+        width: 80%;
+      }
+    }
+  }
+
+  @include sm {
+    .record-type {
+      .term {
+        color: white;
+        padding: 0.2rem 1rem;
+      }
+    }
+  }
+
+  @include xsm {
+    .wrap {
+      width: 90%;
+
+      .record-type {
+        justify-content: space-between;
+        .search_by {
+          flex-wrap: wrap;
+          row-gap: 5px;
+          background-color: transparent !important;
+
+          .term {
+            width: 100%;
+            margin: 0;
+            color: #001220;
+
+            &.activeterm{
+              color: white;
+            }
+          }
+        }
+      }
+      form {
+        input[type="number"] {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

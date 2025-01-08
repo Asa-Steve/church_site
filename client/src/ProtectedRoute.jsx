@@ -126,6 +126,16 @@ const ProtectedRoute = () => {
                 </NavLink>
               </div>
             )}
+            {isAdmin && (
+              <div className="linked">
+                <div className="blob"></div>
+                <NavLink end to={"/admin/records"} onClick={handleClick}>
+                  <img src="/imgs/dash_ic/1.png" alt="" />
+                  Add Record
+                </NavLink>
+              </div>
+            )}
+            
             <div className="linked">
               <div className="blob"></div>
               <NavLink

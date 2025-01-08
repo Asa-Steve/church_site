@@ -1,0 +1,14 @@
+.table{
+    color: black;
+    border: 1px solid;
+    width: 80%;
+
+    table{
+        width: 100%;
+        text-align: center;
+        thead{
+            background-color: black;
+            color: white;
+        }
+    }
+}
