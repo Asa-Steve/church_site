@@ -151,7 +151,6 @@ const getRecordByDate = async (req, res) => {
   try {
     const { to, from, desiredType, page = 1, limit = 10 } = req.query;
 
-    console.log(to, from, desiredType);
     if (desiredType === "marriage") {
       const foundRecords = await marriageRecord
         .find({

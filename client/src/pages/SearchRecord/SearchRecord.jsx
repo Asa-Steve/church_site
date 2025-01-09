@@ -292,8 +292,6 @@ const SearchRecord = () => {
           setCurrentPage(currPageName);
           setTotalPages(totalPagesName);
 
-          setLoading(false);
-
           dataByName.length === 0 ? setIsData(false) : setIsData(true);
           if (setIsData) {
             if (desiredType === "marriage") {
@@ -349,6 +347,8 @@ const SearchRecord = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 

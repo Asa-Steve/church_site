@@ -1,14 +1,42 @@
-.table{
-    color: black;
-    border: 1px solid;
-    width: 80%;
+@import "../../../styles/responsive.scss";
 
-    table{
-        width: 100%;
-        text-align: center;
-        thead{
-            background-color: black;
-            color: white;
-        }
+.table {
+  color: black;
+  border: 1px solid;
+  width: 80%;
+
+  table {
+    width: 100%;
+
+    text-align: center;
+    thead {
+      background-color: black;
+      color: white;
+
+      
     }
+    th,td {
+        white-space: nowrap;
+      }
+  }
+
+  @include sm {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+        font-size: 14px;
+      }
+    }
+  }
 }
