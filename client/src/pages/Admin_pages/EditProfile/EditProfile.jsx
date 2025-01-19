@@ -6,6 +6,7 @@ import usePageLoad from "../../../components/Utils/usePageLoad";
 import Loader from "../../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({
@@ -146,12 +147,10 @@ const EditProfile = () => {
                 className={!userData?.img ? "pad-img" : undefined}
                 alt="profile-pic"
               />
-              <img
-                src="/camera.webp"
-                onClick={handleImageUplaod}
-                alt="camera"
-                className="camera"
-              />
+
+              <div className="camera">
+                <AddAPhotoIcon onClick={handleImageUplaod} />
+              </div>
             </div>
 
             <form action="" onSubmit={handleSubmit}>

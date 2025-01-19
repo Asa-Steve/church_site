@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../../components/Utils/axiosInstance";
 // import axios from "axios";
 import Loader from "../../components/common/Loader/Loader";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -18,12 +19,15 @@ const Login = () => {
   const location = useLocation();
 
   // Retrieving the "from" route or fallback to home ("/")
-  const redirectPath = location.state?.from?.pathname || "/admin";
+  const redirectPath = location.state?.from?.pathname;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate(redirectPath, { replace: true });
+      const user = jwtDecode(token);
+      user?.role === "superAdmin"
+        ? navigate(redirectPath || "/admin", { replace: true })
+        : navigate(redirectPath || "/admin/articles", { replace: true });
     }
 
     setChecking(false);
@@ -54,8 +58,12 @@ const Login = () => {
           message: data?.message || "Login Successful, Redirecting...",
         });
         localStorage.setItem("token", data.token);
+        const user = jwtDecode(data.token);
+
         // Navigate to the originally requested route or home
-        navigate(redirectPath, { replace: true });
+        user?.role === "superAdmin"
+          ? navigate(redirectPath || "/admin", { replace: true })
+          : navigate(redirectPath || "/admin/articles", { replace: true });
       }
     } catch (error) {
       const data = error?.response?.data;

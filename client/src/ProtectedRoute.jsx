@@ -11,6 +11,18 @@ import axiosInstance from "./components/Utils/axiosInstance";
 import Loader from "./components/common/Loader/Loader";
 import "./ProtectedRoute.scss";
 import { jwtDecode } from "jwt-decode";
+import ChurchIcon from "@mui/icons-material/Church";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import ContactsIcon from "@mui/icons-material/Contacts";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import ArchiveIcon from "@mui/icons-material/Archive";
+import GroupIcon from "@mui/icons-material/Group";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import InsightsIcon from "@mui/icons-material/Insights";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Breadcrumb from "./components/common/Breadcrumb/Breadcrumb";
 
 const ProtectedRoute = () => {
   const [isVerified, setIsVerified] = useState(null);
@@ -95,128 +107,130 @@ const ProtectedRoute = () => {
 
           <div className="menu">
             {isAdmin && (
-              <div className="linked">
+              <NavLink end to={"/admin"} onClick={handleClick}>
                 <div className="blob"></div>
-                <NavLink end to={"/admin/dashboard"} onClick={handleClick}>
-                  <img src="/imgs/dash_ic/1.png" alt="" />
-                  Dashboard
-                </NavLink>
-              </div>
-            )}
-            {isAdmin && (
-              <div className="linked">
-                <div className="blob"></div>
-                <NavLink end to={"/admin/users/create"} onClick={handleClick}>
-                  <img src="/imgs/dash_ic/1.png" alt="" />
-                  Add User
-                </NavLink>
-              </div>
-            )}
-            {isAdmin && (
-              <div className="linked">
-                <div className="blob"></div>
-                <NavLink
-                  to={"/admin/users/"}
-                  onClick={handleClick}
-                  end
-                  className={({ isActive }) => (isActive ? "active" : "")}
-                >
-                  <img src="/imgs/dash_ic/1.png" alt="" />
-                  View All Users
-                </NavLink>
-              </div>
-            )}
-            {isAdmin && (
-              <div className="linked">
-                <div className="blob"></div>
-                <NavLink end to={"/admin/records"} onClick={handleClick}>
-                  <img src="/imgs/dash_ic/1.png" alt="" />
-                  Add Record
-                </NavLink>
-              </div>
-            )}
-            
-            <div className="linked">
-              <div className="blob"></div>
-              <NavLink
-                to={"/admin/article/create"}
-                onClick={handleClick}
-                className={({ isActive }) => (isActive ? "active" : "")}
-                end
-              >
-                <img src="/imgs/dash_ic/2.png" alt="" />
-                Add Post
+                <div className="linked">
+                  <InsightsIcon />
+                  Insight
+                </div>
               </NavLink>
-            </div>
-            <div className="linked">
+            )}
+            <NavLink
+              to={"/admin/articles"}
+              onClick={handleClick}
+              className={({ isActive }) => (isActive ? "active" : "")}
+              end
+            >
               <div className="blob"></div>
-              <NavLink
-                to={"/admin"}
-                onClick={handleClick}
-                className={({ isActive }) => (isActive ? "active" : "")}
-                end
-              >
-                <img src="/imgs/dash_ic/3.png" alt="" />
+              <div className="linked">
+                <DynamicFeedIcon />
                 All Posts
-              </NavLink>
-            </div>
-
-            <div className="linked">
+              </div>
+            </NavLink>
+            <NavLink
+              to={"/admin/articles/create"}
+              onClick={handleClick}
+              className={({ isActive }) => (isActive ? "active" : "")}
+              end
+            >
               <div className="blob"></div>
+              <div className="linked">
+                <PostAddIcon />
+                Add Post
+              </div>
+            </NavLink>
+
+            {isAdmin && (
+              <NavLink end to={"/admin/users/create"} onClick={handleClick}>
+                <div className="blob"></div>
+                <div className="linked">
+                  <GroupAddIcon />
+                  Add User
+                </div>
+              </NavLink>
+            )}
+            {isAdmin && (
               <NavLink
-                to={"/admin/requests"}
+                to={"/admin/users/"}
                 onClick={handleClick}
-                className={({ isActive }) => (isActive ? "active" : "")}
                 end
+                className={({ isActive }) => (isActive ? "active" : "")}
               >
-                <img src="/imgs/dash_ic/3.png" alt="" />
+                <div className="blob"></div>
+                <div className="linked">
+                  <GroupIcon />
+                  View All Users
+                </div>
+              </NavLink>
+            )}
+            {isAdmin && (
+              <NavLink end to={"/admin/records"} onClick={handleClick}>
+                <div className="blob"></div>
+                <div className="linked">
+                  <ArchiveIcon />
+                  Add Record
+                </div>
+              </NavLink>
+            )}
+
+            <NavLink
+              to={"/admin/requests"}
+              onClick={handleClick}
+              className={({ isActive }) => (isActive ? "active" : "")}
+              end
+            >
+              <div className="blob"></div>
+              <div className="linked">
+                <ContentCopyIcon />
                 Mass Requests
-              </NavLink>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <NavLink
-                to={"/admin/infants"}
-                onClick={handleClick}
-                className={({ isActive }) => (isActive ? "active" : "")}
-                end
-              >
-                <img src="/imgs/dash_ic/3.png" alt="" />
-                Infant Registrations
-              </NavLink>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <NavLink
-                to={"/admin/users/profile"}
-                onClick={handleClick}
-                className={({ isActive }) => (isActive ? "active" : "")}
-                end
-              >
-                <img src="/imgs/dash_ic/3.png" alt="" />
-                Edit Profile
-              </NavLink>
-            </div>
-            <div className="linked">
-              <div className="blob"></div>
-              <NavLink
-                to={"/"}
-                onClick={handleClick}
-                className={({ isActive }) => (isActive ? "active" : "")}
-                end
-              >
-                <img src="/icons/undo.png" alt="" />
-                Return to website
-              </NavLink>
-            </div>
+              </div>
+            </NavLink>
 
-            <div className="linked">
+            <NavLink
+              to={"/admin/infants"}
+              onClick={handleClick}
+              className={({ isActive }) => (isActive ? "active" : "")}
+              end
+            >
               <div className="blob"></div>
-              <Link onClick={handleLogout}>
-                <img src="/imgs/dash_ic/12.png" alt="" />
+              <div className="linked">
+                <ContactsIcon />
+                Infant Registrations
+              </div>
+            </NavLink>
+
+            <NavLink
+              to={"/admin/users/profile"}
+              onClick={handleClick}
+              className={({ isActive }) => (isActive ? "active" : "")}
+              end
+            >
+              <div className="blob"></div>
+              <div className="linked">
+                <AppRegistrationIcon />
+                Edit Profile
+              </div>
+            </NavLink>
+
+            <NavLink
+              to={"/"}
+              onClick={handleClick}
+              className={({ isActive }) => (isActive ? "active" : "")}
+              end
+            >
+              <div className="blob"></div>
+              <div className="linked">
+                <ChurchIcon />
+                Return to website
+              </div>
+            </NavLink>
+
+            <Link onClick={handleLogout}>
+              <div className="linked">
+                <LogoutIcon />
                 Logout
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
         </div>
         <div className="right_dash">
@@ -244,10 +258,7 @@ const ProtectedRoute = () => {
 
           <div className="mid-bar">
             <div className="dash-subtitle">
-              <h2>Directory Dashboard</h2>
-            </div>
-            <div className="dash-breadcrumb">
-              <p>Dashboard ► Address</p>
+              <Breadcrumb />
             </div>
           </div>
 

@@ -4,6 +4,7 @@ import usePageLoad from "../../../components/Utils/usePageLoad";
 import Loader from "../../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 import "./AddUser.scss";
 
@@ -81,7 +82,7 @@ const Adduser = () => {
       setUserData({
         username: "",
         password: "",
-        role: "Editor",
+        role: "editor",
         img: "",
       });
       setIsLoading(false);
@@ -89,7 +90,6 @@ const Adduser = () => {
         setMessage(null);
         navigate("/admin/users/");
       }, 3000);
-
     } catch (err) {
       console.log(err.response.data);
       setMessage({ ...err.response?.data });
@@ -116,12 +116,9 @@ const Adduser = () => {
                 className={!preview ? "pad-img" : undefined}
                 alt="profile-pic"
               />
-              <img
-                src="/camera.webp"
-                onClick={handleImageUplaod}
-                alt="camera"
-                className="camera"
-              />
+              <div className="camera">
+                <AddAPhotoIcon onClick={handleImageUplaod} />
+              </div>
             </div>
 
             <form action="" onSubmit={handleSubmit}>
@@ -170,8 +167,8 @@ const Adduser = () => {
                     }))
                   }
                 >
-                  <option value="Editor">Editor</option>
-                  <option value="SuperAdmin">Super Admin</option>
+                  <option value="editor">Editor</option>
+                  <option value="superAdmin">Super Admin</option>
                 </select>
               </div>
               <button disabled={isLoading}>Add User</button>

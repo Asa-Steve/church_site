@@ -43,8 +43,13 @@ const Dashboard = () => {
           setIsAdmin(true);
         }
       } catch (error) {
+        console.log("erro fa: ", error);
+        setIsloading(false);
         setMessage(error.message);
+        navigate("/admin/articles");
         return;
+      } finally {
+        setIsloading(false);
       }
     };
 
@@ -78,7 +83,7 @@ const Dashboard = () => {
       <div className="load">
         <Loader />
       </div>
-    ) : fetchedData.length < 1 ? (
+    ) : fetchedData?.length < 1 || !fetchedData ? (
       <div className="msg admin">
         <h1>{message ? message : "No Request Found."}</h1>
       </div>
@@ -94,7 +99,6 @@ const Dashboard = () => {
                       Monthly income stat for {fetchedData?.monthlyData?.month}
                     </h4>
                   </div>
-                 
                 </div>
                 <div className="plot">
                   <ResponsiveContainer width="100%" height="100%">

@@ -101,19 +101,19 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "/admin/dashboard",
+        index: true,
         element: <Dashboard />,
       },
       {
-        path: "/admin/article/create",
+        path: "/admin/articles/create",
         element: <AddPost />,
       },
       {
-        index: true,
+        path: "/admin/articles",
         element: <AllPost />,
       },
       {
-        path: "/admin/article/edit/:articleSlug",
+        path: "/admin/articles/edit/:articleSlug",
         element: <EditPost />,
       },
       {

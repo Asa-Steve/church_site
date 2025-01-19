@@ -1,0 +1,28 @@
+nav.breadcrumb {
+  height: 30px;
+
+  &,
+  a {
+    display: flex;
+    place-items: center;
+  }
+  p {
+  color: #ff5197;
+  cursor: default;
+  }
+  a {
+    color: #ff5197;
+    height: 100%;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #001220;
+    }
+  }
+  svg {
+    color: black;
+    font-size: 1rem !important;
+    margin-inline: 0.5rem;
+    margin-top: 0.2rem;
+  }
+}

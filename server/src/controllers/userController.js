@@ -48,8 +48,11 @@ const create = async (req, res) => {
       .status(200)
       .json({ status: "success", message: "User created successfully" });
   } catch (err) {
-    const errorKey = Object.keys(err?.errorResponse?.keyValue)[0];
-    if (err?.errorResponse?.code === 11000) {
+    console.log(err);
+    const errorKey =
+      err?.errorResponse?.keyValue &&
+      Object.keys(err?.errorResponse?.keyValue)[0];
+    if (errorKey && err?.errorResponse?.code === 11000) {
       err.msg = `${
         errorKey === "email" ? "username" : errorKey
       } already exists`;

@@ -1,14 +1,18 @@
 @import "../../../styles//responsive.scss";
 
-.add_user,.user_profile {
-  height: 81dvh;
-  //   height: fit-content;
+.add_user,
+.user_profile {
+  max-height: 85dvh;
+  // height: fit-content;
   overflow: hidden;
+  overflow-y: auto;
 
   .form-section {
-    height: 100%;
+    height: fit-content;
     display: grid;
     place-items: center;
+    padding-top: 0.5rem;
+
     .wrap {
       text-align: center;
       position: relative;
@@ -16,6 +20,7 @@
       overflow: hidden;
       border: 1px solid rgba(128, 128, 128, 0.42);
       padding: 0.5rem 0.2rem;
+      height: fit-content;
 
       .tag {
         width: 200px;
@@ -54,17 +59,24 @@
             object-position: 0 5px;
           }
         }
-        img.camera {
+        .camera {
           width: 30px;
           height: 30px;
           position: absolute;
           bottom: 5px;
           right: 10px;
           cursor: pointer;
-          border: 1px solid;
           padding: 0.1rem;
           border-radius: 50%;
           background-color: #fff;
+          display: flex;
+          place-items: center;
+
+          svg {
+            width: 80%;
+            height: 80%;
+            margin: auto;
+          }
         }
       }
 
@@ -83,7 +95,7 @@
           width: 80% !important;
           height: 30px;
           margin-bottom: 0.5rem;
-          
+
           &[type="file"] {
             display: none;
           }
