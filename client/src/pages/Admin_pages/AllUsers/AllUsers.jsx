@@ -4,6 +4,7 @@ import "./AllUsers.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Pagination from "../../../components/common/Pagination/Pagination";
 import Loader from "../../../components/common/Loader/Loader";
+import { jwtDecode } from "jwt-decode";
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
@@ -11,6 +12,9 @@ const AllUsers = () => {
   const [message, setMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [userRole, setUserRole] = useState(null);
+
+  const navigate = useNavigate();
 
   // Handling Page Change [pagination]
   const handlePageChange = async (page) => {
@@ -30,11 +34,22 @@ const AllUsers = () => {
       setLoading(false);
     } catch (err) {
       setLoading(false);
-      if (err.status === 403)
-        err.message = "Youre Not Authorized to view this page.";
-      setMessage(err?.message || "No User Found");
+      navigate("/admin/articles");
     }
   };
+
+  // Getting User Role
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const user = jwtDecode(token);
+        setUserRole(user.role);
+      }
+    } catch (error) {
+      setMessage("something went wrong");
+    }
+  }, []);
 
   // Getting all User from Server with respect to Page [Pagination]
   useEffect(() => {
@@ -86,15 +101,17 @@ const AllUsers = () => {
                     })}`}
                   </p>
                   <p className="role">{user.role}</p>
-                  <div className="btns">
-                    <Link to={`/admin/users/edit/${user._id}`}>Edit</Link>
-                    <button
-                      onClick={() => handleDelete(user._id)}
-                      disabled={loading}
-                    >
-                      Delete
-                    </button>
-                  </div>
+                  {userRole === "superAdmin" && (
+                    <div className="btns">
+                      <Link to={`/admin/users/edit/${user._id}`}>Edit</Link>
+                      <button
+                        onClick={() => handleDelete(user._id)}
+                        disabled={loading}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
                 </div>
               );
             })}

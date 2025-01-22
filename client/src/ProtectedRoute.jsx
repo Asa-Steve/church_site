@@ -11,6 +11,8 @@ import axiosInstance from "./components/Utils/axiosInstance";
 import Loader from "./components/common/Loader/Loader";
 import "./ProtectedRoute.scss";
 import { jwtDecode } from "jwt-decode";
+
+// Importing Icons
 import ChurchIcon from "@mui/icons-material/Church";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import ContactsIcon from "@mui/icons-material/Contacts";
@@ -44,7 +46,7 @@ const ProtectedRoute = () => {
         const user = jwtDecode(token);
         setCurrentUser(user);
 
-        if (user?.role === "superAdmin") {
+        if (user?.role === "superAdmin" || user?.role === "secretary") {
           setIsAdmin(true);
         }
 
@@ -75,7 +77,7 @@ const ProtectedRoute = () => {
   };
 
   if (isVerified === null) {
-    return <Loader />; // Optional: Show a loading spinner while verifying
+    return <Loader />; // Optionally Show a loading spinner while verifying
   }
 
   return isVerified ? (

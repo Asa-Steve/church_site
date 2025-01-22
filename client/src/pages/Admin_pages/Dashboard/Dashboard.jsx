@@ -14,9 +14,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  BarChart,
-  Bar,
-  Rectangle,
 } from "recharts";
 import axiosInstance from "../../../components/Utils/axiosInstance";
 
@@ -48,8 +45,6 @@ const Dashboard = () => {
         setMessage(error.message);
         navigate("/admin/articles");
         return;
-      } finally {
-        setIsloading(false);
       }
     };
 
@@ -72,7 +67,9 @@ const Dashboard = () => {
       } catch (error) {
         console.log(error);
         setIsloading(false);
-        setMessage("Couldn't get Payments at the moment try again later");
+        setMessage(
+          "Couldn't get Site Statistics at the moment try again later"
+        );
       }
     };
     getPayments();

@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 
+// Importing Icons
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+
 const Navbar = () => {
   const [slideIn, setSlideIn] = useState(false);
   const [showDropMb, setShowDropMb] = useState(false);
@@ -151,17 +154,15 @@ const Navbar = () => {
                     setShowDropMb((prevState) => !prevState);
                   }}
                 >
-                  Register
+                  Quick Links
                 </span>
-                <span
-                  id="arrow_drop"
+                <KeyboardArrowRightIcon
                   style={{
                     transform: showDropMb ? "rotate(90deg)" : "rotate(0deg)",
                   }}
+                  id="arrow_drop"
                   onClick={() => setShowDropMb((prevState) => !prevState)}
-                >
-                  ˃
-                </span>
+                />
               </div>
 
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">

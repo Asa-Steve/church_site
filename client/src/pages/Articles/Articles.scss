@@ -13,11 +13,11 @@
   }
 }
 
-main {
+.articles main {
   min-height: 400px;
   margin-bottom: 4rem;
 }
-main.posts {
+.articles main.posts {
   overflow-y: auto;
   display: flex;
   flex-wrap: wrap;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../components/Utils/axiosInstance";
 import "./AllPost.scss";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Pagination from "../../../components/common/Pagination/Pagination";
 import Loader from "../../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";
@@ -100,7 +100,7 @@ const AllPost = () => {
                         </p>
                       </div>
                       <div className="btns">
-                        <Link to={`/admin/article/edit/${post.slug}`}>
+                        <Link to={`/admin/articles/edit/${post.slug}`}>
                           Edit
                         </Link>
                         <button

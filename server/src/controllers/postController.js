@@ -34,10 +34,16 @@ const createPost = async (req, res) => {
 
 const allPosts = async (req, res) => {
   try {
+    // Pagination Logic
     const { page = 1, limit = 10, id = null } = req.query; // Default page = 1 and limit = 10
+
+    // if sent by Logged in User , Id will be valid
     if (id) {
+      // Fetching the user details from the DB
       const foundUser = await User.findById(id);
-      if (foundUser.role !== "superAdmin") {
+
+      // Checking if User is Admin or Secretary
+      if (foundUser?.role !== "superAdmin" && foundUser?.role !== "secretary") {
         const allPosts = await Post.find({
           author: id,
         })
@@ -55,6 +61,8 @@ const allPosts = async (req, res) => {
           totalItems: total,
         });
       }
+
+      // If user is either Admin or Secretary
       const allPosts = await Post.find()
         .sort({ createdAt: -1 }) // Sort by latest first
         .skip((page - 1) * limit) // Skip documents for previous pages
@@ -97,9 +105,8 @@ const allPosts = async (req, res) => {
 };
 
 const getPost = async (req, res) => {
-  const { postSlug } = req.params;
-
   try {
+    const { postSlug } = req.params;
     const foundPost = await Post.findOne({ slug: postSlug })
       .populate("author", "username role")
       .exec();
@@ -122,6 +129,26 @@ const editPost = async (req, res) => {
   try {
     const { postSlug } = req.params;
     const { postTitle, content, category } = req.body;
+
+    const user = req?.user;
+
+    const foundUser = await User.findById(user?.id);
+    if (!foundUser) {
+      return res
+        .statsu(404)
+        .json({ status: "failure", message: "No User Found" });
+    }
+
+    // Checking if the user is Authorized to make changes
+    if (user.role !== "superAdmin" && user.role !== "secretary") {
+      console.log("user id :", user.id);
+      // Checking if the user is the owner of the post
+      if (user.id !== foundUser._id) {
+        return res
+          .status(403)
+          .json({ status: "failure", message: "Not Authorized!" });
+      }
+    }
 
     // Updating other Fields
     const postUpdate = { postTitle, content, category };

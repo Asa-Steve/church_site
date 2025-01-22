@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Login.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../../components/Utils/axiosInstance";
-// import axios from "axios";
 import Loader from "../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";
 
@@ -22,6 +21,7 @@ const Login = () => {
   const redirectPath = location.state?.from?.pathname;
 
   useEffect(() => {
+    console.log("i ran");
     const token = localStorage.getItem("token");
     if (token) {
       const user = jwtDecode(token);

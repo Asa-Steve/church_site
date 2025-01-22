@@ -8,6 +8,12 @@
   height: 660px;
   overflow-y: auto;
   justify-content: space-between;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .infant {
     border: 1px solid rgba(128, 128, 128, 0.374);
@@ -67,7 +73,6 @@
       display: none;
     }
   }
-
 
   @include lg {
     row-gap: 20px;

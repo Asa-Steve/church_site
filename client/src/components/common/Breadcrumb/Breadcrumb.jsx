@@ -1,20 +1,15 @@
 import "./Breadcrumb.scss";
-import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const Breadcrumb = () => {
   const location = useLocation();
-  console.log(location);
   const pathname = location.pathname.split("/").filter((path) => path);
-  console.log(pathname);
 
   if (pathname.includes("edit") && pathname.indexOf("edit")) {
-    console.log("pathname :", pathname.indexOf("edit"));
 
     const truncPath = pathname.slice(0, pathname.indexOf("edit") + 1);
 
-    console.log("truncPath: ", truncPath);
     return (
       <nav className="breadcrumb">
         <Link to={"/"}>home</Link>;

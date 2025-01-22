@@ -61,8 +61,8 @@ nav {
     transition: all 0.3s ease;
 
     .nav-item-drop-mb {
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-size: 1.3rem;
+      font-weight: 600;
       max-height: 60px;
       padding: 0.5rem 1rem;
       cursor: pointer;
@@ -73,20 +73,15 @@ nav {
         display: flex;
         justify-content: space-between;
         height: 40px;
+        align-items: center;
 
         span {
-          display: grid;
-          align-items: center;
-          transition: all 0.3s ease-in-out;
+          width: 100%;
+        }
 
-          &:first-of-type {
-            flex: 2;
-          }
-
-          &#arrow_drop {
-            width: 40px;
-            place-items: center;
-          }
+        #arrow_drop {
+          width: 40px;
+          place-items: center;
         }
       }
       a {
@@ -218,7 +213,7 @@ nav {
           position: relative;
           left: -200px;
           background-color: #001220;
-          margin-top: .5rem;
+          margin-top: 0.5rem;
         }
       }
 

@@ -26,14 +26,22 @@ const verify = (req, res) => {
 
 const create = async (req, res) => {
   try {
-    if (req?.user?.role !== "superAdmin") {
+    if (req?.user?.role !== "superAdmin" && req?.user?.role !== "secretary") {
       return res.status(403).json({
         status: "failed",
-        message: "Youre Not Authorized to view this Page",
+        message: "Youre Not Authorized!",
       });
+    }
+
+    if (req?.user?.role !== "superAdmin") {
+      if (req?.body?.role === "superAdmin")
+        return res
+          .status(403)
+          .json({ status: "failure", message: "Not Authorized!" });
     }
     const imgUrl = req?.file?.path;
     const { username, password, role } = req.body;
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       username,
@@ -169,15 +177,15 @@ const users = async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query; // Default page = 1 and limit = 10
 
-    if (req.user.role !== "superAdmin") {
+    if (req.user.role !== "superAdmin" && req?.user.role !== "secretary") {
       return res.status(403).json({
         status: "failed",
-        message: "Youre Not Authorized to view this Page",
+        message: "Youre Not Authorized!",
       });
     }
 
-    const superAdminId = req.user.id;
-    const foundUsers = await User.find({ _id: { $ne: superAdminId } }) // Exclude Admin user by ID
+    const userId = req?.user?.id;
+    const foundUsers = await User.find({ _id: { $ne: userId } }) // Exclude Admin user by ID
       .sort({ createdAt: -1 }) // Sort by latest first
       .skip((page - 1) * limit) // Skip documents for previous pages
       .limit(parseInt(limit)) // Limit number of documents per page;

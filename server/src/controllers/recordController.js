@@ -11,6 +11,12 @@ const processBatch = require("../utils/recordHelpers");
 // My Controller Fns
 const recordBaptism = async (req, res) => {
   try {
+    const { role } = req.user;
+    if (role !== "superAdmin" && role !== "secretary") {
+      return res
+        .status(403)
+        .json({ status: "failure", message: "Not Authorized!" });
+    }
     const newRecord = new baptismRecord({
       baptismName: req.body.baptismName, // The baptismal name
       otherName: req.body.otherName, // Additional name(s)
@@ -48,6 +54,13 @@ const recordBaptism = async (req, res) => {
 
 const recordMarriage = async (req, res) => {
   try {
+    const { role } = req.user;
+    if (role !== "superAdmin" && role !== "secretary") {
+      return res
+        .status(403)
+        .json({ status: "failure", message: "Not Authorized!" });
+    }
+
     const newMarriageRecord = new marriageRecord({
       husbandName: req.body.husbandName,
       wifeName: req.body.wifeName,
@@ -77,6 +90,13 @@ const recordMarriage = async (req, res) => {
 
 const recordFile = async (req, res) => {
   try {
+    const { role } = req.user;
+    if (role !== "superAdmin" && role !== "secretary") {
+      return res
+        .status(403)
+        .json({ status: "failure", message: "Not Authorized!" });
+    }
+
     if (!req.file) {
       return res.status(400).json({ message: "No file uploaded" });
     }

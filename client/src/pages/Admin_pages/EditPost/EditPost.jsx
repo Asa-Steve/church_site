@@ -20,6 +20,7 @@ const EditPost = () => {
   const navigate = useNavigate();
   const { articleSlug } = useParams();
   const [currentFile, setCurrentFile] = useState("");
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     const getPost = async () => {
@@ -34,7 +35,9 @@ const EditPost = () => {
 
         setIsLoading(false);
       } catch (err) {
-        console.log(err?.message);
+        setIsLoading(false);
+        setNotFound(true);
+        setMessage(err.message);
       }
     };
 
@@ -100,7 +103,7 @@ const EditPost = () => {
       <div className="load">
         <Loader />
       </div>
-    ) : (
+    ) : !notFound ? (
       <div className="add_post">
         <main className="addpost">
           <section className="form-section">
@@ -184,6 +187,8 @@ const EditPost = () => {
           </section>
         </main>
       </div>
+    ) : (
+      <h1>Post Not Found</h1>
     );
   }
 };

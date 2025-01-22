@@ -19,7 +19,8 @@ const Adduser = () => {
   const hiddenFileUploader = useRef(null);
   const [preview, setPreview] = useState(null);
   const [message, setMessage] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(null);
+  const [userRole, setUserRole] = useState(null);
+
   // Handling Page Loading Spinner
   const isPageLoaded = usePageLoad();
   const navigate = useNavigate();
@@ -33,15 +34,15 @@ const Adduser = () => {
           return navigate("/login"); // No token, user is not authenticated
         }
         const user = jwtDecode(token);
-        if (user.role !== "superAdmin") {
-          setIsAdmin(false);
+
+        if (user.role !== "superAdmin" && user.role !== "secretary") {
           throw new Error("Youre Not Authorized to view this page.");
         } else {
-          setIsAdmin(true);
+          setUserRole(user.role);
         }
       } catch (error) {
         setMessage(error.message);
-        return;
+        return navigate("/admin/articles");
       }
     };
 
@@ -105,7 +106,7 @@ const Adduser = () => {
       <div className="load">
         <Loader />
       </div>
-    ) : isAdmin ? (
+    ) : (
       <main className="add_user">
         <section className="form-section">
           <div className="wrap">
@@ -168,7 +169,10 @@ const Adduser = () => {
                   }
                 >
                   <option value="editor">Editor</option>
-                  <option value="superAdmin">Super Admin</option>
+                  <option value="secretary">Secretary</option>
+                  {userRole === "superAdmin" && (
+                    <option value="superAdmin">Super Admin</option>
+                  )}
                 </select>
               </div>
               <button disabled={isLoading}>Add User</button>
@@ -187,10 +191,6 @@ const Adduser = () => {
           </div>
         </section>
       </main>
-    ) : (
-      <div className="msg admin">
-        <h1>{message?.message ? message?.message : "Something Went Wrong!"}</h1>
-      </div>
     );
   }
 };

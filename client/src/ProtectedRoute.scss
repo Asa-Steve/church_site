@@ -13,6 +13,8 @@
   .left_dash {
     flex: 1;
     background-color: white;
+    border-right: 1px solid rgba(128, 128, 128, 0.211);
+
     .logo {
       display: flex;
       align-items: center;
@@ -55,7 +57,7 @@
       height: calc(100dvh - 90px);
       display: flex;
       row-gap: 4px;
-      padding-left: .5rem;
+      padding-left: 0.5rem;
 
       flex-direction: column;
       scrollbar-width: none;
@@ -139,7 +141,7 @@
 
     .close {
       display: none;
-
+      cursor: pointer;
       @include sm {
         display: initial;
         position: absolute;
@@ -288,6 +290,7 @@
 
     .main {
       padding: 0.5rem;
+      background-color: #fff;
     }
   }
 

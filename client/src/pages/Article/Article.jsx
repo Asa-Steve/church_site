@@ -108,7 +108,7 @@ const Article = () => {
 
               {isAuthor && (
                 <div className="btns">
-                  <Link to={`/admin/article/edit/${post.slug}`}>Edit</Link>
+                  <Link to={`/admin/articles/edit/${post.slug}`}>Edit</Link>
                   <button onClick={handleDelete}>Delete</button>
                 </div>
               )}
