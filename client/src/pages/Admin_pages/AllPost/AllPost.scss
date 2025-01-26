@@ -94,7 +94,7 @@ h1.all_postheader {
         color: #001220;
         &:hover {
           background-color: white;
-          border: 1px solid #001220;
+          border: 1px solid #001220 !important;
           color: #001220;
         }
       }

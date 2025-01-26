@@ -9,6 +9,11 @@
   transition: left 0.3s ease;
 
   scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .left_dash {
     flex: 1;
@@ -176,10 +181,33 @@
 
   .right_dash {
     flex: 3;
-    background-color: rgb(241, 241, 241);
+    background-color: white;
     overflow: scroll;
     overflow-x: hidden;
 
+    // scrollbar-width: none;
+    // -ms-overflow-style: none;
+
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
+// Webkit browsers
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ff5197;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #ff5197;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f4f4f4;
+  }
     .top-bar {
       height: 50px;
       display: flex;

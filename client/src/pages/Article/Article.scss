@@ -92,6 +92,7 @@
         overflow-y: auto;
         scrollbar-width: none;
         // -ms-overflow-style: none;
+        min-height: 300px;
 
         &::-webkit-scrollbar {
           display: none;

@@ -26,6 +26,7 @@ const verify = (req, res) => {
 
 const create = async (req, res) => {
   try {
+    // Checking if one is even Authorized to be here
     if (req?.user?.role !== "superAdmin" && req?.user?.role !== "secretary") {
       return res.status(403).json({
         status: "failed",
@@ -34,10 +35,22 @@ const create = async (req, res) => {
     }
 
     if (req?.user?.role !== "superAdmin") {
-      if (req?.body?.role === "superAdmin")
-        return res
-          .status(403)
-          .json({ status: "failure", message: "Not Authorized!" });
+      if (req?.user?.role === "secretary") {
+        if (
+          req?.body?.role === "superAdmin" ||
+          req?.body?.role === "secretary"
+        ) {
+          return res.status(403).json({
+            status: "failed",
+            message: "Youre Not Authorized to create this type of User",
+          });
+        }
+      } else {
+        return res.status(403).json({
+          status: "failed",
+          message: "Youre Not Authorized to create a user",
+        });
+      }
     }
     const imgUrl = req?.file?.path;
     const { username, password, role } = req.body;

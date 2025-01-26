@@ -29,7 +29,9 @@ const EditUser = () => {
           return navigate("/login"); // No token, user is not authenticated
         }
         const user = jwtDecode(token);
-        setIsAdmin(user.role === "superAdmin");
+        user.role !== "superAdmin" && navigate("/admin");
+
+        setIsAdmin(true);
       } catch (error) {
         setMessage(error.message);
         return;
@@ -40,6 +42,7 @@ const EditUser = () => {
   }, []);
 
   useEffect(() => {
+    console.log("Admin status : ", isAdmin);
     const getUser = async () => {
       try {
         const response = await axiosInstance.get(`/users/${userId}`);

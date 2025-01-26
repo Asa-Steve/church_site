@@ -188,7 +188,9 @@ const EditPost = () => {
         </main>
       </div>
     ) : (
-      <h1>Post Not Found</h1>
+      <div className="msg admin">
+        <h1>Post Not Found</h1>
+      </div>
     );
   }
 };

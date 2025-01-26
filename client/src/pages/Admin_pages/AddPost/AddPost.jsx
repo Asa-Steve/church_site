@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../../components/Utils/axiosInstance";
 import usePageLoad from "../../../components/Utils/usePageLoad";
 import Loader from "../../../components/common/Loader/Loader";
-
+import { jwtDecode } from "jwt-decode";
 const categories = ["Event", "Feast", "Upcoming"];
 
 const AddPost = () => {
@@ -20,6 +20,27 @@ const AddPost = () => {
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
   const isPageLoaded = usePageLoad();
+
+  // Checking if User is authorized to view Page
+  useEffect(() => {
+    const verifyUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          return navigate("/login"); // No token, user is not authenticated
+        }
+        const user = jwtDecode(token);
+
+        if (user.role === "catechist") {
+          return navigate("/admin/requests");
+        }
+      } catch (error) {
+        return navigate("/admin/articles");
+      }
+    };
+
+    verifyUser();
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {

@@ -31,6 +31,7 @@ const ProtectedRoute = () => {
   const [showToggle, setShowToggle] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isCatechist, setIsCatechist] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -48,6 +49,9 @@ const ProtectedRoute = () => {
 
         if (user?.role === "superAdmin" || user?.role === "secretary") {
           setIsAdmin(true);
+        }
+        if (user?.role === "catechist") {
+          setIsCatechist(true);
         }
 
         const response = await axiosInstance.post("/users/verify-token");
@@ -117,30 +121,35 @@ const ProtectedRoute = () => {
                 </div>
               </NavLink>
             )}
-            <NavLink
-              to={"/admin/articles"}
-              onClick={handleClick}
-              className={({ isActive }) => (isActive ? "active" : "")}
-              end
-            >
-              <div className="blob"></div>
-              <div className="linked">
-                <DynamicFeedIcon />
-                All Posts
-              </div>
-            </NavLink>
-            <NavLink
-              to={"/admin/articles/create"}
-              onClick={handleClick}
-              className={({ isActive }) => (isActive ? "active" : "")}
-              end
-            >
-              <div className="blob"></div>
-              <div className="linked">
-                <PostAddIcon />
-                Add Post
-              </div>
-            </NavLink>
+            {!isCatechist && (
+              <NavLink
+                to={"/admin/articles"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
+                <div className="blob"></div>
+                <div className="linked">
+                  <DynamicFeedIcon />
+                  All Posts
+                </div>
+              </NavLink>
+            )}
+            {isAdmin ||
+              (!isCatechist && (
+                <NavLink
+                  to={"/admin/articles/create"}
+                  onClick={handleClick}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                  end
+                >
+                  <div className="blob"></div>
+                  <div className="linked">
+                    <PostAddIcon />
+                    Add Post
+                  </div>
+                </NavLink>
+              ))}
 
             {isAdmin && (
               <NavLink end to={"/admin/users/create"} onClick={handleClick}>
@@ -175,31 +184,35 @@ const ProtectedRoute = () => {
               </NavLink>
             )}
 
-            <NavLink
-              to={"/admin/requests"}
-              onClick={handleClick}
-              className={({ isActive }) => (isActive ? "active" : "")}
-              end
-            >
-              <div className="blob"></div>
-              <div className="linked">
-                <ContentCopyIcon />
-                Mass Requests
-              </div>
-            </NavLink>
+            {(isAdmin || isCatechist) && (
+              <NavLink
+                to={"/admin/requests"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
+                <div className="blob"></div>
+                <div className="linked">
+                  <ContentCopyIcon />
+                  Mass Requests
+                </div>
+              </NavLink>
+            )}
 
-            <NavLink
-              to={"/admin/infants"}
-              onClick={handleClick}
-              className={({ isActive }) => (isActive ? "active" : "")}
-              end
-            >
-              <div className="blob"></div>
-              <div className="linked">
-                <ContactsIcon />
-                Infant Registrations
-              </div>
-            </NavLink>
+            {(isAdmin || isCatechist) && (
+              <NavLink
+                to={"/admin/infants"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
+                <div className="blob"></div>
+                <div className="linked">
+                  <ContactsIcon />
+                  Infant Registrations
+                </div>
+              </NavLink>
+            )}
 
             <NavLink
               to={"/admin/users/profile"}

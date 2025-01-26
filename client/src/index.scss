@@ -4,6 +4,28 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  // Webkit browsers
+  &::-webkit-scrollbar {
+    width: 2px !important;
+    position: relative;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ff5197;
+    border-radius: 6px;
+    position: relative;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #ff5197;
+    position: relative;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f4f4f4;
+    position: relative;
+  }
 }
 
 body {

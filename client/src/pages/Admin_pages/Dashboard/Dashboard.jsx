@@ -33,8 +33,13 @@ const Dashboard = () => {
           return navigate("/login"); // No token, user is not authenticated
         }
         const user = jwtDecode(token);
-        if (user.role !== "superAdmin") {
+        if (user.role !== "superAdmin" && user.role !== "secretary") {
           setIsAdmin(false);
+
+          if (user.role === "catechist") {
+            console.log(" iran ");
+            return navigate("/admin/requests");
+          }
           throw new Error("Youre Not Authorized to view this page.");
         } else {
           setIsAdmin(true);

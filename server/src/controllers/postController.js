@@ -2,36 +2,6 @@ const cloudinary = require("../utils/cloudinary");
 const Post = require("../models/postSchema");
 const User = require("../models/userSchema");
 
-const createPost = async (req, res) => {
-  const { postTitle, content, category } = req.body;
-  const file = req?.file?.path;
-
-  if (postTitle && content && category && file) {
-    try {
-      const newPost = new Post({
-        postTitle,
-        content,
-        category,
-        file,
-        author: req?.user?.id,
-      });
-
-      await newPost.save();
-      return res
-        .status(200)
-        .json({ status: "success", message: "Post Created Successfully" });
-    } catch (err) {
-      if (err.errorResponse.code === 11000) {
-        err.message = "post title already exists";
-      }
-      return res.status(500).json({
-        status: "failure",
-        message: err?.message || "Couldn't Create Post...",
-      });
-    }
-  }
-};
-
 const allPosts = async (req, res) => {
   try {
     // Pagination Logic
@@ -125,6 +95,46 @@ const getPost = async (req, res) => {
   }
 };
 
+const createPost = async (req, res) => {
+  const { postTitle, content, category } = req.body;
+  const file = req?.file?.path;
+
+  if (postTitle && content && category && file) {
+    try {
+      const user = req?.user;
+      if (
+        user?.role !== "superAdmin" &&
+        user?.role !== "secretary" &&
+        user?.role !== "editor"
+      ) {
+        return res
+          .status(403)
+          .json({ status: "failure", message: "Not Authorized!" });
+      }
+      const newPost = new Post({
+        postTitle,
+        content,
+        category,
+        file,
+        author: req?.user?.id,
+      });
+
+      await newPost.save();
+      return res
+        .status(200)
+        .json({ status: "success", message: "Post Created Successfully" });
+    } catch (err) {
+      if (err.errorResponse.code === 11000) {
+        err.message = "post title already exists";
+      }
+      return res.status(500).json({
+        status: "failure",
+        message: err?.message || "Couldn't Create Post...",
+      });
+    }
+  }
+};
+
 const editPost = async (req, res) => {
   try {
     const { postSlug } = req.params;
@@ -141,9 +151,8 @@ const editPost = async (req, res) => {
 
     // Checking if the user is Authorized to make changes
     if (user.role !== "superAdmin" && user.role !== "secretary") {
-      console.log("user id :", user.id);
       // Checking if the user is the owner of the post
-      if (user.id !== foundUser._id) {
+      if (user.id !== foundUser._id.toString()) {
         return res
           .status(403)
           .json({ status: "failure", message: "Not Authorized!" });
@@ -194,7 +203,7 @@ const editPost = async (req, res) => {
       .json({ status: "success", message: "Updated successfully." });
   } catch (err) {
     return res.status(500).json({
-      status: "failed",
+      status: "failure",
       message: err?.message || "Something went wrong while updating",
     });
   }
@@ -203,7 +212,12 @@ const editPost = async (req, res) => {
 const deletePost = async (req, res) => {
   try {
     const { postSlug } = req.params;
-    const foundPost = await Post.findOne({ slug: postSlug });
+    const foundPost = await Post.findOne({ slug: postSlug }).populate(
+      "author",
+      "_id"
+    );
+
+    const user = req?.user;
 
     if (!foundPost) {
       return res
@@ -211,6 +225,13 @@ const deletePost = async (req, res) => {
         .json({ status: "failed", message: "No Post found." });
     }
 
+    if (user?.role !== "superAdmin") {
+      if (user?.id !== foundPost.author._id.toString()) {
+        return res
+          .status(403)
+          .json({ status: "failure", message: "Not Authorized!" });
+      }
+    }
     if (foundPost?.file) {
       // Deleting the image before the the post
       const ImgUrl = foundPost.file;

@@ -12,7 +12,7 @@ const Adduser = () => {
   const [userData, setUserData] = useState({
     username: "",
     password: "",
-    role: "Editor",
+    role: "catechist",
     img: "",
   });
   const [isLoading, setIsLoading] = useState(null);
@@ -168,10 +168,13 @@ const Adduser = () => {
                     }))
                   }
                 >
+                  <option value="catechist">Catechist</option>
                   <option value="editor">Editor</option>
-                  <option value="secretary">Secretary</option>
                   {userRole === "superAdmin" && (
-                    <option value="superAdmin">Super Admin</option>
+                    <>
+                      <option value="secretary">Secretary</option>
+                      <option value="superAdmin">Super Admin</option>
+                    </>
                   )}
                 </select>
               </div>

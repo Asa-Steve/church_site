@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../components/Utils/axiosInstance";
 import "./AllPost.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Pagination from "../../../components/common/Pagination/Pagination";
 import Loader from "../../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";
@@ -12,6 +12,8 @@ const AllPost = () => {
   const [message, setMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
 
   // Logic For Page Changes
   const handlePageChange = async (page) => {
@@ -46,6 +48,30 @@ const AllPost = () => {
       );
     }
   };
+
+  // Checking if User is authorized to view Page
+  useEffect(() => {
+    const verifyUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          return navigate("/login"); // No token, user is not authenticated
+        }
+        const user = jwtDecode(token);
+
+        if (user.role === "catechist") {
+          return navigate("/admin/requests");
+        }
+        if (user.role === "superAdmin") {
+          setIsAdmin(true);
+        }
+      } catch (error) {
+        return navigate("/admin/articles");
+      }
+    };
+
+    verifyUser();
+  }, []);
 
   // Fetching Post with regards to Page
   useEffect(() => {
@@ -100,15 +126,20 @@ const AllPost = () => {
                         </p>
                       </div>
                       <div className="btns">
-                        <Link to={`/admin/articles/edit/${post.slug}`}>
+                        <Link
+                          to={`/admin/articles/edit/${post.slug}`}
+                          style={{ border: !isAdmin && "1px solid #ff0066" }}
+                        >
                           Edit
                         </Link>
-                        <button
-                          onClick={() => handleDelete(post.slug)}
-                          disabled={loading}
-                        >
-                          Delete
-                        </button>
+                        {isAdmin && (
+                          <button
+                            onClick={() => handleDelete(post.slug)}
+                            disabled={loading}
+                          >
+                            Delete
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>

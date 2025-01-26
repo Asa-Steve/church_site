@@ -21,7 +21,6 @@ const Login = () => {
   const redirectPath = location.state?.from?.pathname;
 
   useEffect(() => {
-    console.log("i ran");
     const token = localStorage.getItem("token");
     if (token) {
       const user = jwtDecode(token);

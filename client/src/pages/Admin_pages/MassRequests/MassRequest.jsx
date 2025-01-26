@@ -3,13 +3,15 @@ import "./MassRequest.scss";
 import axiosInstance from "../../../components/Utils/axiosInstance";
 import Pagination from "../../../components/common/Pagination/Pagination";
 import Loader from "../../../components/common/Loader/Loader";
-
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 const MassRequest = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const navigate = useNavigate();
 
   const getRequests = async (page) => {
     try {
@@ -33,6 +35,30 @@ const MassRequest = () => {
       setCurrentPage(page);
     }
   };
+
+  // Checking if User is authorized to view Page
+  useEffect(() => {
+    const verifyUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          return navigate("/login"); // No token, user is not authenticated
+        }
+        const user = jwtDecode(token);
+        if (
+          user.role !== "catechist" &&
+          user.role !== "superAdmin" &&
+          user.role !== "secretary"
+        ) {
+          return navigate("/admin/articles");
+        }
+      } catch (error) {
+        return navigate("/admin/articles");
+      }
+    };
+
+    verifyUser();
+  }, []);
 
   useEffect(() => {
     getRequests(currentPage);
