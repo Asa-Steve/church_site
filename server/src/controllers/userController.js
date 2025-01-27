@@ -189,6 +189,13 @@ const update = async (req, res) => {
 const users = async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query; // Default page = 1 and limit = 10
+    const userId = req?.user?.id;
+
+    // Query Filter
+    const filters = {
+      _id: { $ne: userId },
+      role: { $ne: "superAdmin" },
+    };
 
     if (req.user.role !== "superAdmin" && req?.user.role !== "secretary") {
       return res.status(403).json({
@@ -197,7 +204,26 @@ const users = async (req, res) => {
       });
     }
 
-    const userId = req?.user?.id;
+    if (req.user.role === "secretary") {
+      const foundUsers = await User.find(filters) // Exclude Admin user by ID
+        .sort({ createdAt: -1 }) // Sort by latest first
+        .skip((page - 1) * limit) // Skip documents for previous pages
+        .limit(parseInt(limit)) // Limit number of documents per page;
+        .select("-password") // Exclude password field
+        .exec();
+
+      // Get total filtered user count
+      const total = await User.countDocuments(filters); // Use the same filters
+
+      return res.status(200).json({
+        status: "success",
+        data: foundUsers,
+        totalPages: Math.ceil(total / limit),
+        currentPage: parseInt(page),
+        totalItems: total,
+      });
+    }
+
     const foundUsers = await User.find({ _id: { $ne: userId } }) // Exclude Admin user by ID
       .sort({ createdAt: -1 }) // Sort by latest first
       .skip((page - 1) * limit) // Skip documents for previous pages
@@ -205,18 +231,19 @@ const users = async (req, res) => {
       .select("-password") // Exclude password field
       .exec();
 
-    const total = await User.countDocuments(); // total number of users
+    const total = await User.countDocuments({ _id: { $ne: userId } }); // total number of users
     return res.status(200).json({
       status: "success",
       data: foundUsers,
-      totalPages: Math.ceil((total - 1) / limit),
+      totalPages: Math.ceil(total / limit),
       currentPage: parseInt(page),
-      totalItems: total - 1,
+      totalItems: total,
     });
   } catch (err) {
-    return res
-      .status(500)
-      .json({ status: "failed", message: err?.message || "An error occurred" });
+    return res.status(500).json({
+      status: "failed",
+      message: err?.message || "Something went wrong while fetching users.",
+    });
   }
 };
 

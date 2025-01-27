@@ -3,6 +3,8 @@ import "./Contact.scss";
 import usePageLoad from "../../components/Utils/usePageLoad";
 import Loader from "../../components/common/Loader/Loader";
 import Map from "../../components/common/Map/Map";
+import Spinner from "../../components/common/Spinner/Spinner";
+import axiosInstance from "../../components/Utils/axiosInstance";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,9 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [loading, setLoading] = useState(null);
+  const [data, setData] = useState(null);
+  const [showMessage, setShowMessage] = useState(null);
 
   // Handling Page Loading Spinner
   const isPageLoaded = usePageLoad();
@@ -23,14 +28,53 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = { ...formData };
+    setLoading(true);
     try {
-      const response = await axiosInstance.post("/contact", payload);
+      const response = await axiosInstance.post("/mail", { ...formData });
 
-      const data = response?.data?.data;
+      // saving the result gotten from the server
+      const result = await response.data;
+
+      //saving it onto the state variable
+      setData(result);
+
+      // Resetting my form fields
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+      // Showing message (success to user)
+      setShowMessage(true);
+
+      setLoading(false);
     } catch (error) {
-      console.log(error?.message || "Couldnt send message.");
+      console.log("error: ", error);
+      // Showing message (failure to user)
+      setShowMessage(true);
+      setLoading(false);
+
+      if (error?.response) {
+        console.log("i ran", error.response);
+        const { data } = error.response;
+        error.message = data?.message || "Failed to send message!";
+      }
+
+      console.log(error.message);
+
+      setData({
+        status: "failure",
+        message: error?.message,
+      });
     }
+
+    setTimeout(() => {
+      // Removing message after 2sec
+      setShowMessage(false);
+      setData(null);
+    }, 2000);
   };
 
   {
@@ -71,6 +115,7 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="Full Name"
                         value={formData.name}
+                        required
                       />
                     </div>
                     <div className="row input-grp">
@@ -83,6 +128,7 @@ const Contact = () => {
                           onChange={handleChange}
                           placeholder="Your email"
                           value={formData.email}
+                          required
                         />
                       </div>
                       <div>
@@ -94,6 +140,7 @@ const Contact = () => {
                           onChange={handleChange}
                           placeholder="Subject"
                           value={formData.subject}
+                          required
                         />
                       </div>
                     </div>
@@ -105,10 +152,29 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="Write Message Here....."
                         value={formData.message}
+                        required
                       ></textarea>
                     </div>
 
-                    <button>Submit Message</button>
+                    <div className="row input-grp">
+                      <div>
+                        <button disabled={loading}>
+                          {" "}
+                          <Spinner visible={loading} />
+                          {loading ? "Submitting" : "Submit Message"}
+                        </button>
+                      </div>
+                      {showMessage && (
+                        <div
+                          className={
+                            data?.status ? `msg ${data.status}` : "msg"
+                          }
+                        >
+                          {" "}
+                          {data?.message}
+                        </div>
+                      )}
+                    </div>
                   </form>
                 </div>
               </div>

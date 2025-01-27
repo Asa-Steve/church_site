@@ -11,12 +11,23 @@ import faqs from "../../components/Utils/faqs";
 import missionStatement from "../../components/Utils/missionStatement";
 import usePageLoad from "../../components/Utils/usePageLoad";
 import Loader from "../../components/common/Loader/Loader";
+import axiosInstance from "../../components/Utils/axiosInstance";
+
+import Spinner from "../../components/common/Spinner/Spinner";
 
 const About = () => {
   // State Managed Variables
   const [activeFaq, setActiveFaq] = useState(0);
   const [data, setData] = useState(null);
   const [showMessage, setShowMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  // Creating a state Object for form data
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
   // Handling Page Loading Spinner
   const isPageLoaded = usePageLoad();
@@ -34,20 +45,12 @@ const About = () => {
   // Handling Form Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/mail", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formData }),
-      });
-      if (!res.ok) {
-        throw new Error("Failed to send message!");
-      }
+      const response = await axiosInstance.post("/mail", { ...formData });
 
       // saving the result gotten from the server
-      const result = await res.json();
+      const result = await response.data;
 
       //saving it onto the state variable
       setData(result);
@@ -60,25 +63,28 @@ const About = () => {
         message: "",
       });
 
-      // Showing message (success or failure to user)
+      // Showing message (success to user)
       setShowMessage(true);
 
-      setTimeout(() => {
-        // Removing message after 2sec
-        setShowMessage(false);
-      }, 2000);
+      setLoading(false);
     } catch (error) {
-      setData({ msg: "Failed to send message!" });
-    }
-  };
+      console.log("error: ", error);
+      // Showing message (failure to user)
+      setShowMessage(true);
+      setLoading(false);
 
-  // Creating a state Object for form data
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+      setData({
+        status: "failure",
+        message: "Failed to send message!",
+      });
+    }
+
+    setTimeout(() => {
+      // Removing message after 2sec
+      setShowMessage(false);
+      setData(null);
+    }, 2000);
+  };
 
   // Toggler Logic for FAQ
   const toggleFaq = (idx) => {
@@ -194,19 +200,20 @@ const About = () => {
 
                       <div className="row input-grp">
                         <div>
-                          <button>Submit Message</button>
+                          <button disabled={loading}>
+                            {" "}
+                            <Spinner visible={loading}/>
+                            {loading ? "Submitting" : "Submit Message"}
+                          </button>
                         </div>
                         {showMessage && (
                           <div
-                            style={
-                              data && {
-                                border: "1px solid black",
-                                textAlign: "center",
-                              }
+                            className={
+                              data?.status ? `msg ${data.status}` : "msg"
                             }
                           >
                             {" "}
-                            {<p>{data.msg}</p>}
+                            {data?.message}
                           </div>
                         )}
                       </div>

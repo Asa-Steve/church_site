@@ -1,5 +1,5 @@
 import "./Breadcrumb.scss";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const Breadcrumb = () => {
@@ -7,12 +7,11 @@ const Breadcrumb = () => {
   const pathname = location.pathname.split("/").filter((path) => path);
 
   if (pathname.includes("edit") && pathname.indexOf("edit")) {
-
     const truncPath = pathname.slice(0, pathname.indexOf("edit") + 1);
 
     return (
       <nav className="breadcrumb">
-        <Link to={"/"}>home</Link>;
+        <NavLink to={"/"}>home</NavLink>;
         {truncPath.map((path, pathIdx) => {
           const isLast = pathIdx === pathname.indexOf("edit");
           const pathTo = pathname.slice(0, pathIdx + 1).join("/");
@@ -20,7 +19,11 @@ const Breadcrumb = () => {
           return (
             <>
               <KeyboardArrowRightIcon />
-              {!isLast ? <Link to={`/${pathTo}`}>{path}</Link> : <p>{path}</p>}
+              {!isLast ? (
+                <NavLink to={`/${pathTo}`}>{path}</NavLink>
+              ) : (
+                <p>{path}</p>
+              )}
             </>
           );
         })}
@@ -29,7 +32,7 @@ const Breadcrumb = () => {
   } else {
     return (
       <nav className="breadcrumb">
-        <Link to={"/"}>home</Link>
+        <NavLink to={"/"}>home</NavLink>
 
         {pathname.map((path, pathIdx) => {
           const isLast = pathIdx === pathname.length - 1;
@@ -38,7 +41,11 @@ const Breadcrumb = () => {
           return (
             <>
               <KeyboardArrowRightIcon />
-              {!isLast ? <Link to={`/${pathTo}`}>{path}</Link> : <p>{path}</p>}
+              {!isLast ? (
+                <NavLink to={`/${pathTo}`}>{path}</NavLink>
+              ) : (
+                <p>{path}</p>
+              )}
             </>
           );
         })}

@@ -135,21 +135,20 @@ const ProtectedRoute = () => {
                 </div>
               </NavLink>
             )}
-            {isAdmin ||
-              (!isCatechist && (
-                <NavLink
-                  to={"/admin/articles/create"}
-                  onClick={handleClick}
-                  className={({ isActive }) => (isActive ? "active" : "")}
-                  end
-                >
-                  <div className="blob"></div>
-                  <div className="linked">
-                    <PostAddIcon />
-                    Add Post
-                  </div>
-                </NavLink>
-              ))}
+            {(isAdmin || !isCatechist) && (
+              <NavLink
+                to={"/admin/articles/create"}
+                onClick={handleClick}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                end
+              >
+                <div className="blob"></div>
+                <div className="linked">
+                  <PostAddIcon />
+                  Add Post
+                </div>
+              </NavLink>
+            )}
 
             {isAdmin && (
               <NavLink end to={"/admin/users/create"} onClick={handleClick}>
@@ -162,7 +161,7 @@ const ProtectedRoute = () => {
             )}
             {isAdmin && (
               <NavLink
-                to={"/admin/users/"}
+                to={"/admin/users"}
                 onClick={handleClick}
                 end
                 className={({ isActive }) => (isActive ? "active" : "")}

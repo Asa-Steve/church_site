@@ -129,7 +129,7 @@ const router = createBrowserRouter([
         element: <EditPost />,
       },
       {
-        path: "/admin/users/",
+        path: "/admin/users",
         element: <AllUsers />,
       },
       {

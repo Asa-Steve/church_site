@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../../components/Utils/axiosInstance";
 import Loader from "../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";
+import Spinner from "../../components/common/Spinner/Spinner";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -121,7 +122,10 @@ const Login = () => {
                   <Link>forgot password ?</Link>
                 </p>
 
-                <button disabled={isLoading}>Login</button>
+                <button disabled={isLoading}>
+                  <Spinner visible={isLoading} />{" "}
+                  {isLoading ? "Login in..." : "Login"}
+                </button>
                 <p
                   className={
                     !message?.status
@@ -133,43 +137,33 @@ const Login = () => {
                 >
                   {message?.message}
                 </p>
+
+                {/* <div className="row input-grp">
+                  <div>
+                    <button disabled={isLoading}>
+                      {" "}
+                      <Spinner visible={isLoading} />
+                      {isLoading ? "Loggin in" : "Login"}
+                    </button>
+                  </div>
+                  {message && (
+                    <div
+                      className={
+                        !message?.status
+                          ? "message hide"
+                          : message?.status === "success"
+                          ? "message success"
+                          : "message failure"
+                      }
+                    >
+                      {" "}
+                      {message?.message}
+                    </div>
+                  )}
+                </div> */}
               </form>
             </div>
           </div>
-
-          {/* <div className="wrap">
-            <div className="form-header">
-              <h2>CREATE NEW POST</h2>
-            </div>
-
-            <form action="" onSubmit={handleSubmit}>
-              <div className="row">
-                <label htmlFor="title_post">Post Title</label>
-                <input
-                  type="text"
-                  name="postTitle"
-                  id="title_post"
-                  placeholder="Enter Title"
-                  value={formData.postTitle}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="row input-grp">
-                <div>
-                  <label htmlFor="post_img">Post Image</label>
-                  <input
-                    type="file"
-                    name="postImg"
-                    id="post_img"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-              <button>Publish Post</button>
-            </form>
-          </div> */}
         </section>
       </main>
     );

@@ -66,6 +66,35 @@ a {
   }
 }
 
+// Spinner Btn Setup
+.row.input-grp {
+  button {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+
+    &:disabled {
+      background-color: #383838aa;
+      cursor: not-allowed;
+    }
+  }
+  .msg {
+    font-weight: 500;
+    font-size: 14px;
+    height: 30px;
+    flex: 1.2 !important;
+    color: white;
+
+    &.success {
+      background-color: rgb(152, 224, 45);
+    }
+    &.failure {
+      background-color: red;
+    }
+  }
+}
+
 .diff {
   color: #ff0066;
   font-size: 10px;
