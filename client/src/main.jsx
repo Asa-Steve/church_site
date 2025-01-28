@@ -46,6 +46,8 @@ import ProtectedRoute from "./ProtectedRoute.jsx";
 import EditUser from "./pages/Admin_pages/EditUser/EditUser.jsx";
 import EditProfile from "./pages/Admin_pages/EditProfile/EditProfile.jsx";
 import Activities from "./pages/Activities/Activities.jsx";
+import Reset from "./pages/Reset/Reset.jsx";
+import ForgotPw from "./pages/ForgotPw/ForgotPw.jsx";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +86,14 @@ const router = createBrowserRouter([
       {
         path: "/donate",
         element: <Donate />,
+      },
+      {
+        path: "/reset-password/:resetToken",
+        element: <Reset />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPw />,
       },
       {
         path: "/priest/:pid",

@@ -12,6 +12,8 @@ const userSchema = new mongoose.Schema(
       default: "Editor",
     },
     img: { type: String },
+    resetPwToken: { type: String },
+    resetPwExpire: { type: Date },
   },
   { timestamps: true }
 );

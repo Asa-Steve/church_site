@@ -7,6 +7,8 @@ const {
   update,
   user,
   deleteUser,
+  forgotPassword,
+  resetPassword,
 } = require("../controllers/userController");
 const uploadMiddleware = require("../middleware/UploadMiddleware");
 const verifyPassword = require("../middleware/verifyPassword");
@@ -16,6 +18,8 @@ router.get("/", verifyToken, users);
 router.get("/:userId", verifyToken, user);
 router.put("/", verifyToken, uploadMiddleware, update);
 router.post("/login", verifyPassword, login);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
 router.post("/verify-token", verifyToken, verify);
 router.post("/create", verifyToken, uploadMiddleware, create);
 router.delete("/:userId", verifyToken, uploadMiddleware, deleteUser);

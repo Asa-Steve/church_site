@@ -17,14 +17,14 @@ const Breadcrumb = () => {
           const pathTo = pathname.slice(0, pathIdx + 1).join("/");
 
           return (
-            <>
+            <span key={pathIdx}>
               <KeyboardArrowRightIcon />
               {!isLast ? (
                 <NavLink to={`/${pathTo}`}>{path}</NavLink>
               ) : (
                 <p>{path}</p>
               )}
-            </>
+            </span>
           );
         })}
       </nav>
@@ -39,14 +39,14 @@ const Breadcrumb = () => {
           const pathTo = pathname.slice(0, pathIdx + 1).join("/");
 
           return (
-            <>
+            <span key={pathIdx}>
               <KeyboardArrowRightIcon />
               {!isLast ? (
                 <NavLink to={`/${pathTo}`}>{path}</NavLink>
               ) : (
                 <p>{path}</p>
               )}
-            </>
+            </span>
           );
         })}
       </nav>

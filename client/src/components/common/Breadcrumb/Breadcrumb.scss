@@ -2,7 +2,7 @@ nav.breadcrumb {
   height: 30px;
 
   &,
-  a {
+  a ,span{
     display: flex;
     place-items: center;
   }

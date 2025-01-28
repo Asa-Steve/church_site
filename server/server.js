@@ -33,4 +33,4 @@ app.use("/api/v1/mail", mailRoute);
 // Error-handling middleware
 app.use(handleError);
 
-app.listen(PORT, console.log(`server is running on Port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from "react";
-import "./Login.scss";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../components/Utils/axiosInstance";
 import Loader from "../../components/common/Loader/Loader";
 import { jwtDecode } from "jwt-decode";
 import Spinner from "../../components/common/Spinner/Spinner";
+import "./Reset.scss";
 
-const Login = () => {
+const Reset = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    passwordConfirm: "",
     password: "",
   });
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [checking, setChecking] = useState(true);
+  const { resetToken } = useParams();
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Retrieving the "from" route or fallback to home ("/")
+  // Retrieving the "from" route
   const redirectPath = location.state?.from?.pathname;
 
   useEffect(() => {
@@ -35,8 +36,8 @@ const Login = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setMessage("");
-    }, 3000);
+      setMessage(null);
+    }, 2000);
   }, [message]);
 
   const handleChange = (e) => {
@@ -46,32 +47,31 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = { ...formData };
+    const payload = { password: formData.password, resetToken };
 
+    if (formData.password !== formData.passwordConfirm) {
+      setMessage({ status: "failure", message: "Passwords do not match" });
+      return;
+    }
+    setIsLoading(true);
     try {
-      if (formData.username && formData.username) {
-        setIsLoading(true);
-        const response = await axiosInstance.post("/users/login", payload);
-        const data = response?.data;
-        setMessage({
-          status: "success",
-          message: data?.message || "Login Successful, Redirecting...",
-        });
-        localStorage.setItem("token", data.token);
-        const user = jwtDecode(data.token);
+      const result = await axiosInstance.post("/users/reset-password", payload);
+      const { data } = result;
 
-        // Navigate to the originally requested route or home
-        user?.role === "superAdmin"
-          ? navigate(redirectPath || "/admin", { replace: true })
-          : navigate(redirectPath || "/admin/articles", { replace: true });
-      }
-    } catch (error) {
-      const data = error?.response?.data;
-      setMessage({
-        status: "failed",
-        message: data?.message || "Oops Something went wrong",
-      });
+      setMessage(data);
+
       setIsLoading(false);
+      setFormData({ password: "", passwordConfirm: "" });
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      if (error?.response) {
+        error.message = error?.response?.data?.message || "An error occurred";
+      }
+      setMessage({ status: "failure", message: error.message });
     }
   };
 
@@ -79,7 +79,7 @@ const Login = () => {
     return checking ? (
       <Loader />
     ) : (
-      <main className="login">
+      <main className="reset">
         <section className="form-section">
           <div className="wrap">
             <div className="left">
@@ -91,40 +91,34 @@ const Login = () => {
               </div>
             </div>
             <div className="right">
-              <a href="">Need help? </a>
-
               <form action="" onSubmit={handleSubmit}>
-                <h2>Log In</h2>
+                <h2>Password Reset</h2>
                 <div className="row">
-                  <label htmlFor="username">Username</label>
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Jon Doe"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="row">
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">New Password</label>
                   <input
                     type="password"
                     name="password"
-                    placeholder="enter your password"
+                    placeholder="enter new password"
                     value={formData.password}
                     onChange={handleChange}
                     required
                   />
                 </div>
-                <p>
-                  <Link to={"/forgot-password"}>forgot password ?</Link>
-                </p>
+                <div className="row">
+                  <label htmlFor="passwordConfirm">Confirm Password</label>
+                  <input
+                    type="password"
+                    name="passwordConfirm"
+                    placeholder="confirm password"
+                    value={formData.passwordConfirm}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
                 <button disabled={isLoading}>
                   <Spinner visible={isLoading} />{" "}
-                  {isLoading ? "Login in..." : "Login"}
+                  {isLoading ? "Saving Changes" : "Save Changes"}
                 </button>
                 <p
                   className={
@@ -146,4 +140,4 @@ const Login = () => {
   }
 };
 
-export default Login;
+export default Reset;

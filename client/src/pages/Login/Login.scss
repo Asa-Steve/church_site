@@ -1,6 +1,7 @@
 @import "../../styles/responsive.scss";
 
-.login {
+.login,
+.reset {
   height: 90vh;
   overflow-y: auto;
   position: relative;
@@ -176,8 +177,6 @@
               background-color: #00122069;
             }
           }
-
-          
 
           @include md {
             width: 90%;

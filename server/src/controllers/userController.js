@@ -4,6 +4,17 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const User = require("../models/userSchema");
 const bcrypt = require("bcrypt");
 const { v2: cloudinary } = require("cloudinary");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
+
+// Create transporter
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PW,
+  },
+});
 
 const login = (req, res) => {
   try {
@@ -325,4 +336,113 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { login, verify, create, users, update, user, deleteUser };
+const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        status: "failure",
+        message: "Email is required",
+      });
+    }
+
+    const foundUser = await User.findOne({ email });
+    if (!foundUser) {
+      return res
+        .status(404)
+        .json({ status: "failure", message: "User not found" });
+    }
+
+    // Generate a token to reset password
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+
+    // Set token expiry time
+    // const expTime = Date.now() + 3600000; // Token expires in 1 hour
+    const expTime = Date.now() + 60 * 60 * 1000; // Token expires in 2 minutes
+
+    // Saving both the hashed token and the expiry time to the user document
+    foundUser.resetPwToken = hashedToken;
+    foundUser.resetPwExpire = expTime;
+
+    await foundUser.save();
+
+    // Sending the email with the reset token
+    const adminMail = process.env.MAIL_USER;
+    const resetURL = `${req.protocol}://${req.get(
+      "host"
+    )}/reset-password/${resetToken}`;
+    const message = `You requested a password reset. Click the link to reset your password: ${resetURL}`;
+
+    await transporter.sendMail({
+      from: adminMail,
+      to: email,
+      subject: "Password Reset Request",
+      text: message,
+    });
+    res.status(200).json({
+      satatus: "success",
+      message: "check your email for password reset link",
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: "failure",
+      message: err?.message || "An error occurred",
+    });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const { resetToken, password } = req.body;
+
+    // Hashing the new password
+    const hashedPw = await bcrypt.hash(password, 10);
+
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+    const foundUser = await User.findOne({
+      resetPwToken: hashedToken,
+      resetPwExpire: { $gt: Date.now() },
+    });
+    if (!foundUser) {
+      return res
+        .status(400)
+        .json({ message: "Token is invalid or has expired" });
+    }
+
+    // Updating password
+    foundUser.password = hashedPw; // saving Hashed password
+    foundUser.resetPwToken = undefined; //removing reset token
+    foundUser.resetPwExpire = undefined; //removing reset token expiry time
+
+    // Save the updated user document
+    await foundUser.save();
+
+    res
+      .status(200)
+      .json({ status: "success", message: "Password updated successfully" });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ status: "failure", message: "Error updating password" });
+  }
+};
+
+module.exports = {
+  login,
+  verify,
+  create,
+  users,
+  update,
+  user,
+  deleteUser,
+  forgotPassword,
+  resetPassword,
+};

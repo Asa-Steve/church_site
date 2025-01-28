@@ -1,0 +1,67 @@
+.forgotten {
+  border: 1px solid;
+  height: 87dvh;
+  margin: auto;
+  //   overflow: hidden;
+
+  .form-section {
+    height: 100%;
+    display: grid;
+    place-items: center;
+
+    form {
+      max-width: 600px;
+      min-height: 250px;
+
+      .row {
+        color: #001220;
+        margin-bottom: 0;
+
+        label {
+          width: fit-content;
+          padding: 0.3rem 2rem 0.3rem 1rem;
+          display: flex;
+          place-items: center;
+          border-top-right-radius: 70px;
+          border-bottom-right-radius: 0px;
+          background-color: #001220;
+          color: white;
+          height: 40px;
+        }
+        input{
+            padding-left: 1rem;
+        }
+        &.btn {
+          button {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            height: 40px;
+            padding: 1rem 2rem;
+          }
+          button:hover,
+          button.active {
+            border-bottom-left-radius: 50px;
+          }
+          button:disabled {
+            background-color: #00122063;
+            color: white;
+            cursor: not-allowed;
+          }
+        }
+      }
+      .msg {
+        height: 30px;
+        margin-top: 12px;
+        font-size: 14px;
+
+        &.success {
+          background-color: rgb(152, 224, 45);
+        }
+        &.failure {
+          background-color: red;
+        }
+      }
+    }
+  }
+}
