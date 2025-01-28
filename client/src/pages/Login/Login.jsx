@@ -91,8 +91,6 @@ const Login = () => {
               </div>
             </div>
             <div className="right">
-              <a href="">Need help? </a>
-
               <form action="" onSubmit={handleSubmit}>
                 <h2>Log In</h2>
                 <div className="row">
