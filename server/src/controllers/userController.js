@@ -373,9 +373,7 @@ const forgotPassword = async (req, res) => {
 
     // Sending the email with the reset token
     const adminMail = process.env.MAIL_USER;
-    const resetURL = `${req.protocol}://${req.get(
-      "host"
-    )}/reset-password/${resetToken}`;
+    const resetURL = `https://mount-zion.onrender.com/reset-password/${resetToken}`;
     const message = `You requested a password reset. Click the link to reset your password: ${resetURL}`;
 
     await transporter.sendMail({

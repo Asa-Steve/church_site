@@ -68,10 +68,10 @@ const Reset = () => {
     } catch (error) {
       console.log(error);
       setIsLoading(false);
-      if (error?.response) {
-        error.message = error?.response?.data?.message || "An error occurred";
-      }
-      setMessage({ status: "failure", message: error.message });
+      setMessage({
+        status: "failure",
+        message: "An error occurred, try again!",
+      });
     }
   };
 

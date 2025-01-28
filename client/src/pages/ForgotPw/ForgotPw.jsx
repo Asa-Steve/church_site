@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./ForgotPw.scss";
 import axiosInstance from "../../components/Utils/axiosInstance";
 import Spinner from "../../components/common/Spinner/Spinner";
+import Loader from "../../components/common/Loader/Loader";
 
 const ForgotPw = () => {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ const ForgotPw = () => {
       const errorResponse = error?.response?.data;
       setMessage({
         status: "failure",
-        message: errorResponse.message || "An error occurred, please try again",
+        message: "An error occurred, please try again",
       });
     }
 
@@ -75,36 +76,43 @@ const ForgotPw = () => {
     }, 3000);
   };
 
-  return (
-    <section className="forgotten">
-      <section className="form-section">
-        <div className="wrap">
-          <form onSubmit={handleSubmit}>
-            <div className="row">
-              <label htmlFor="email">Enter Email Address</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="enter email"
-                onChange={handleChange}
-                value={formData.email || ""}
-              />
-            </div>
-            <div className="row btn">
-              <button className={loading && "active"} disabled={loading}>
-                <Spinner visible={loading} />{" "}
-                {loading ? "Sending Link" : "Send Recovery Link"}
-              </button>
-            </div>
-            {message?.status && (
-              <p className={`msg ${message.status}`}>{message.message}</p>
-            )}
-          </form>
-        </div>
+  {
+    return checking ? (
+      <Loader />
+    ) : (
+      <section className="forgotten">
+        <section className="form-section">
+          <div className="wrap">
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                <label htmlFor="email">Enter Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="enter email"
+                  onChange={handleChange}
+                  value={formData.email || ""}
+                />
+              </div>
+              <div className="row btn">
+                <button
+                  className={loading ? "active" : undefined}
+                  disabled={loading}
+                >
+                  <Spinner visible={loading} />{" "}
+                  {loading ? "Sending Link" : "Send Recovery Link"}
+                </button>
+              </div>
+              {message?.status && (
+                <p className={`msg ${message.status}`}>{message.message}</p>
+              )}
+            </form>
+          </div>
+        </section>
       </section>
-    </section>
-  );
+    );
+  }
 };
 
 export default ForgotPw;
