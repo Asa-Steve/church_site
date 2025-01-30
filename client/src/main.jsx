@@ -25,9 +25,12 @@ import Mass from "./pages/Mass/Mass.jsx";
 import Donate from "./pages/Donate/Donate.jsx";
 import Articles from "./pages/Articles/Articles.jsx";
 import Article from "./pages/Article/Article.jsx";
+import Activities from "./pages/Activities/Activities.jsx";
 import Baptism from "./pages/Baptism/Baptism.jsx";
 import PaymentSuccess from "./pages/PaymentSuccessful/Payment_Success.jsx";
 import Login from "./pages/Login/Login.jsx";
+import Reset from "./pages/Reset/Reset.jsx";
+import ForgotPw from "./pages/ForgotPw/ForgotPw.jsx";
 
 // Admin Pages (Require Auth)
 import Dashboard from "./pages/Admin_pages/Dashboard/Dashboard.jsx";
@@ -40,14 +43,13 @@ import AllUsers from "./pages/Admin_pages/AllUsers/AllUsers.jsx";
 import InfantBaptism from "./pages/Admin_pages/InfantBaptism/InfantBaptism.jsx";
 import Records from "./pages/Admin_pages/Records/Records.jsx";
 import SearchRecord from "./pages/SearchRecord/SearchRecord.jsx";
+import ViewRecord from "./pages/Admin_pages/ViewRecord/ViewRecord.jsx";
+import EditProfile from "./pages/Admin_pages/EditProfile/EditProfile.jsx";
+import EditUser from "./pages/Admin_pages/EditUser/EditUser.jsx";
+import EditRecord from "./pages/Admin_pages/EditRecord/EditRecord.jsx";
 
 // Layout for Authenticated Users
 import ProtectedRoute from "./ProtectedRoute.jsx";
-import EditUser from "./pages/Admin_pages/EditUser/EditUser.jsx";
-import EditProfile from "./pages/Admin_pages/EditProfile/EditProfile.jsx";
-import Activities from "./pages/Activities/Activities.jsx";
-import Reset from "./pages/Reset/Reset.jsx";
-import ForgotPw from "./pages/ForgotPw/ForgotPw.jsx";
 
 const router = createBrowserRouter([
   {
@@ -159,8 +161,16 @@ const router = createBrowserRouter([
         element: <InfantBaptism />,
       },
       {
-        path: "/admin/records",
+        path: "/admin/records/create",
         element: <Records />,
+      },
+      {
+        path: "/admin/records",
+        element: <ViewRecord />,
+      },
+      {
+        path: "/admin/records/edit/:recordId",
+        element: <EditRecord />,
       },
       {
         path: "/admin/users/profile",

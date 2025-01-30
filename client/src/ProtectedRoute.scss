@@ -191,23 +191,23 @@
     // &::-webkit-scrollbar {
     //   display: none;
     // }
-// Webkit browsers
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
+    // // Webkit browsers
+    //   &::-webkit-scrollbar {
+    //     width: 5px;
+    //   }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #ff5197;
-    border-radius: 6px;
-  }
+    //   &::-webkit-scrollbar-thumb {
+    //     background-color: #ff5197;
+    //     border-radius: 6px;
+    //   }
 
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #ff5197;
-  }
+    //   &::-webkit-scrollbar-thumb:hover {
+    //     background-color: #ff5197;
+    //   }
 
-  &::-webkit-scrollbar-track {
-    background: #f4f4f4;
-  }
+    //   &::-webkit-scrollbar-track {
+    //     background: #f4f4f4;
+    //   }
     .top-bar {
       height: 50px;
       display: flex;
@@ -317,8 +317,12 @@
     }
 
     .main {
-      padding: 0.5rem;
+      // padding: 0.5rem;
       background-color: #fff;
+      position: relative;
+      width: 98%;
+      margin: auto;
+      height: 81dvh;
     }
   }
 

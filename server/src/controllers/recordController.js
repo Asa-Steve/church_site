@@ -315,6 +315,79 @@ const getRecordByName = async (req, res) => {
   }
 };
 
+const editRecord = async (req, res) => {
+  try {
+    const { role } = req.user;
+    const { desiredType, lm = null, lb = null } = req.query;
+
+    if (role !== "superAdmin" && role !== "secretary") {
+      return res
+        .status(403)
+        .json({ status: "failure", message: "Not Authorized!" });
+    }
+
+    if (desiredType === "marriage") {
+      await marriageRecord.findOneAndUpdate(
+        { lm },
+        {
+          husbandName: req?.body?.husbandName && req.body.husbandName,
+          wifeName: req?.body?.wifeName && req.body.wifeName,
+          lm: req?.body?.lm && req.body.lm,
+          doMarriage: req?.body?.doMarriage && req.body.doMarriage,
+          placeofMarriage:
+            req?.body?.placeofMarriage && req.body.placeofMarriage,
+          witness1: req?.body?.witness1 && req.body.witness1,
+          witness2: req?.body?.witness2 && req.body.witness2,
+          officiatingPriest:
+            req?.body?.officiatingPriest && req.body.officiatingPriest,
+        }
+      );
+
+      res
+        .status(200)
+        .json({ status: "success", message: "Record updated successfully!" });
+    } else if (desiredType === "baptism") {
+      await baptismRecord.findOneAndUpdate(
+        { lb },
+        {
+          baptismName: req?.body?.baptismName && req.body.baptismName, // The baptismal name
+          otherName: req?.body?.otherName && req.body.otherName, // Additional name(s)
+          surname: req?.body?.surname && req.body.surname, // The surname
+          dob: req?.body?.dob && req.body.dob, // The  date of birth
+          doBaptism: req?.body?.doBaptism && req.body.doBaptism, // The date of baptism
+          birthPlace: req?.body?.birthPlace && req.body.birthPlace, // The place where the person was born
+          fatherName: req?.body?.fatherName && req.body.fatherName, // Father's name
+          motherName: req?.body?.motherName && req.body.motherName, // Mother's name
+          homeTown: req?.body?.homeTown && req.body.homeTown, // Family's hometown
+          lga: req?.body?.lga && req.body.lga, // Local Government Area
+          state: req?.body?.state && req.body.state,
+          lb: req?.body?.lb && req.body.lb,
+          sponsor: req?.body?.sponsor && req.body.sponsor, // Name of the sponsor for baptism
+          minister: req?.body?.minister && req.body.minister,
+        }
+      );
+      res
+        .status(200)
+        .json({ status: "success", message: "Record updated successfully!" });
+    }
+  } catch (error) {
+    if (error?.errorResponse) {
+      if (error?.errorResponse?.code === 11000) {
+        error.message = "Record ID already exist. Check and try again.";
+      } else {
+        error.message = "Something went wrong";
+      }
+    } else {
+      error.message = "Something went wrong while updating";
+    }
+    res.status(500).json({
+      status: "failure",
+      message: error.message,
+    });
+  }
+};
+const deleteRecord = async (req, res) => {};
+
 module.exports = {
   recordBaptism,
   recordMarriage,
@@ -322,4 +395,5 @@ module.exports = {
   getRecordById,
   getRecordByDate,
   getRecordByName,
+  editRecord,
 };

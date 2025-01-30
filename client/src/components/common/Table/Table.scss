@@ -2,8 +2,15 @@
 
 .table {
   color: black;
-  border: 1px solid;
   width: 80%;
+  margin: auto;
+  overflow-x: auto;
+  padding-block-end: .8rem;
+  
+
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
 
   table {
     width: 100%;
@@ -12,12 +19,17 @@
     thead {
       background-color: black;
       color: white;
-
-      
     }
-    th,td {
-        white-space: nowrap;
-      }
+    th,
+    td {
+      white-space: nowrap;
+    }
+    th {
+      padding-inline: 0.2rem;
+    }
+    td {
+      padding-inline: 1rem;
+    }
   }
 
   @include sm {
