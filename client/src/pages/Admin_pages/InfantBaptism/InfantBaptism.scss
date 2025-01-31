@@ -5,7 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  height: 660px;
+  max-height: 660px;
   overflow-y: auto;
   justify-content: space-between;
   scrollbar-width: none;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ViewRecord.scss";
 import axiosInstance from "../../../components/Utils/axiosInstance";
 import Table from "../../../components/common/Table/Table";
@@ -6,6 +6,8 @@ import formatDate from "../../../components/Utils/formatDate";
 import Pagination from "../../../components/common/Pagination/Pagination";
 import Loader from "../../../components/common/Loader/Loader";
 import usePageLoad from "../../../components/Utils/usePageLoad";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const ViewRecord = () => {
   const [desiredType, setDesiredType] = useState("baptism");
@@ -13,6 +15,9 @@ const ViewRecord = () => {
   const [searchDate, setSearchDate] = useState({ to: null, from: null });
   const [isData, setIsData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(null);
+  const [message, setMessage] = useState(null);
+  const navigate = useNavigate();
 
   // Handling Page Loading Spinner
   const isPageLoaded = usePageLoad();
@@ -32,6 +37,14 @@ const ViewRecord = () => {
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userRole = jwtDecode(token).role;
+
+    if (userRole === "superAdmin" || userRole === "secretary") {
+      setIsAdmin(true);
+    }
+  }, []);
   const handleType = (e) => {
     const { id } = e.target;
     setDesiredType(id);
@@ -364,15 +377,43 @@ const ViewRecord = () => {
     }
   };
 
+  const handleDelete = async (recordId, isLb) => {
+    const params = {
+      desiredType: `${isLb == "true" ? "baptism" : "marriage"}`,
+      recordId,
+    };
+    try {
+      const response = await axiosInstance.delete("/records", { params });
+      const { data } = response;
+      console.log(response);
+      setMessage(data);
+    } catch (error) {
+      setMessage({
+        status: "failure",
+        message: "Something went wrong while deleting.",
+      });
+    }
+
+    setTimeout(() => {
+      setMessage(null);
+      navigate(0);
+    }, 3000);
+  };
+
   {
     return !isPageLoaded || loading ? (
-      <Loader />
+      <div className="load">
+        <Loader />
+      </div>
     ) : (
       <>
         <section className="search_section viewrecord">
           <main className="main_records search">
             <section className="records form-section">
               <div className="wrap">
+                <div className="form-header">
+                  <h2>SEARCH RECORD </h2>
+                </div>
                 <div className="record-type">
                   <div
                     className={
@@ -585,7 +626,18 @@ const ViewRecord = () => {
                   <>
                     <div className="archive_result">
                       <h2>Found {desiredType} Record(s)</h2>
-                      <Table colsHeadr={cols} rows={rows} isAdmin={true} />
+                      {message?.status && (
+                        <div className={`msg ${message?.status}`}>
+                          {message?.message || "successful"}
+                        </div>
+                      )}
+
+                      <Table
+                        colsHeadr={cols}
+                        rows={rows}
+                        isAdmin={isAdmin}
+                        handleDelete={handleDelete}
+                      />
                     </div>
                     {searchBy !== "id" && (
                       <div className="footer-pagination">

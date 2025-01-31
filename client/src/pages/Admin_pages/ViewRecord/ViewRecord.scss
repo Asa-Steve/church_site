@@ -1,6 +1,25 @@
 .viewrecord {
+  position: relative !important;
+  display: block;
   .records {
     min-height: fit-content;
+    display: block;
+
+    .msg {
+      height: 30px;
+      padding: 0.3rem;
+      width: 80%;
+      margin: auto;
+      margin-bottom: 1rem;
+      color: white;
+
+      &.success {
+        background-color: lightgreen;
+      }
+      &.failure {
+        background-color: red;
+      }
+    }
   }
   .wrap {
     width: 95% !important;

@@ -204,7 +204,7 @@ const SearchRecord = () => {
           );
 
           setLoading(false);
-
+          console.log(responseFromDate.data);
           const {
             foundRecords: dataByDate,
             currentPage: currPage,
@@ -346,8 +346,6 @@ const SearchRecord = () => {
           break;
       }
     } catch (error) {
-      console.log(error);
-    } finally {
       setLoading(false);
     }
   };

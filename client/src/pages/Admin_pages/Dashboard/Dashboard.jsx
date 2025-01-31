@@ -19,7 +19,7 @@ import axiosInstance from "../../../components/Utils/axiosInstance";
 
 const Dashboard = () => {
   const [fetchedData, setfetchedData] = useState(null);
-  const [loading, setIsloading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState(null);
   const [isAdmin, setIsAdmin] = useState(null);
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const Dashboard = () => {
         }
       } catch (error) {
         console.log("erro fa: ", error);
-        setIsloading(false);
+        setLoading(false);
         setMessage(error.message);
         navigate("/admin/articles");
         return;
@@ -60,8 +60,7 @@ const Dashboard = () => {
     const getPayments = async () => {
       try {
         const response = await axiosInstance.get("/payments");
-        console.log(response.data);
-        setIsloading(false);
+        setLoading(false);
         setfetchedData({
           data: response.data.data,
           monthlyData: response?.data?.totalAmount,
@@ -70,8 +69,7 @@ const Dashboard = () => {
           totalUsers: response?.data?.totalUsers,
         });
       } catch (error) {
-        console.log(error);
-        setIsloading(false);
+        setLoading(false);
         setMessage(
           "Couldn't get Site Statistics at the moment try again later"
         );

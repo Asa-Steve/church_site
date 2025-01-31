@@ -92,7 +92,9 @@ const AddPost = () => {
 
   {
     return !isPageLoaded ? (
-      <Loader />
+      <div className="load">
+        <Loader />
+      </div>
     ) : (
       <div className="add_post">
         <main className="addpost">

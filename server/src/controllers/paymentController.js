@@ -30,41 +30,42 @@ const getTotalForCurrentMonth = async (req, res) => {
       "December",
     ];
 
-    // Define the start and end of the current month
-    const startOfMonth = new Date(currentYear, currentMonth, 1); // Start of the month
+    // Correctly define the start and end of the current month in UTC
+    const startOfMonth = new Date(
+      Date.UTC(currentYear, currentMonth, 1, 0, 0, 0, 0)
+    );
     const endOfMonth = new Date(
-      currentYear,
-      currentMonth + 1,
-      0,
-      23,
-      59,
-      59,
-      999
-    ); // End of the month
+      Date.UTC(currentYear, currentMonth + 1, 1, 0, 0, 0, 0)
+    ); // EXCLUSIVE
 
+    console.log(
+      "Fetching payments from:",
+      startOfMonth.toISOString(),
+      "to",
+      endOfMonth.toISOString()
+    );
+
+    // Aggregate total amount for the current month
     const result = await Payment.aggregate([
       {
         $match: {
-          createdAt: {
-            $gte: startOfMonth, // Records from the start of the month
-            $lte: endOfMonth, // Records up to the end of the month
-          },
+          createdAt: { $gte: startOfMonth, $lt: endOfMonth }, // Use `$lt` to exclude next month
         },
       },
       {
         $group: {
-          _id: null, // Grouping all records together
-          totalAmount: { $sum: "$amount" }, // Sum of all "amount" fields
+          _id: null, // Group all records together
+          totalAmount: { $sum: "$amount" }, // Sum all `amount` fields
         },
       },
     ]);
 
-    const totalAmount = result.length > 0 ? result[0].totalAmount : 0; // Get the total or default to 0
+    const totalAmount = result.length > 0 ? result[0].totalAmount : 0; // Get total or default to 0
 
     return {
       month: `${monthNames[currentMonth]}, ${currentYear}`,
       total: `${totalAmount}`,
-    }; // Return the total for the current month  });
+    }; // Return the total for the current month
   } catch (error) {
     console.error("Error retrieving total for current month:", error);
     throw new Error("Failed to retrieve total for the current month");
@@ -140,68 +141,81 @@ const getMassReqs = async (interval, month = null, year = null) => {
 };
 
 const getWeeklyDataForCurrentMonth = async () => {
-  // Get the current month and year
   const currentDate = new Date();
-  const currentMonth = currentDate.getMonth() + 1; // Month is 0-indexed, so add 1
+  const currentMonth = currentDate.getMonth(); // 0-indexed (January = 0)
   const currentYear = currentDate.getFullYear();
 
-  // Define the start and end of the current month
-  const startOfMonth = new Date(currentYear, currentMonth - 1, 1); // Start of the current month
-  const endOfMonth = new Date(currentYear, currentMonth, 0, 23, 59, 59, 999); // End of the current month
+  // 🔥 Manually set the strict start and end date for MongoDB filtering
+  const startOfMonth = new Date(
+    Date.UTC(currentYear, currentMonth, 1, 0, 0, 0, 0)
+  ); // Jan 1, 2025 00:00:00 UTC
+  const endOfMonth = new Date(
+    Date.UTC(currentYear, currentMonth + 1, 1, 0, 0, 0, 0)
+  ); // Feb 1, 2025 00:00:00 UTC (EXCLUSIVE)
 
-  // Fetch and process data
-  const result = await Payment.aggregate([
-    {
-      $match: {
-        purpose: { $in: ["infant_baptism", "donation", "mass_request"] }, // Filter specified purposes
-        createdAt: { $gte: startOfMonth, $lte: endOfMonth }, // Filter by the current month
-      },
-    },
-    {
-      $addFields: {
-        weekOfMonth: {
-          $ceil: {
-            $divide: [{ $dayOfMonth: "$createdAt" }, 7], // Calculate the week number within the month
-          },
-        },
-      },
-    },
-    {
-      $group: {
-        _id: { week: "$weekOfMonth" }, // Group by week of the month
-        totalAmount: { $sum: "$amount" }, // Total for all purposes in the week
-        infBaptism: {
-          $sum: {
-            $cond: [{ $eq: ["$purpose", "infant_baptism"] }, "$amount", 0],
-          },
-        },
-        donations: {
-          $sum: {
-            $cond: [{ $eq: ["$purpose", "donation"] }, "$amount", 0],
-          },
-        },
-        massRequests: {
-          $sum: {
-            $cond: [{ $eq: ["$purpose", "mass_request"] }, "$amount", 0],
-          },
-        },
-      },
-    },
-    { $sort: { "_id.week": 1 } }, // Sort by week number within the month (ascending)
-  ]);
+  console.log(
+    "Fetching transactions from:",
+    startOfMonth.toISOString(),
+    "to",
+    endOfMonth.toISOString()
+  );
 
-  // Format the result into the desired structure
-  const formattedData = result.map((weekData) => {
-    return {
-      week: `Week ${weekData._id.week}`, // Week number (e.g., "Week 1")
-      inf_baptism: weekData.infBaptism || 0, // Total for "infant_baptism"
-      donations: weekData.donations || 0, // Total for "donations"
-      mass_requests: weekData.massRequests || 0, // Total for "mass_request"
-      amt: weekData.totalAmount || 0, // Total for the week (all purposes)
-    };
+  const rawData = await Payment.find({
+    purpose: { $in: ["infant_baptism", "donation", "mass_request"] },
+    createdAt: { $gte: startOfMonth, $lt: endOfMonth }, // 🔥 `$lt` ensures only January data is included
+  }).lean();
+
+  // Function to get correct week within the month
+  const calculateWeekOfMonth = (date) => {
+    const dayOfMonth = date.getUTCDate(); // Ensure UTC consistency
+    return Math.ceil(dayOfMonth / 7);
+  };
+
+  // Aggregate weekly data
+  const weeklyData = {};
+  rawData.forEach((payment) => {
+    const paymentDate = new Date(payment.createdAt);
+    const week = calculateWeekOfMonth(paymentDate);
+
+    if (!weeklyData[week]) {
+      weeklyData[week] = {
+        week: `Week ${week}`,
+        amt: 0,
+        inf_baptism: 0,
+        donations: 0,
+        mass_requests: 0,
+      };
+    }
+
+    weeklyData[week].amt += payment.amount;
+    if (payment.purpose === "infant_baptism")
+      weeklyData[week].inf_baptism += payment.amount;
+    if (payment.purpose === "donation")
+      weeklyData[week].donations += payment.amount;
+    if (payment.purpose === "mass_request")
+      weeklyData[week].mass_requests += payment.amount;
   });
 
-  return formattedData; // Return the formatted data
+  // Generate weeks dynamically
+  const lastDayOfMonth = new Date(
+    currentYear,
+    currentMonth + 1,
+    0
+  ).getUTCDate();
+  const totalWeeks = Math.ceil(lastDayOfMonth / 7);
+  const formattedData = Array.from({ length: totalWeeks }, (_, i) => {
+    return (
+      weeklyData[i + 1] || {
+        week: `Week ${i + 1}`,
+        amt: 0,
+        inf_baptism: 0,
+        donations: 0,
+        mass_requests: 0,
+      }
+    );
+  });
+
+  return formattedData;
 };
 
 const getTotalUsers = async () => {
@@ -216,7 +230,7 @@ exports.allPayments = async (req, res) => {
     const totalInfants = await getInfants("monthly");
     const totalMassReqs = await getMassReqs("monthly");
     const totalUsers = await getTotalUsers();
-
+    console.log(totalAmount);
     return res.status(200).json({
       status: "success",
       data: monthlyData,

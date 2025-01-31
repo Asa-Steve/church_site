@@ -174,7 +174,7 @@ const getRecordByDate = async (req, res) => {
     if (desiredType === "marriage") {
       const foundRecords = await marriageRecord
         .find({
-          createdAt: {
+          doMarriage: {
             $gte: from,
             $lte: to,
           },
@@ -184,7 +184,7 @@ const getRecordByDate = async (req, res) => {
         .select("-createdAt -updatedAt"); // Exclude fields;
 
       const total = await marriageRecord.countDocuments({
-        createdAt: {
+        doMarriage: {
           $gte: from,
           $lte: to,
         },
@@ -199,14 +199,14 @@ const getRecordByDate = async (req, res) => {
     } else if (desiredType === "baptism") {
       const foundRecords = await baptismRecord
         .find({
-          createdAt: { $gte: from, $lte: to },
+          doBaptisma: { $gte: from, $lte: to },
         })
         .skip((page - 1) * limit) // Skip documents for previous pages
         .limit(parseInt(limit)) // Limit number of documents per page;
         .select("-createdAt -updatedAt"); // Exclude fields;
 
       const total = await baptismRecord.countDocuments({
-        createdAt: {
+        doBaptism: {
           $gte: from,
           $lte: to,
         },
@@ -386,7 +386,41 @@ const editRecord = async (req, res) => {
     });
   }
 };
-const deleteRecord = async (req, res) => {};
+const deleteRecord = async (req, res) => {
+  try {
+    const { role } = req.user;
+    const { desiredType, recordId } = req.query;
+
+    if (role !== "superAdmin" && role !== "secretary") {
+      return res
+        .status(403)
+        .json({ status: "failure", message: "Not Authorized!" });
+    }
+
+    if (desiredType === "baptism") {
+      const deletedRecord = await baptismRecord.findOneAndDelete({
+        lb: recordId,
+      });
+
+      res
+        .status(200)
+        .json({ status: "success", message: "Record deleted successfully" });
+    } else if (desiredType === "marriage") {
+      const deletedRecord = await marriageRecord.findOneAndDelete({
+        lm: recordId,
+      });
+
+      res
+        .status(200)
+        .json({ status: "success", message: "Record deleted successfully." });
+    }
+  } catch (error) {
+    res.status(500).json({
+      status: "failure",
+      message: "something went wrong while deleting record.",
+    });
+  }
+};
 
 module.exports = {
   recordBaptism,
@@ -396,4 +430,5 @@ module.exports = {
   getRecordByDate,
   getRecordByName,
   editRecord,
+  deleteRecord,
 };

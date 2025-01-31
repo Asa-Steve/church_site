@@ -7,6 +7,7 @@ const {
   getRecordByDate,
   getRecordByName,
   editRecord,
+  deleteRecord
 } = require("../controllers/recordController");
 const verifyToken = require("../middleware/verifyToken");
 const upload = require("../middleware/uploadMiddlewareRecord");
@@ -20,4 +21,5 @@ router.get("/searchbydate", getRecordByDate);
 router.get("/searchbyname", getRecordByName);
 
 router.put("/", verifyToken, editRecord);
+router.delete("/", verifyToken, deleteRecord);
 module.exports = router;

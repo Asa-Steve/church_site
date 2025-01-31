@@ -25,6 +25,7 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import InsightsIcon from "@mui/icons-material/Insights";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Breadcrumb from "./components/common/Breadcrumb/Breadcrumb";
+import FindInPageIcon from "@mui/icons-material/FindInPage";
 
 const ProtectedRoute = () => {
   const [isVerified, setIsVerified] = useState(null);
@@ -182,6 +183,14 @@ const ProtectedRoute = () => {
                 </div>
               </NavLink>
             )}
+
+            <NavLink end to={"/admin/records"} onClick={handleClick}>
+              <div className="blob"></div>
+              <div className="linked">
+                <FindInPageIcon />
+                Find Record
+              </div>
+            </NavLink>
 
             {(isAdmin || isCatechist) && (
               <NavLink

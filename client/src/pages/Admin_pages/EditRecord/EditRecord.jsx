@@ -3,8 +3,8 @@ import axiosInstance from "../../../components/Utils/axiosInstance";
 import "./EditRecord.scss";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import BaptismForm from "../../../components/common/BaptismForm/BaptismForm";
 import PopUp from "../../../components/common/Popup/Popup";
+import BaptismForm from "../../../components/common/BaptismForm/BaptismForm";
 import MarriageForm from "../../../components/common/MarriageForm/MarriageForm";
 import Loader from "../../../components/common/Loader/Loader";
 
@@ -47,14 +47,14 @@ const EditRecords = () => {
     },
   });
 
-  const handleCancel = () => {};
+  const handleCancel = () => {
+    setShowPopup(false);
+  };
   const handleProceed = async () => {
-    console.log(formData);
-    const payload = { ...formData[desiredType] };
-
-    console.log(payload);
-
     try {
+      setIsLoading(true);
+      const payload = { ...formData[desiredType] };
+
       const response = await axiosInstance.put(`/records`, payload, {
         params: {
           desiredType,
@@ -64,7 +64,17 @@ const EditRecords = () => {
 
       const { data } = response;
       setFeedBack(data);
+
+      setIsLoading(false);
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 1000);
+      setTimeout(() => {
+        navigate("/admin/records");
+      }, 4000);
     } catch (error) {
+      setIsLoading(false);
+
       if (error?.response) {
         error.message =
           error?.response?.data?.message || "Oops! something went wrong";
@@ -145,7 +155,7 @@ const EditRecords = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleProceed();
+    setShowPopup(true);
   };
 
   // Handling Input Change when typing
@@ -160,8 +170,10 @@ const EditRecords = () => {
   };
 
   {
-    return isLoading ? (
-      <Loader />
+    return isLoading && !showPopup ? (
+      <div className="load">
+        <Loader />
+      </div>
     ) : message?.status ? (
       <div className="admin msg">
         <h1>{message.message}</h1>
@@ -173,28 +185,28 @@ const EditRecords = () => {
           handleCancel={handleCancel}
           handleProceed={handleProceed}
           isLoading={isLoading}
-          message={message?.message || ""}
+          message={feedBack?.message || ""}
         />
         <section className="records form-section">
           <div className="wrap">
             <div className="form-header">
               <h2>EDIT {desiredType?.toUpperCase()} RECORD </h2>
-              {desiredType === "baptism" ? (
-                <BaptismForm
-                  handleSubmit={handleSubmit}
-                  candidate={formData["baptism"]}
-                  message={feedBack}
-                  handleChange={handleChange}
-                />
-              ) : (
-                <MarriageForm
-                  handleSubmit={handleSubmit}
-                  candidate={formData["marriage"]}
-                  message={feedBack}
-                  handleChange={handleChange}
-                />
-              )}
             </div>
+            {desiredType === "baptism" ? (
+              <BaptismForm
+                handleSubmit={handleSubmit}
+                candidate={formData["baptism"]}
+                message={feedBack}
+                handleChange={handleChange}
+              />
+            ) : (
+              <MarriageForm
+                handleSubmit={handleSubmit}
+                candidate={formData["marriage"]}
+                message={feedBack}
+                handleChange={handleChange}
+              />
+            )}
           </div>
         </section>
       </main>

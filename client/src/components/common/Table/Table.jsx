@@ -2,7 +2,7 @@ import "./Table.scss";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { NavLink } from "react-router-dom";
-const Table = ({ colsHeadr, rows, handleDelete }) => {
+const Table = ({ colsHeadr, rows, handleDelete, isAdmin }) => {
   return (
     <section className="table">
       <table border="1">
@@ -19,18 +19,29 @@ const Table = ({ colsHeadr, rows, handleDelete }) => {
               {row.map((cell, cellIndex) => (
                 <td key={cellIndex}>{cell}</td>
               ))}
-              <td>
-                <DeleteForeverIcon onClick={handleDelete} />
-              </td>
-              <td>
-                <NavLink
-                  to={`edit/${row[0]}?${
-                    colsHeadr[0].includes("Lb") ? "lb=true" : "lb=false"
-                  }`}
-                >
-                  <EditIcon />
-                </NavLink>
-              </td>
+              {isAdmin && (
+                <>
+                  <td className="delete_btn_wrap">
+                    <DeleteForeverIcon
+                      onClick={() =>
+                        handleDelete(
+                          `${row[0]}`,
+                          `${colsHeadr[0].includes("Lb") ? "true" : "false"}`
+                        )
+                      }
+                    />
+                  </td>
+                  <td className="edit_btn_wrap">
+                    <NavLink
+                      to={`edit/${row[0]}?${
+                        colsHeadr[0].includes("Lb") ? "lb=true" : "lb=false"
+                      }`}
+                    >
+                      <EditIcon />
+                    </NavLink>
+                  </td>
+                </>
+              )}
             </tr>
           ))}
         </tbody>
