@@ -1,0 +1,71 @@
+@import "../../styles/responsive.scss";
+
+.error_wrap {
+  height: 100%;
+  background-image: url("/404_1.png");
+  background-size: cover;
+  background-position: 50% 40%;
+  background-repeat: no-repeat;
+  position: relative;
+  display: grid;
+  place-items: center;
+  .error_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #001220a2;
+    backdrop-filter: blur(1px);
+    z-index: 1;
+  }
+
+  .write_up {
+    position: relative;
+    z-index: 20;
+
+    .top span {
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      color: #cccccc70;
+      font-weight: bold;
+
+      &:first-of-type {
+        border-left: none;
+        padding-right: 1rem;
+        border-right: 1px solid;
+      }
+    }
+    .bottom {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-style: italic;
+
+      span {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.489);
+        a {
+          transition: all 0.3s ease;
+          color: #ff5197;
+          &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  @include sm {
+    .write_up {
+      .top span {
+        font-size: 1.3rem;
+      }
+      .bottom {
+        margin-top: 0.9rem;
+        a {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
