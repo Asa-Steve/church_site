@@ -59,7 +59,7 @@
 
     .menu {
       overflow-y: scroll;
-      height: calc(100dvh - 90px);
+      height: calc(100vh - 90px);
       display: flex;
       row-gap: 4px;
       padding-left: 0.5rem;
@@ -299,7 +299,7 @@
       // position: relative;
       width: 98%;
       margin: auto;
-      height: 81dvh;
+      height: 81vh;
     }
   }
 
@@ -309,7 +309,7 @@
     @include sm {
       display: initial;
       position: absolute;
-      bottom: 10px;
+      bottom: 8%;
       height: 40px;
       width: 40px;
       left: -5px;

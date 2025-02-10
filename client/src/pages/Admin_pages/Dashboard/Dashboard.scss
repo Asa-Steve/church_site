@@ -153,6 +153,10 @@
   }
 
   @include xsm {
+    .main {
+      height: fit-content !important;
+    }
+
     .left {
       .left_info {
         padding-inline: 0 !important;
