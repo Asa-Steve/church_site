@@ -51,18 +51,14 @@ const Contact = () => {
 
       setLoading(false);
     } catch (error) {
-      console.log("error: ", error);
       // Showing message (failure to user)
       setShowMessage(true);
       setLoading(false);
 
       if (error?.response) {
-        console.log("i ran", error.response);
         const { data } = error.response;
         error.message = data?.message || "Failed to send message!";
       }
-
-      console.log(error.message);
 
       setData({
         status: "failure",

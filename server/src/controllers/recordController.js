@@ -34,7 +34,6 @@ const recordBaptism = async (req, res) => {
       minister: req.body.minister,
     });
 
-    // console.log(newRecord);
     await newRecord.save();
 
     res

@@ -204,7 +204,6 @@ const SearchRecord = () => {
           );
 
           setLoading(false);
-          console.log(responseFromDate.data);
           const {
             foundRecords: dataByDate,
             currentPage: currPage,

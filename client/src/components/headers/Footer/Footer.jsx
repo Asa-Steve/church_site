@@ -6,7 +6,7 @@ const Footer = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
 
   const currentYear = new Date().getFullYear(); // Get the current year dynamically
-  
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
@@ -56,8 +56,11 @@ const Footer = () => {
         </div>
       </div>
       <div className="copy">
-       All rights reserved &copy; {currentYear} . Designed and Developed By{" "}
-        <Link to="mailto:devsteve456@gmail.com">BigSteve</Link> with 💖
+        All rights reserved &copy; {currentYear} . Designed and Developed By{" "}
+        <Link to="https://asasteve.netlify.app/" target="_blank">
+          DevSteve
+        </Link>{" "}
+        with 💖
       </div>
     </footer>
   );

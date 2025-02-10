@@ -1,7 +1,7 @@
 @import "../../../styles/responsive.scss";
 
 .Footer {
-  height: 300px;  
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -21,13 +21,13 @@
       .logo-bottom {
         width: max-content;
         height: 60px;
-        padding: .3rem;
+        padding: 0.3rem;
 
         .nav-logo-bottom {
           width: max-content;
           height: 100%;
           gap: 10px;
-          padding-inline-end: .5rem;
+          padding-inline-end: 0.5rem;
 
           .img-wrap-logo {
             width: 40px;
@@ -134,9 +134,14 @@
     color: grey;
     font-style: italic;
 
-    a{
+    a {
       color: #ff006684;
       // font-weight: bold;
+    }
+
+    @include xsm {
+      margin-top: 2rem;
+      padding-inline: 0.3rem;
     }
   }
 }

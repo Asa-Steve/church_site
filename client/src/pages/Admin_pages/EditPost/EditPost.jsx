@@ -13,6 +13,7 @@ const EditPost = () => {
     category: "Feast",
     img: null,
   });
+  const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -68,6 +69,15 @@ const EditPost = () => {
     payload.append("category", userFormData.category);
 
     if (userFormData.img) {
+      if (
+        userFormData?.img?.type &&
+        !allowedTypes.includes(userFormData?.img?.type)
+      ) {
+        return setMessage({
+          status: "failure",
+          message: "Only PNG and JPEG images are allowed!",
+        });
+      }
       payload.append("img", userFormData.img); // Appending the file
     }
 
@@ -124,6 +134,7 @@ const EditPost = () => {
                     placeholder="Enter Title"
                     value={userFormData.postTitle}
                     onChange={handleChange}
+                    accept="image/png,image/jpeg,image/jpg"
                     required
                   />
                 </div>

@@ -1,7 +1,7 @@
 @import "./styles/responsive.scss";
 
 .dash {
-  height: 100dvh;
+  height: 100vh;
   background-color: #fff;
   display: flex;
   color: #001220;
@@ -185,29 +185,6 @@
     overflow: scroll;
     overflow-x: hidden;
 
-    // scrollbar-width: none;
-    // -ms-overflow-style: none;
-
-    // &::-webkit-scrollbar {
-    //   display: none;
-    // }
-    // // Webkit browsers
-    //   &::-webkit-scrollbar {
-    //     width: 5px;
-    //   }
-
-    //   &::-webkit-scrollbar-thumb {
-    //     background-color: #ff5197;
-    //     border-radius: 6px;
-    //   }
-
-    //   &::-webkit-scrollbar-thumb:hover {
-    //     background-color: #ff5197;
-    //   }
-
-    //   &::-webkit-scrollbar-track {
-    //     background: #f4f4f4;
-    //   }
     .top-bar {
       height: 50px;
       display: flex;

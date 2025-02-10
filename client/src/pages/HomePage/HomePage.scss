@@ -58,36 +58,6 @@
         color: white;
       }
     }
-
-    @include xsm {
-      flex: none;
-      margin-top: 9rem;
-
-      h1,
-      p,
-      a {
-        text-align: center;
-        margin-inline: auto;
-      }
-
-      h1 {
-        font-size: 4.5rem;
-      }
-
-      a {
-        padding: 0.7rem;
-      }
-
-      p:nth-of-type(1) {
-        font-size: 14px;
-      }
-    }
-
-    @include xxsm {
-      h1 {
-        font-size: 3rem;
-      }
-    }
   }
 
   .items {
@@ -147,6 +117,9 @@
 
     padding: 4rem 0em;
 
+    h1 {
+      font-size: 2.5rem !important;
+    }
     &.overlay {
       border-image-source: linear-gradient(
         hsla(0, 0%, 1%, 0.411),
@@ -158,18 +131,39 @@
     .items {
       margin-bottom: 1rem;
     }
+    .left {
+      flex: none;
+      // margin-top: 9rem;
+      padding-block: 2rem;
+
+      h1,
+      p,
+      a {
+        text-align: center;
+        margin-inline: auto;
+      }
+
+      a {
+        padding: 0.7rem;
+      }
+
+      p:nth-of-type(1) {
+        font-size: 14px;
+      }
+    }
   }
 }
 
 section.wave {
-  height: 800px;
+  height: 900px;
   padding-top: 150px;
   background-color: #001220;
   background: url("./imgs/waves.svg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 0px -310px;
+  background-position: 0px -230px;
   color: white;
+  padding-block: 180px;
 
   .programs {
     width: 95%;
@@ -234,8 +228,6 @@ section.wave {
 
   @include xsm {
     height: fit-content;
-    padding-top: 0px;
-
     .program {
       gap: 10px !important;
       flex-wrap: wrap;
@@ -268,7 +260,7 @@ section.wave {
 section.team {
   background-color: #fff;
   color: #001220;
-  padding-block: 2rem;
+  padding-block: 180px;
   height: max-content;
 
   @include lg {
@@ -325,9 +317,10 @@ section.team {
 }
 
 section.faq {
-  height: 600px;
-  padding: 2rem 0.5rem;
-
+  // height: 600px;
+  height: fit-content;
+  // padding: 2rem 0.5rem;
+  margin-block: 180px;
   .top {
     span {
       display: block;
@@ -344,10 +337,9 @@ section.faq {
 
   .wrapper {
     display: flex;
-    height: 100%;
+    min-height: 350px;
     width: 90%;
     margin-inline: auto;
-
     .left {
       flex: 1;
       padding: 0.5rem;
@@ -369,8 +361,8 @@ section.faq {
 
     .right {
       flex: 1;
-      align-self: center;
       padding: 0.5rem;
+      align-self: center;
 
       h3 {
         width: fit-content;
@@ -400,10 +392,11 @@ section.faq {
         }
       }
     }
-
-    @include md {
+  }
+  @include md {
+    .wrapper {
       flex-direction: column;
-
+      height: fit-content;
       .divider {
         display: none;
       }
@@ -420,14 +413,16 @@ section.faq {
 
       .right {
         width: 100%;
-
+        padding-top: 3rem;
         p {
           max-width: 80%;
         }
       }
     }
+  }
 
-    @include xxsm {
+  @include xxsm {
+    .wrapper {
       width: 100%;
 
       .left {
@@ -448,9 +443,5 @@ section.faq {
         }
       }
     }
-  }
-
-  @include md {
-    height: fit-content;
   }
 }

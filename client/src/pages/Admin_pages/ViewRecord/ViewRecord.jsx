@@ -371,7 +371,6 @@ const ViewRecord = () => {
           break;
       }
     } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -385,7 +384,6 @@ const ViewRecord = () => {
     try {
       const response = await axiosInstance.delete("/records", { params });
       const { data } = response;
-      console.log(response);
       setMessage(data);
     } catch (error) {
       setMessage({

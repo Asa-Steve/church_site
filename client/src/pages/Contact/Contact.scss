@@ -4,9 +4,10 @@
   min-height: 100vh;
   background-color: rgba(255, 255, 255, 0.945);
   color: black;
+  padding-bottom: 180px;
 
   .header_title {
-    margin: 1rem 0 3rem;
+    padding: 180px 0 3rem;
 
     h2,
     p {
@@ -30,7 +31,7 @@
       margin-bottom: 1rem;
       margin-top: 0;
       h2 {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
     }
   }
@@ -39,7 +40,6 @@
     height: 600px;
     width: 80%;
     margin-inline: auto;
-    margin-bottom: 3rem;
 
     .wrap {
       height: 100%;

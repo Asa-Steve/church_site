@@ -65,8 +65,6 @@ const sendMail = async (req, res) => {
       replyTo: email,
     });
 
-    console.log("Email sent:", info.messageId);
-
     res
       .status(200)
       .json({ status: "success", message: "Email sent successfully!" });

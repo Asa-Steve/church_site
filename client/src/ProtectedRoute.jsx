@@ -63,7 +63,6 @@ const ProtectedRoute = () => {
           setIsVerified(false); // Token is invalid
         }
       } catch (error) {
-        console.error("Error verifying token:", error);
         setIsVerified(false);
       }
     };

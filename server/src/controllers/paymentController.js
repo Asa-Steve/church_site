@@ -38,13 +38,6 @@ const getTotalForCurrentMonth = async (req, res) => {
       Date.UTC(currentYear, currentMonth + 1, 1, 0, 0, 0, 0)
     ); // EXCLUSIVE
 
-    console.log(
-      "Fetching payments from:",
-      startOfMonth.toISOString(),
-      "to",
-      endOfMonth.toISOString()
-    );
-
     // Aggregate total amount for the current month
     const result = await Payment.aggregate([
       {
@@ -153,12 +146,6 @@ const getWeeklyDataForCurrentMonth = async () => {
     Date.UTC(currentYear, currentMonth + 1, 1, 0, 0, 0, 0)
   ); // Feb 1, 2025 00:00:00 UTC (EXCLUSIVE)
 
-  console.log(
-    "Fetching transactions from:",
-    startOfMonth.toISOString(),
-    "to",
-    endOfMonth.toISOString()
-  );
 
   const rawData = await Payment.find({
     purpose: { $in: ["infant_baptism", "donation", "mass_request"] },
@@ -230,7 +217,7 @@ exports.allPayments = async (req, res) => {
     const totalInfants = await getInfants("monthly");
     const totalMassReqs = await getMassReqs("monthly");
     const totalUsers = await getTotalUsers();
-    console.log(totalAmount);
+
     return res.status(200).json({
       status: "success",
       data: monthlyData,
@@ -435,8 +422,6 @@ exports.verifyPayment = async (req, res) => {
 exports.initializePayment = async (req, res) => {
   try {
     const { email, amount, callback_url, metadata } = req.body;
-    console.log("got here"); //subject to removal
-
     if (!email || !amount || !callback_url) {
       return res.status(400).json({ error: "Email and amount are required" });
     }

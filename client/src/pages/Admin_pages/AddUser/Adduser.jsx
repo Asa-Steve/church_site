@@ -92,7 +92,6 @@ const Adduser = () => {
         navigate("/admin/users/");
       }, 3000);
     } catch (err) {
-      console.log(err.response.data);
       setMessage({ ...err.response?.data });
       setIsLoading(false);
     }

@@ -32,17 +32,6 @@ const Mass = () => {
     setShowPopup(true);
   };
 
-  // Setting a display message for user
-  // const setPop = (msg) => {
-  //   console.log("got called with msg :", msg);
-
-  //   setMessage(msg);
-
-  //   // setTimeout(() => {
-  //   //   setMessage("");
-  //   // }, 3000);
-  // };
-
   const handleCancel = () => {
     setMessage("");
     setShowPopup(false);

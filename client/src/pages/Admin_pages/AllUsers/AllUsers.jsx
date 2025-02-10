@@ -64,7 +64,6 @@ const AllUsers = () => {
       getUsers();
     } catch (err) {
       setLoading(false);
-      console.log("error", err?.message || "something went wrong");
     }
   };
   {

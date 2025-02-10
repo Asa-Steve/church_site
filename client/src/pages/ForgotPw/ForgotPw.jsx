@@ -39,7 +39,6 @@ const ForgotPw = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     setLoading(true);
     try {
       // Sending a recovery link to the user's email
@@ -61,9 +60,7 @@ const ForgotPw = () => {
 
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
-      const errorResponse = error?.response?.data;
       setMessage({
         status: "failure",
         message: "An error occurred, please try again",
@@ -71,7 +68,6 @@ const ForgotPw = () => {
     }
 
     setTimeout(() => {
-      console.log("timeout");
       setMessage(null);
     }, 3000);
   };

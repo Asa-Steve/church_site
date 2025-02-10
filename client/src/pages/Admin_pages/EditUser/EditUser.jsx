@@ -42,7 +42,6 @@ const EditUser = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Admin status : ", isAdmin);
     const getUser = async () => {
       try {
         const response = await axiosInstance.get(`/users/${userId}`);

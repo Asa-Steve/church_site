@@ -37,7 +37,6 @@ const Dashboard = () => {
           setIsAdmin(false);
 
           if (user.role === "catechist") {
-            console.log(" iran ");
             return navigate("/admin/requests");
           }
           throw new Error("Youre Not Authorized to view this page.");
@@ -45,7 +44,6 @@ const Dashboard = () => {
           setIsAdmin(true);
         }
       } catch (error) {
-        console.log("erro fa: ", error);
         setLoading(false);
         setMessage(error.message);
         navigate("/admin/articles");

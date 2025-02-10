@@ -1,13 +1,13 @@
 @import "../../styles/responsive.scss";
 
 .about_sect {
-  padding-top: 4rem;
-  min-height: 100vh;
+  // padding-top: 4rem;
+  min-height: fit-content;
   background-color: rgba(255, 255, 255, 0.945);
   color: black;
 
   .header_title {
-    margin: 1rem 0 3rem;
+    padding: 180px 0 3rem;
 
     h2,
     p {
@@ -176,8 +176,6 @@
   }
 
   .about_faq {
-    margin-block: 5rem;
-
     .contact_info_sect {
       flex-direction: row-reverse;
 
@@ -210,7 +208,7 @@
   }
 
   .about_our_team {
-    margin-bottom: 4rem;
+    padding-bottom: 180px;
 
     .cards {
       width: 90%;
@@ -246,6 +244,21 @@
           width: 100%;
         }
       }
+    }
+  }
+
+  @include xsm {
+    .header_title {
+      h2 {
+        padding: 0;
+      }
+    }
+  }
+  @include xsm {
+    h2 {
+      font-size: 2rem;
+      max-width: 90%;
+      margin: auto;
     }
   }
 }

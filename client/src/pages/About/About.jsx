@@ -68,7 +68,6 @@ const About = () => {
 
       setLoading(false);
     } catch (error) {
-      console.log("error: ", error);
       // Showing message (failure to user)
       setShowMessage(true);
       setLoading(false);

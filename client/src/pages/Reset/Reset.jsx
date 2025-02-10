@@ -66,7 +66,6 @@ const Reset = () => {
         navigate("/login");
       }, 3000);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setMessage({
         status: "failure",

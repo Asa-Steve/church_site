@@ -42,7 +42,6 @@ const AllPost = () => {
       setLoading(false);
     } catch (err) {
       setLoading(false);
-      console.log(err);
       setMessage(
         err?.message || "Couldn't get any post at the moment try again later"
       );
@@ -86,7 +85,6 @@ const AllPost = () => {
       getPosts();
     } catch ({ response: { data: err } }) {
       setLoading(false);
-      console.log("error", err?.message || "something went wrong");
     }
   };
   {

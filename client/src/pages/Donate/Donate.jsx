@@ -82,7 +82,6 @@ const Donate = () => {
       } = response.data;
 
       if (status) {
-        console.log("Transaction Initialized:", authUrl);
         setMessage("Transaction Initialized, Redirecting...");
         window.location.href = authUrl;
       } else {

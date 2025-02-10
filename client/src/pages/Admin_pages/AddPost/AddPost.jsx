@@ -14,6 +14,7 @@ const AddPost = () => {
     category: "Feast",
     img: null,
   });
+  const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -61,6 +62,13 @@ const AddPost = () => {
 
     const payload = { ...formData };
 
+    if (payload.img && !allowedTypes.includes(payload.img.type)) {
+      return setMessage({
+        status: "failure",
+        message: "Only PNG and JPEG images are allowed!",
+      });
+    }
+
     if (
       formData.postTitle &&
       formData.content &&
@@ -91,7 +99,7 @@ const AddPost = () => {
   };
 
   {
-    return !isPageLoaded ? (
+    return !isPageLoaded || isLoading ? (
       <div className="load">
         <Loader />
       </div>
@@ -125,6 +133,7 @@ const AddPost = () => {
                       name="img"
                       id="img"
                       onChange={handleChange}
+                      accept="image/png,image/jpeg,image/jpg"
                       required
                     />
                   </div>

@@ -161,7 +161,6 @@ const Records = () => {
             }
           );
 
-          console.log(bulkres);
           const bulkresData = bulkres.data;
 
           setMessage({
@@ -233,7 +232,6 @@ const Records = () => {
 
       const customMessage =
         error?.response?.data?.message && error?.response?.data?.message;
-      console.log(customMessage);
       error.message =
         customMessage || "🛑 oops! Something went wrong while saving data.";
       setMessage({
