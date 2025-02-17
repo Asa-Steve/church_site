@@ -197,7 +197,11 @@ const HomePage = () => {
         <section className="wave">
           <div className="programs">
             <div className="program">
-              <Card img={"./imgs/kids.webp"} classN={"program-card"} />
+              <Card
+                img={"./imgs/kids.webp"}
+                alt={"donate-img"}
+                classN={"program-card"}
+              />
 
               <div className="program-txt">
                 <span className="diff">JOIN THE MISSION</span>
@@ -211,7 +215,11 @@ const HomePage = () => {
               </div>
             </div>
             <div className="program sec">
-              <Card img={"./imgs/images-7.webp"} classN={"program-card"} />
+              <Card
+                img={"./imgs/images-7.webp"}
+                alt={"weekly-program-img"}
+                classN={"program-card"}
+              />
               <div className="program-txt">
                 <span className="diff">JOIN THE MISSION</span>
                 <h3>Weekly Programs</h3>

@@ -7,7 +7,7 @@ const TeamCards = ({ img, name, desc, title, to }) => {
   return (
     <div className="TeamCards">
       <Link to={to}>
-        <Card img={img} />{" "}
+        <Card img={img} alt={"team-member"} />{" "}
       </Link>
       <div className="card-deit">
         <h4>{name}</h4>
