@@ -6,11 +6,7 @@ export const initiatePayment = async (formData, setMessage, setisLoading) => {
       email: formData.email,
       amount: formData.amount * 100,
       callback_url: "https://mount-zion.onrender.com/payment_status",
-      metadata: {
-        fullName: formData.fullName,
-        phoneNumber: formData.phoneNo,
-        paymentFor: formData.paymentFor,
-      },
+      metadata: { ...formData },
     };
     setMessage("");
 

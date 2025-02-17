@@ -231,11 +231,11 @@ exports.allPayments = async (req, res) => {
 };
 
 exports.verifyPayment = async (req, res) => {
+  // Start a session for the transaction
+  const session = await mongoose.startSession();
   try {
     const { reference } = req.body;
 
-    // Start a session for the transaction
-    const session = await mongoose.startSession();
     session.startTransaction();
 
     // Verifying the payment with Paystack
