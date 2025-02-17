@@ -4,14 +4,16 @@ import "./Baptism.scss";
 import PopUp from "../../components/common/Popup/Popup";
 import usePageLoad from "../../components/Utils/usePageLoad";
 import Loader from "../../components/common/Loader/Loader";
+import { initiatePayment } from "../../components/Utils/paymentService";
 
 const Baptism = () => {
   // State Managed Variables
   const [message, setMessage] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setisLoading] = useState(false);
+
+  // Creating a state Object for form data
   const [formData, setFormData] = useState({
-    // Creating a state Object for form data
     baptismName: "",
     otherName: "",
     surname: "",
@@ -51,15 +53,6 @@ const Baptism = () => {
     setShowPopup(true);
   };
 
-  // // Setting a display message for user
-  // const setPop = (msg) => {
-  //   setMessage(msg);
-
-  //   // setTimeout(() => {
-  //   //   setMessage("");
-  //   // }, 3000);
-  // };
-
   useEffect(() => {
     setTimeout(() => {
       setMessage("");
@@ -68,33 +61,10 @@ const Baptism = () => {
 
   // Initializing transaction
   const handleProceed = async () => {
-    const payload = {
-      email: formData.email,
-      amount: formData.amount * 100,
-      callback_url: "https://mount-zion.onrender.com/payment_status",
-      metadata: { ...formData },
-    };
-    try {
-      setisLoading(true);
-      const response = await axiosInstance.post("/makePayment", payload);
-      const {
-        status,
-        data: { authorization_url: authUrl },
-      } = response.data;
-
-      if (status) {
-        setMessage("Transaction Initialized, Redirecting...");
-        window.location.href = authUrl;
-      } else {
-        setisLoading(false);
-        setMessage("🛑 Error initializing transaction, try again");
-      }
-    } catch (error) {
-      setisLoading(false);
-      setMessage("🛑 Failed to initializing transaction, try again");
-    }
+    initiatePayment(formData, setMessage, setisLoading);
   };
 
+  // Closing Popup
   const handleCancel = () => {
     setMessage("");
     setShowPopup(false);

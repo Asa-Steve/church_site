@@ -20,11 +20,13 @@ const Contact = () => {
   // Handling Page Loading Spinner
   const isPageLoaded = usePageLoad();
 
+  // Handling Input Change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  // Handling Form Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -66,8 +68,8 @@ const Contact = () => {
       });
     }
 
+    // Removing message after 2sec
     setTimeout(() => {
-      // Removing message after 2sec
       setShowMessage(false);
       setData(null);
     }, 2000);

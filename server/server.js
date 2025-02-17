@@ -18,8 +18,26 @@ const handleError = require("./src/middleware/handleError");
 const connectDB = require("./src/database/db");
 connectDB();
 
+const allowedOrigins = [
+  "http://localhost:5173", // Local development (Vite)
+  "http://127.0.0.1:5173", // Alternative local address
+  "https://mount-zion.onrender.com", // Hosted React frontend (will update with actual domain later)
+];
 //Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: "GET, POST, PUT, DELETE",
+    allowedHeaders: "Content-Type, Authorization",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api/v1", paymentRoute);

@@ -4,14 +4,14 @@ import axiosInstance from "../../components/Utils/axiosInstance";
 import Popup from "../../components/common/Popup/Popup";
 import usePageLoad from "../../components/Utils/usePageLoad";
 import Loader from "../../components/common/Loader/Loader";
-
+import { initiatePayment } from "../../components/Utils/paymentService";
 const Donate = () => {
   const [message, setMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setisLoading] = useState(false);
 
+  // Creating a state Object for form data
   const [formData, setFormData] = useState({
-    // Creating a state Object for form data
     fullName: "",
     email: "",
     phoneNo: "",
@@ -28,15 +28,7 @@ const Donate = () => {
     setShowPopup(true);
   };
 
-  // Setting a display message for user
-  // const setPop = (msg) => {
-  //   setMessage(msg);
-
-  //   // setTimeout(() => {
-  //   //   setMessage("");
-  //   // }, 3000);
-  // };
-
+  // Closing Popup
   const handleCancel = () => {
     setMessage("");
     setShowPopup(false);
@@ -53,6 +45,7 @@ const Donate = () => {
     }));
   };
 
+  // Clearing message
   useEffect(() => {
     setTimeout(() => {
       setMessage("");
@@ -61,43 +54,7 @@ const Donate = () => {
 
   // Initializing transaction
   const handleProceed = async () => {
-    const payload = {
-      email: formData.email,
-      amount: formData.amount * 100,
-      callback_url: "https://mount-zion.onrender.com/payment_status",
-      metadata: {
-        fullName: formData.fullName,
-        phoneNumber: formData.phoneNo,
-        paymentFor: formData.paymentFor,
-      },
-    };
-    setMessage("");
-
-    try {
-      setisLoading(true);
-      const response = await axiosInstance.post("/makePayment", payload);
-      const {
-        status,
-        data: { authorization_url: authUrl },
-      } = response.data;
-
-      if (status) {
-        setMessage("Transaction Initialized, Redirecting...");
-        window.location.href = authUrl;
-      } else {
-        setisLoading(false);
-        setMessage(
-          error?.response?.data?.error ??
-            "🛑 Error initializing transaction, try again"
-        );
-      }
-    } catch (error) {
-      setisLoading(false);
-      setMessage(
-        error?.response?.data?.error ??
-          "🛑 Failed to initializing transaction, try again"
-      );
-    }
+    initiatePayment(formData, setMessage, setisLoading);
   };
 
   {

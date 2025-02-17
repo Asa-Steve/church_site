@@ -2,7 +2,7 @@
 
 .hero {
   height: 600px;
-  background: url("/imgs/hero.webp");
+  background: url("/imgs/hero1.webp");
   // object-fit: contain;
   background-size: cover;
   background-repeat: no-repeat;
@@ -181,6 +181,8 @@ section.wave {
 
       .program-card {
         flex: 1;
+        max-width: 600px;
+        height: 220px;
       }
 
       .program-txt {

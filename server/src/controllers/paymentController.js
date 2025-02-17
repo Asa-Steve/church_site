@@ -146,7 +146,6 @@ const getWeeklyDataForCurrentMonth = async () => {
     Date.UTC(currentYear, currentMonth + 1, 1, 0, 0, 0, 0)
   ); // Feb 1, 2025 00:00:00 UTC (EXCLUSIVE)
 
-
   const rawData = await Payment.find({
     purpose: { $in: ["infant_baptism", "donation", "mass_request"] },
     createdAt: { $gte: startOfMonth, $lt: endOfMonth }, // 🔥 `$lt` ensures only January data is included

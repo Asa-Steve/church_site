@@ -21,6 +21,7 @@ const Articles = () => {
     }
   };
 
+  // Fetching All Posts
   const getPosts = async (page) => {
     try {
       setMessage("");
@@ -39,6 +40,7 @@ const Articles = () => {
     }
   };
 
+  // Pagination
   useEffect(() => {
     getPosts(currentPage);
   }, [currentPage]);
@@ -46,7 +48,7 @@ const Articles = () => {
   {
     return loading ? (
       <Loader />
-    ) : posts.length < 1 ? (
+    ) : posts?.length < 1 ? (
       <div className="msg">
         <h1>{message ? message : "No Post Found."}</h1>
       </div>
@@ -62,18 +64,18 @@ const Articles = () => {
         <main className="posts">
           {posts?.length > 0 &&
             posts.map((post) => (
-              <div key={post._id} className="post">
+              <div key={post?._id} className="post">
                 <div className="post-img">
-                  <img src={`${post.file}`} alt={post.postTitle} />
+                  <img src={`${post?.file}`} alt={post?.postTitle} />
                 </div>
                 <div className="post-body">
                   <h2>
-                    <Link to={`/articles/${post.slug}`}>{post?.postTitle}</Link>
+                    <Link to={`/articles/${post?.slug}`}>{post?.postTitle}</Link>
                   </h2>
                   <p className="post-content">
                     {post?.content?.length > 100
                       ? post?.content.slice(0, 140) + "..."
-                      : post.content}
+                      : post?.content}
                   </p>
                   <p>Tag : {post?.category}</p>
                   <p className="author">posted by : {post?.author?.username}</p>

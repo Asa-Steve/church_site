@@ -13,6 +13,8 @@ const Article = () => {
   const [isAuthor, setIsAuthor] = useState(null);
   const navigate = useNavigate();
 
+
+  // Loading Post
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -28,6 +30,7 @@ const Article = () => {
     getPost();
   }, []);
 
+  // Checking if User is Author
   useEffect(() => {
     const decodeToken = async () => {
       const token = localStorage.getItem("token");
@@ -47,6 +50,7 @@ const Article = () => {
     decodeToken();
   }, [post]);
 
+  // Handling Delete Request
   const handleDelete = async () => {
     try {
       setLoading(true);
@@ -54,6 +58,8 @@ const Article = () => {
       navigate("/admin");
     } catch (error) {}
   };
+
+  
   {
     return loading ? (
       <Loader />
