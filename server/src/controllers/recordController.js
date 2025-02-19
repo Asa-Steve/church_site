@@ -143,11 +143,12 @@ const recordFile = async (req, res) => {
 const getRecordById = async (req, res) => {
   try {
     const { desiredType, lm = null, lb = null } = req.query;
-
     if (desiredType === "baptism" && lb) {
       const foundRecord = await baptismRecord
         .findOne({ lb })
         .select("-createdAt -updatedAt"); // Exclude fields;
+
+      console.log(foundRecord);
       res.status(200).json({ status: "success", foundRecord });
     } else if (desiredType === "marriage" && lm) {
       const foundRecord = await marriageRecord

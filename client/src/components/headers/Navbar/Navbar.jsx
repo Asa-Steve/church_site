@@ -213,7 +213,7 @@ const Navbar = () => {
             <NavLink
               onClick={handleSlideIN}
               to="/donate"
-              className={({ isActive }) => (isActive ? "cta active" : "cta")}
+              className={({ isActive }) => (isActive ? "cta" : "cta")}
             >
               Donate
             </NavLink>

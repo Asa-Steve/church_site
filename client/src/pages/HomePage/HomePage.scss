@@ -18,12 +18,14 @@
     justify-content: center;
     height: 60%;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 2rem 2rem;
+    // border: 2px solid;
+    height: fit-content;
 
     h1 {
       // color: transparent;
-      font-size: 6rem;
-      max-width: 650px;
+      font-size: 5rem;
+      max-width: 550px;
       text-transform: uppercase;
     }
 
@@ -357,7 +359,7 @@ section.faq {
     .divider {
       border: 1px solid rgba(128, 128, 128, 0.42);
       margin-inline: 0.5rem;
-      height: 50%;
+      height: 100px;
       align-self: center;
     }
 
@@ -377,20 +379,21 @@ section.faq {
         line-height: 25px;
       }
 
-      button {
+      a {
         margin-top: 2rem;
         padding: 0.5rem 3rem;
-        cursor: pointer;
-
+        display: inline-block;
         border: 2px solid transparent;
         border-radius: 5px;
         transition: all 0.3s ease;
         box-shadow: 2px 2px 3px 1px #ff5197;
+        background-color: #fff;
+        color: #001220;
 
         &:hover {
           background-color: transparent;
           color: white;
-          border: 2px solid;
+          border-color: white;
         }
       }
     }

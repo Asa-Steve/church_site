@@ -2,13 +2,15 @@
 
 .error_wrap {
   height: 100%;
-  background-image: url("/404_1.png");
-  background-size: cover;
+  background-image: url("/404.png");
+  background-size:cover;
   background-position: 50% 40%;
   background-repeat: no-repeat;
   position: relative;
   display: grid;
   place-items: center;
+
+
   .error_overlay {
     position: absolute;
     top: 0;

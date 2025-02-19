@@ -31,6 +31,7 @@ import PaymentSuccess from "./pages/PaymentSuccessful/Payment_Success.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Reset from "./pages/Reset/Reset.jsx";
 import ForgotPw from "./pages/ForgotPw/ForgotPw.jsx";
+import History from "./pages/History/History.jsx";
 
 // Admin Pages (Require Auth)
 import Dashboard from "./pages/Admin_pages/Dashboard/Dashboard.jsx";
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
       {
         path: "/baptism",
         element: <Baptism />,
+      },
+      {
+        path: "/history",
+        element: <History />,
       },
       {
         path: "/activities",

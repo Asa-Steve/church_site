@@ -153,7 +153,7 @@ const ViewRecord = () => {
           const dataById = responseFromId.data;
           dataById.foundRecord === null ? setIsData(false) : setIsData(true);
 
-          if (setIsData) {
+          if (dataById?.foundRecord) {
             if (desiredType === "marriage") {
               setCols([
                 "LM NO.",
@@ -232,7 +232,7 @@ const ViewRecord = () => {
 
           dataByDate?.length === 0 ? setIsData(false) : setIsData(true);
 
-          if (setIsData) {
+          if (dataByDate?.length > 0) {
             if (desiredType === "marriage") {
               setCols([
                 "LM No",
@@ -314,7 +314,7 @@ const ViewRecord = () => {
           setTotalPages(totalPagesName);
 
           dataByName.length === 0 ? setIsData(false) : setIsData(true);
-          if (setIsData) {
+          if (dataByName.length > 0) {
             if (desiredType === "marriage") {
               setCols([
                 "Lm No",

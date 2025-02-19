@@ -6,6 +6,24 @@
   overflow: hidden;
   overflow-y: auto;
 }
+.archive_result {
+  overflow: hidden;
+  width: 95% !important;
+  margin: 1rem 0 2rem;
+}
+
+.table {
+  width: 100% !important;
+}
+
+.no_records {
+  height: 200px !important;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .main_records.search {
   .record-type {
     border: 1px solid rgba(128, 128, 128, 0.293);
@@ -68,6 +86,10 @@
       display: flex;
       align-items: center !important;
       justify-content: center !important;
+
+      .term:last-of-type {
+        width: 30%;
+      }
     }
     .term.activeterm {
       color: white;
