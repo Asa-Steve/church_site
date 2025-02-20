@@ -25,9 +25,9 @@ const Footer = () => {
             </Link>
           </div>
           <p>
-            Lorem ipsum dolor sit amet,explicabo velit quod quibusdam rem
-            tempore minus! consectetur adipisicing elit. Officia, explicabo
-            velit quod quibusdam rem tempore minus! Architecto debitis.
+            St. Matthias Catholic Church is a community of faith, rooted in the
+            Eucharist and guided by the Gospel. Join us in worship, prayer, and
+            service as we journey together in Christ.
           </p>
           <div className="socials">
             <span>twiter</span>

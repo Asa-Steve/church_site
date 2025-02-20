@@ -229,7 +229,7 @@ const ViewRecord = () => {
           } = responseFromDate.data;
           setCurrentPage(currPage);
           setTotalPages(totalPages);
-
+          console.log(responseFromDate);
           dataByDate?.length === 0 ? setIsData(false) : setIsData(true);
 
           if (dataByDate?.length > 0) {

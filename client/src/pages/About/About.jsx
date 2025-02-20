@@ -97,7 +97,7 @@ const About = () => {
         <section className="top">
           <div className="overlay"></div>
           <div className="text">
-            <h1>About</h1>
+            <h1>About St. Matthias Catholic Church</h1>
           </div>
         </section>
         <section className="about_sect">
@@ -105,9 +105,9 @@ const About = () => {
             <h2>We love God. We believe in God.</h2>
             <div className="subtitle">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut seedor labore. Excepteur sint
-                occaecat.
+                At St. Matthias Catholic Church, we are a community of faith,
+                rooted in the Eucharist and guided by the Gospel. Our mission is
+                to spread God’s love through worship, service, and fellowship.
               </p>
             </div>
           </div>
@@ -133,9 +133,8 @@ const About = () => {
               <h2>Questions About the Church</h2>
               <div className="subtitle">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut seedor labore. Excepteur sint
-                  occaecat.
+                  Have any questions or need assistance? Reach out to us via
+                  email, or visit the parish office.
                 </p>
               </div>
             </div>
@@ -164,6 +163,7 @@ const About = () => {
                         title={question.title}
                         question={question.que}
                         isActive={activeFaq === idx}
+                        sch={question?.sch}
                       />
                     );
                   })}
@@ -177,9 +177,9 @@ const About = () => {
               <h2>Meet Our Priests & Religious</h2>
               <div className="subtitle">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut seedor labore. Excepteur sint
-                  occaecat.
+                  Our dedicated clergy and religious serve with faith and
+                  commitment, guiding our parish community in worship, pastoral
+                  care, and spiritual growth.
                 </p>
               </div>
             </div>

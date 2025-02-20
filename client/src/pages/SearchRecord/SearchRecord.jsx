@@ -366,6 +366,33 @@ const SearchRecord = () => {
           </section>
           <main className="main_records search">
             <section className="records form-section">
+            <div className="intro_text">
+              <div>
+                <h2>Parish Archive Records Search</h2>
+                <p>
+                  Welcome to the St. Matthias Parish Archive, where you can
+                  search for official records of baptisms and marriages
+                  celebrated in our parish. If you or a loved one received the
+                  sacrament of Baptism or were married at St. Matthias, you can
+                  retrieve the record by providing the necessary details in the
+                  form below. These records serve as proof of sacraments
+                  received and may be required for religious or legal purposes.
+                </p>
+              </div>
+              <div>
+                <h2>Available Records</h2>
+                <ul>
+                  <li>
+                    <strong>Baptism Records –</strong> Proof of initiation into
+                    the Catholic Church.
+                  </li>
+                  <li>
+                    <strong>Marriage Records – </strong>Official documentation
+                    of Catholic marriages conducted in our parish.
+                  </li>
+                </ul>
+              </div>
+            </div>
               <div className="wrap">
                 <div className="record-type">
                   <div

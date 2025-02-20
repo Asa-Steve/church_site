@@ -182,7 +182,6 @@ const getRecordByDate = async (req, res) => {
         .skip((page - 1) * limit) // Skip documents for previous pages
         .limit(parseInt(limit)) // Limit number of documents per page;
         .select("-createdAt -updatedAt"); // Exclude fields;
-
       const total = await marriageRecord.countDocuments({
         doMarriage: {
           $gte: from,
@@ -199,7 +198,7 @@ const getRecordByDate = async (req, res) => {
     } else if (desiredType === "baptism") {
       const foundRecords = await baptismRecord
         .find({
-          doBaptisma: { $gte: from, $lte: to },
+          doBaptism: { $gte: from, $lte: to },
         })
         .skip((page - 1) * limit) // Skip documents for previous pages
         .limit(parseInt(limit)) // Limit number of documents per page;

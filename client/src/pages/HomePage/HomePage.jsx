@@ -28,13 +28,13 @@ const HomePage = () => {
         <section className="hero flex-me overlay">
           <div className="left">
             <h1>Welcome to church</h1>
-            <p>Discover Faith. Embrace Community. Transform Lives</p>
+            <p>Celebrate Faith. Embrace Community. Live the Gospel.</p>
             <p>
-              Join us as we journey together in worship, love, and service. Be
-              part of a vibrant community where everyone belongs.
+              Join us in the Holy Mass, prayer, and fellowship as we grow in
+              faith and serve one another in Christ.
             </p>
 
-            <Link to="/about">Discover More</Link>
+            <Link to="/about">Learn More</Link>
           </div>
           <div className="right"></div>
 
@@ -46,7 +46,7 @@ const HomePage = () => {
               </div>
 
               <h3>Worship God</h3>
-              <p>Sed nisl velit, varius a retrum eu, varius.</p>
+              <p>Encounter Christ in the Holy Mass and sacraments.</p>
             </div>
             <div className="item">
               <div className="icon">
@@ -54,8 +54,8 @@ const HomePage = () => {
                 <span className="ic-bg"></span>
               </div>
 
-              <h3>Pray for People</h3>
-              <p>Sed nisl tincidunt aliquam.</p>
+              <h3>Pray for Others</h3>
+              <p>Lift up your intentions in prayer and intercession.</p>
             </div>
             <div className="item">
               <div className="icon">
@@ -63,8 +63,8 @@ const HomePage = () => {
                 <span className="ic-bg"></span>
               </div>
 
-              <h3>Listen His Word</h3>
-              <p>tincidunt metus. Sed tincidunt aliquam.</p>
+              <h3>Hear His Word</h3>
+              <p>Grow in faith through Scripture and Church teachings.</p>
             </div>
           </div>
         </section>
@@ -82,11 +82,12 @@ const HomePage = () => {
                 <span className="diff">JOIN THE MISSION</span>
                 <h3>Our Ministries</h3>
                 <p>
-                  Sed nisl velit, varius a retrum eu, varius tincidunt metus.
-                  Sed tincidunt aliquam nibh at pulvinar.
+                  Serve Christ and the Church through our ministries—choir,
+                  catechism, outreach, and more. Find your calling and be part
+                  of our mission.
                 </p>
 
-                <Link to="/donate">Show more</Link>
+                <Link to="/donate">Explore Ministries</Link>
               </div>
             </div>
             <div className="program sec">
@@ -99,11 +100,11 @@ const HomePage = () => {
                 <span className="diff">JOIN THE MISSION</span>
                 <h3>Weekly Programs</h3>
                 <p>
-                  Sed nisl velit, varius a retrum eu, varius tincidunt metus.
-                  Sed tincidunt aliquam nibh at pulvinar.
+                  Join us for daily and Sunday Mass, Adoration, Bible study, and
+                  parish activities to deepen your faith.
                 </p>
 
-                <Link to="/activities">Show more</Link>
+                <Link to="/activities">View Schedule</Link>
               </div>
             </div>
           </div>
@@ -152,13 +153,12 @@ const HomePage = () => {
             <div className="right">
               <h3>Have Any questions ?</h3>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae
-                voluptatum voluptatem esse dolores aut est nostrum expedita
-                veniam temporibus sunt! Quidem deserunt nulla eligendi itaque
-                cumque dicta velit voluptatum repudiandae!
+                We’re here to guide you! Whether it’s about receiving the
+                sacraments, joining the parish, or participating in ministries,
+                feel free to reach out.
               </p>
 
-              <Link to={"/about"}>Join Us</Link>
+              <Link to={"/contact"}>Contact Us</Link>
             </div>
           </div>
         </section>

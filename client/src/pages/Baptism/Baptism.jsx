@@ -90,7 +90,52 @@ const Baptism = () => {
             message={message}
             price={formData.amount}
           />
-          <section className="form-section">
+          <section className="baptism form-section">
+            <div className="intro_text">
+              <div>
+                <h2>Infant Baptism Registration</h2>
+                <p>
+                  Baptism is the first sacrament of initiation into the Catholic
+                  Church. Through this sacred rite, your child is welcomed into
+                  the Christian community and receives the grace of new life in
+                  Christ. We are honored to assist you in preparing for your
+                  child's baptism. Please fill out the form below with the
+                  required details.
+                </p>
+                <h2>Baptism Fee</h2>
+                <p>
+                  A standard contribution of <span style={{color:"red"}}>₦1,500</span> is required to
+                  help cover administrative and liturgical expenses. If you have
+                  any financial concerns, please contact the parish office.
+                </p>
+              </div>
+              <div>
+                <h2>Requirements for Infant Baptism</h2>
+                <ul>
+                  <li>
+                    At least one parent or guardian must be a practicing
+                    Catholic.
+                  </li>
+                  <li>
+                    Parents must commit to raising the child in the Catholic
+                    faith.
+                  </li>
+                  <li>
+                    Godparents should be practicing Catholics who have received
+                    the sacraments of Baptism, Eucharist, and Confirmation.
+                  </li>
+                  <li>
+                    A brief pre-baptismal instruction session may be required.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="disclaimer">
+                The baptismal fee is not a charge for the sacrament but a
+                contribution to support the parish's preparation and materials.
+                No child will be denied baptism due to financial difficulties.
+              </div>
+            </div>
             <div className="wrap">
               <div className="form-header">
                 <h2>Baptism Registration Form</h2>

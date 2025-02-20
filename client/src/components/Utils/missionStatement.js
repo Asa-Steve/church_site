@@ -2,24 +2,23 @@ const missionStatement = [
   {
     id: 1,
     title: "Our Mission",
-    body: "Our mission is what we do. The active verb here is invite. God progresses through gracious invitations.",
+    body: "We are called to invite all people into a deeper relationship with Christ through the sacraments and active participation in the Church.",
   },
   {
     id: 2,
     title: "Our Vision",
-    body: "We see our mission as extending God’s Kingdom and we seek to help every member find their place.",
+    body: "As part of God’s Kingdom, we seek to nurture faith, encourage service, and support one another in our spiritual journey.",
   },
   {
     id: 3,
     title: "Our Values",
-    body: "Community is where we most deeply experience God’s love and grace throughout all stages of life.",
+    body: "We embrace the Gospel of Christ, foster community, and live by the virtues of faith, hope, and charity.",
   },
   {
     id: 4,
     title: "Our Faith",
-    body: "All Peoples are of tremendous value to God; reaching them with the Gospel is our distinct responsibility.",
+    body: "All people are precious in God’s eyes. We are committed to evangelization and sharing the love of Christ with the world.",
   },
 ];
-
 
 export default missionStatement;

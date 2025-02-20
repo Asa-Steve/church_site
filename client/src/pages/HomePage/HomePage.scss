@@ -44,6 +44,7 @@
       margin-top: 2rem;
       padding: 1rem 3rem;
       background-color: #fff;
+      text-align: center;
 
       color: #001220;
       cursor: pointer;
@@ -79,7 +80,10 @@
       padding: 0.5rem;
 
       color: #001220;
-
+      p {
+        max-width: 80%;
+        margin: auto;
+      }
       .icon {
         position: relative;
 

@@ -93,9 +93,14 @@ const Contact = () => {
             <h2>Call Us or Fill the Form</h2>
             <div className="subtitle">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut seedor labore. Excepteur sint
-                occaecat.
+                Fill out the contact form below, and we will get back to you as
+                soon as possible. We look forward to hearing from you and
+                welcoming you into our parish community!
+              </p>
+              <p>
+                We are here to assist you with any inquiries, spiritual needs,
+                or sacramental requests. Feel free to reach out through any of
+                the following means:
               </p>
             </div>
           </div>
@@ -104,7 +109,6 @@ const Contact = () => {
             <div className="left">
               <div className="form-section">
                 <div className="wrap">
-
                   <ContactForm
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
@@ -120,7 +124,11 @@ const Contact = () => {
               <div className="channels">
                 <div className="chan1">
                   <h3 className="title">Address:</h3>
-                  <p>8032 La Sierra Lane Tampa, FL 33604</p>
+                  <p>
+                    St. Matthias Catholic Church,
+                    <br />
+                    Amarata, Yenagoa Bayelsa State.
+                  </p>
                 </div>
                 <div className="chan2">
                   <h3 className="title">Email:</h3>

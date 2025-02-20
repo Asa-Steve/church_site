@@ -2,10 +2,81 @@
 
 .search_section {
   // min-height: 100dvh;
-  max-height: 140dvh;
-  overflow: hidden;
-  overflow-y: auto;
+  // max-height: 140dvh;
+  // overflow: hidden;
+  // overflow-y: auto;
 }
+
+.intro_text {
+  width: 80%;
+  margin: 0 auto 40px;
+  color: #001220;
+  padding: 0.3rem;
+
+  div {
+    width: 90%;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(128, 128, 128, 0.144);
+
+    &:nth-of-type(2) {
+      margin-top: 1rem;
+    }
+  }
+
+  p,
+  ul,
+  ol {
+    margin-block: 1rem;
+    max-width: 80%;
+  }
+
+  ul,
+  ol {
+    padding-left: 1rem;
+    li {
+      margin-block: 0.5rem;
+    }
+  }
+
+  @include md {
+    div {
+      width: 100%;
+    }
+    p,
+    ul,
+    ol {
+      max-width: 100%;
+      line-height: 1.4;
+    }
+  }
+
+  @include sm {
+    width: 90%;
+
+    div {
+      padding: 0 0.2rem;
+    }
+  }
+
+  @include xsm {
+    width: 100%;
+    div {
+      text-align: center;
+    }
+    p {
+      padding: 0.3rem;
+    }
+    ul,
+    ol {
+      list-style: none;
+    }
+  }
+}
+
+.wrap {
+  width: 80% !important;
+}
+
 .archive_result {
   overflow: hidden;
   width: 95% !important;
@@ -25,6 +96,10 @@
 }
 
 .main_records.search {
+  height: fit-content;
+  padding: 180px 0;
+  background-color: #fff;
+
   .record-type {
     border: 1px solid rgba(128, 128, 128, 0.293);
   }
@@ -116,9 +191,9 @@
   }
 
   @include xsm {
+    padding: 100px 0;
     .wrap {
-      width: 90%;
-
+      width: 95% !important;
       .record-type {
         justify-content: space-between;
         .search_by {

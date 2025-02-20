@@ -66,6 +66,11 @@ a {
     height: 180px !important;
   }
 }
+.load {
+  position: relative;
+  height: 81dvh;
+  overflow: hidden;
+}
 
 // Spinner Btn Setup
 .row.input-grp {

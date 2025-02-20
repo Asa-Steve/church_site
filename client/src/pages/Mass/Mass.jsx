@@ -65,8 +65,6 @@ const Mass = () => {
       };
       setMessage("");
 
-      // setisLoading(true);
-
       setisLoading(true);
       const response = await axiosInstance.post("/makePayment", payload);
       const {
@@ -113,7 +111,45 @@ const Mass = () => {
             message={message}
             price={formData.amount}
           />
-          <section className="form-section">
+          <section className="mass form-section">
+            <div className="intro_text">
+              <div>
+                <h2>Request a Mass Intention</h2>
+                <p>
+                  The Holy Sacrifice of the Mass is the highest form of prayer
+                  and a powerful way to intercede for loved ones, whether living
+                  or deceased. At St. Matthias Catholic Church, you can request
+                  a Mass to be offered for your special intentions, including:
+                </p>
+                <ul>
+                  <li>For the repose of the soul of a loved one</li>
+                  <li>For healing and thanksgiving</li>
+                  <li>
+                    For special blessings (birthdays, anniversaries, etc.)
+                  </li>
+                  <li>For personal or family intentions</li>
+                </ul>
+              </div>
+              <div>
+                <h2>How to Request a Mass</h2>
+                <ol>
+                  <li>
+                    Fill out the request form below with the necessary details.
+                  </li>
+                  <li>Specify the name(s) and intention for the Mass. </li>
+                  <li>Choose a preferred date (if applicable). </li>
+                  <li>
+                    Submit your request and allow the parish office to process
+                    it.
+                  </li>
+                </ol>
+              </div>
+
+              <div className="disclaimer">
+                If you have any questions or need further assistance, please
+                contact the parish office.
+              </div>
+            </div>
             <div className="wrap">
               <div className="form-header">
                 <h2>Please Offer Mass For</h2>

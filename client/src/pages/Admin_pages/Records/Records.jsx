@@ -89,10 +89,6 @@ const Records = () => {
 
     setIsLoading(false);
     setShowPopup(false);
-    setTimeout(() => {
-      setMessage({ status: "", message: "" });
-      navigate("/admin/records");
-    }, 2000);
   };
 
   useEffect(() => {
@@ -220,7 +216,10 @@ const Records = () => {
           });
           break;
       }
-
+      setTimeout(() => {
+        setMessage({ status: "", message: "" });
+        navigate("/admin/records");
+      }, 2000);
       resetFormData();
     } catch (error) {
       setIsLoading(false);

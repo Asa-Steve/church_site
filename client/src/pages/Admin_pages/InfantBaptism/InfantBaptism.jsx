@@ -5,7 +5,6 @@ import Pagination from "../../../components/common/Pagination/Pagination";
 import Loader from "../../../components/common/Loader/Loader";
 
 const MassRequest = () => {
-
   const [registrations, setRegistrations] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -48,6 +47,7 @@ const MassRequest = () => {
       </div>
     ) : (
       <div className="registrations">
+        
         <div className="infants">
           {registrations.map(
             ({ email, parents, sponsor, infant, createdAt }) => (
