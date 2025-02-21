@@ -3,8 +3,10 @@
 .search_section {
   // min-height: 100dvh;
   // max-height: 140dvh;
+  height: fit-content;
   // overflow: hidden;
-  // overflow-y: auto;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .intro_text {
@@ -195,7 +197,6 @@
   @include xsm {
     padding: 100px 0;
     .wrap {
-      width: 95% !important;
       .record-type {
         justify-content: space-between;
         .search_by {

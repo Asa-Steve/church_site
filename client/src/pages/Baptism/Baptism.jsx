@@ -105,9 +105,9 @@ const Baptism = () => {
                 <h2>Baptism Fee</h2>
                 <p>
                   A standard contribution of{" "}
-                  <span style={{ color: "red" }}>₦1,500</span> is required to
-                  help cover administrative and liturgical expenses. If you have
-                  any financial concerns, please contact the parish office.
+                  <span style={{ color: "#ff0066" }}>₦1,500</span> is required
+                  to help cover administrative and liturgical expenses. If you
+                  have any financial concerns, please contact the parish office.
                 </p>
               </div>
               <div>
