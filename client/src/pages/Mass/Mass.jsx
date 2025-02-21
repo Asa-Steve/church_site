@@ -146,8 +146,8 @@ const Mass = () => {
               </div>
 
               <div className="disclaimer">
-                If you have any questions or need further assistance, please
-                contact the parish office.
+                <span>⚠️</span> If you have any questions or need further
+                assistance, please contact the parish office.
               </div>
             </div>
             <div className="wrap">

@@ -417,14 +417,24 @@ section.top {
     }
 
     @include xsm {
-      width: 95% !important;
-    }
-
-    @include xxsm {
-      width: 90%;
+      width: 90% !important;
     }
   }
-
 }
 
 // Chunk ends here
+
+.disclaimer {
+  color: #ff0066;
+  font-style: italic;
+  font-size: 14px;
+
+  @include xsm {
+    max-width: 90%;
+    margin: auto;
+    span {
+      // display: block;
+      font-size: 1.4rem;
+    }
+  }
+}

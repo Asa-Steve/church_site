@@ -104,7 +104,8 @@ const Baptism = () => {
                 </p>
                 <h2>Baptism Fee</h2>
                 <p>
-                  A standard contribution of <span style={{color:"red"}}>₦1,500</span> is required to
+                  A standard contribution of{" "}
+                  <span style={{ color: "red" }}>₦1,500</span> is required to
                   help cover administrative and liturgical expenses. If you have
                   any financial concerns, please contact the parish office.
                 </p>
@@ -131,9 +132,10 @@ const Baptism = () => {
               </div>
 
               <div className="disclaimer">
-                The baptismal fee is not a charge for the sacrament but a
-                contribution to support the parish's preparation and materials.
-                No child will be denied baptism due to financial difficulties.
+                <span>⚠️</span> The baptismal fee is not a charge for the
+                sacrament but a contribution to support the parish's preparation
+                and materials. No child will be denied baptism due to financial
+                difficulties.
               </div>
             </div>
             <div className="wrap">
