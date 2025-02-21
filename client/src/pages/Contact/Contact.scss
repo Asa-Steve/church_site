@@ -17,7 +17,7 @@
 
     h2 {
       font-size: 3.5rem;
-      font-weight: 100;
+      // font-weight: 100;
     }
 
     p {
@@ -81,5 +81,10 @@
 
   @include xsm {
     padding-block: 100px;
+    .right {
+      .channels {
+        margin-bottom: 2rem;
+      }
+    }
   }
 }

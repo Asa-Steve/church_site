@@ -52,9 +52,11 @@
 
   @include sm {
     width: 90%;
+    margin-bottom: 40px;
 
     div {
-      padding: 0 0.2rem;
+      padding-inline: 0.2rem ;
+      border: none;
     }
   }
 

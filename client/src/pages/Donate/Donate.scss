@@ -1,4 +1,7 @@
+@import "../../styles/responsive.scss";
+
 .donate.form-section {
+  padding: 180px 0;
   #cur_icon {
     color: rgb(94, 94, 94);
   }
@@ -20,11 +23,11 @@
       }
     }
 
-    &:last-of-type{
+    &:last-of-type {
       border-bottom: 1px solid rgba(6, 6, 6, 0.235);
       margin-bottom: 2rem;
 
-      input{
+      input {
         border: none;
       }
     }
@@ -37,12 +40,16 @@
     margin-top: 0.2rem;
     width: max-content;
     &.err {
-        background-color: red;
-        color: white;
+      background-color: red;
+      color: white;
     }
     &.succ {
-        background-color: greenyellow;
-        border-color: white;
+      background-color: greenyellow;
+      border-color: white;
     }
+  }
+
+  @include xsm {
+    padding: 100px 0;
   }
 }
