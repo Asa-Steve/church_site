@@ -140,6 +140,10 @@ h3 {
       .wrap {
         width: 90%;
       }
+
+      @include xsm {
+        width: 98% !important;
+      }
     }
 
     #message {
@@ -268,30 +272,6 @@ section.top {
 
       .row {
         margin-bottom: 1rem;
-        // border: 1px solid;
-
-        // ***** Changes i made after adding divs and labels****
-
-        // &.input-grp input:nth-of-type(1) {
-        //     width: 60%;
-        //     margin-right: 9%;
-
-        //     @include xxsm {
-        //         width: 100%;
-        //         margin-right: 0;
-        //         margin-bottom: 1rem;
-        //     }
-        // }
-
-        // &.input-grp input:nth-of-type(2) {
-        //     width: 20%;
-        //     appearance: none;
-        //     -moz-appearance: textfield;
-
-        //     @include xxsm {
-        //         width: 100%;
-        //     }
-        // }
 
         &.input-grp {
           display: flex;
@@ -437,13 +417,14 @@ section.top {
     }
 
     @include xsm {
-      width: 95%;
+      width: 95% !important;
     }
 
     @include xxsm {
       width: 90%;
     }
   }
+
 }
 
 // Chunk ends here

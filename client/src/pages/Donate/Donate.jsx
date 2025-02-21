@@ -133,7 +133,28 @@ const Donate = () => {
                   You can make direct bank transfers to either of these account
                   numbers
                 </p>
-                <span>9167670473</span>
+                <div className="acc_deit">
+                  <span>
+                    <strong>Bank Name :</strong> Access Bank
+                  </span>
+                  <span>
+                    <strong>Account Name : </strong>Charity
+                  </span>
+                  <span>
+                    <strong>Account Number : </strong>9167670473
+                  </span>
+                </div>
+                <div className="acc_deit">
+                  <span>
+                    <strong>Bank Name :</strong> GTCO
+                  </span>
+                  <span>
+                    <strong>Account Name : </strong>Church Project
+                  </span>
+                  <span>
+                    <strong>Account Number : </strong>7032846083
+                  </span>
+                </div>
               </div>
             </div>
             <div className="wrap">

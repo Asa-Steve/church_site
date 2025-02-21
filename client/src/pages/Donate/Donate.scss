@@ -10,6 +10,21 @@
     margin-left: 2px;
   }
 
+  .intro_text {
+    div.acc_deit {
+      border: 2px solid rgba(128, 128, 128, 0.242);
+      display: flex;
+      flex-wrap: wrap;
+      // gap: 10px;
+      justify-content: center;
+
+      span {
+        display:block;
+        width: 100%;
+        padding: .2rem;
+      }
+    }
+  }
   .row {
     .card_deits {
       display: flex;
