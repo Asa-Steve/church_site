@@ -185,91 +185,91 @@
     overflow: scroll;
     overflow-x: hidden;
 
-    .top-bar {
-      height: 50px;
-      display: flex;
-      gap: 40px;
-      border-bottom: 1px solid rgba(128, 128, 128, 0.292);
-      width: 100%;
-      padding-inline: 2rem;
-      backdrop-filter: blur(20px);
-      margin-inline: auto;
-      position: sticky;
-      z-index: 300;
-      top: 0;
-      background-color: rgba(255, 255, 255, 0.256);
+    // .top-bar {
+    //   height: 50px;
+    //   display: flex;
+    //   gap: 40px;
+    //   border-bottom: 1px solid rgba(128, 128, 128, 0.292);
+    //   width: 100%;
+    //   padding-inline: 2rem;
+    //   backdrop-filter: blur(20px);
+    //   margin-inline: auto;
+    //   position: sticky;
+    //   z-index: 300;
+    //   top: 0;
+    //   background-color: rgba(255, 255, 255, 0.256);
 
-      form {
-        display: flex;
-        align-items: center;
-        flex: 2;
+    //   form {
+    //     display: flex;
+    //     align-items: center;
+    //     flex: 2;
 
-        input {
-          width: 90%;
-          height: 40px;
-          border: none;
-          padding: 0.5rem;
-          background-color: transparent;
+    //     input {
+    //       width: 90%;
+    //       height: 40px;
+    //       border: none;
+    //       padding: 0.5rem;
+    //       background-color: transparent;
 
-          &:focus {
-            outline: none;
-          }
-        }
+    //       &:focus {
+    //         outline: none;
+    //       }
+    //     }
 
-        button {
-          height: 40px;
-          width: 40px;
-          border: none;
-          background-color: transparent;
-          border-left: 1px solid rgb(153, 149, 149);
-          cursor: pointer;
+    //     button {
+    //       height: 40px;
+    //       width: 40px;
+    //       border: none;
+    //       background-color: transparent;
+    //       border-left: 1px solid rgb(153, 149, 149);
+    //       cursor: pointer;
 
-          img {
-            width: 50%;
-            height: 50%;
-          }
-        }
-      }
+    //       img {
+    //         width: 50%;
+    //         height: 50%;
+    //       }
+    //     }
+    //   }
 
-      .user_deit {
-        flex: 0.5;
+    //   .user_deit {
+    //     flex: 0.5;
 
-        img {
-          width: 100%;
-          height: 100%;
-          // object-fit: cover;
-        }
+    //     img {
+    //       width: 100%;
+    //       height: 100%;
+    //       // object-fit: cover;
+    //     }
 
-        .icons {
-          display: flex;
-          gap: 10px;
-          align-items: center;
-          height: 100%;
+    //     .icons {
+    //       display: flex;
+    //       gap: 10px;
+    //       align-items: center;
+    //       height: 100%;
 
-          .icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #fff;
+    //       .icon {
+    //         width: 40px;
+    //         height: 40px;
+    //         border-radius: 50%;
+    //         background-color: #fff;
 
-            img {
-              transform: scale(0.6);
-            }
-          }
+    //         img {
+    //           transform: scale(0.6);
+    //         }
+    //       }
 
-          .profile-pic {
-            width: 40px;
-            height: 40px;
-            border: 1px solid;
-            border-radius: 50%;
+    //       .profile-pic {
+    //         width: 40px;
+    //         height: 40px;
+    //         border: 1px solid;
+    //         border-radius: 50%;
 
-            img {
-              border-radius: 50%;
-            }
-          }
-        }
-      }
-    }
+    //         img {
+    //           border-radius: 50%;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
 
     .mid-bar {
       display: flex;
@@ -278,8 +278,8 @@
       align-items: center;
       position: sticky;
       z-index: 200;
-      top: 50px;
-
+      // top: 50px;
+      top: 0;
       backdrop-filter: blur(20px);
       background-color: rgba(255, 255, 255, 0.256);
 
@@ -293,13 +293,18 @@
       }
     }
 
-    .main {
+    .main_content_area {
       // padding: 0.5rem;
       background-color: #fff;
-      // position: relative;
+      position: relative;
       width: 98%;
       margin: auto;
-      height: 81vh;
+      // height: 81vh;
+      height: 90%;
+
+      @include xsm {
+        // height: fit-content;
+      }
     }
   }
 

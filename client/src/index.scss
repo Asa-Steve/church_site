@@ -55,8 +55,10 @@ a {
   text-decoration: none;
 }
 
-h2 {
-  font-size: 32px !important;
+h2:not(.posts h2) {
+  @include sm {
+    font-size: 32px !important;
+  }
   @include xsm {
     font-size: 24px !important;
     font-weight: 500 !important;
@@ -83,7 +85,8 @@ h3 {
 }
 .load {
   position: relative;
-  height: 81dvh;
+  // height: 81dvh;
+  height: 100%;
   overflow: hidden;
 }
 

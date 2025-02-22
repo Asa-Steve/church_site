@@ -256,7 +256,7 @@ const ProtectedRoute = () => {
           </div>
         </div>
         <div className="right_dash">
-          <div className="top-bar">
+          {/* <div className="top-bar">
             <form action="">
               <input type="text" placeholder="search here..." />
               <button>
@@ -276,7 +276,7 @@ const ProtectedRoute = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="mid-bar">
             <div className="dash-subtitle">
@@ -284,7 +284,7 @@ const ProtectedRoute = () => {
             </div>
           </div>
 
-          <div className="main">
+          <div className="main_content_area">
             <Outlet />
           </div>
         </div>

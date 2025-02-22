@@ -99,7 +99,7 @@
           }
 
           p {
-            line-height: 20px;
+            line-height: 1.2;
             font-weight: 100;
             color: rgb(109, 105, 105);
           }
@@ -259,6 +259,16 @@
       font-size: 2rem;
       max-width: 90%;
       margin: auto;
+    }
+
+    .stat {
+      .stat-info {
+        padding-left: 0.4rem !important;
+        p {
+          font-size: 13px;
+          line-height: 1.2;
+        }
+      }
     }
   }
 }
