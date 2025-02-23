@@ -7,7 +7,7 @@
   color: black;
 
   .header_title {
-    padding: 180px 0 3rem;
+    padding: 120px 0 3rem;
 
     h2,
     p {
@@ -46,7 +46,7 @@
 
   .mission_stat {
     width: 95%;
-    margin: 2rem auto 8rem;
+    margin: 2rem auto 0;
     padding: 1rem;
     height: 500px;
     max-height: fit-content;
@@ -193,9 +193,11 @@
 
         .faqs {
           padding: 0.5rem;
+          width: 85%;
 
           .Faq {
             border-color: rgb(200, 200, 200);
+            margin-block: 0.5rem;
           }
         }
       }
@@ -248,10 +250,8 @@
   }
 
   @include xsm {
-    .header_title {
-      h2 {
-        padding: 0;
-      }
+    .faqs {
+      width: 100% !important;
     }
   }
   @include xsm {
@@ -261,6 +261,11 @@
       margin: auto;
     }
 
+    .header_title {
+      h2 {
+        padding: 0;
+      }
+    }
     .stat {
       height: 150px !important;
       .stat-info {

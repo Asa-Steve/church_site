@@ -4,7 +4,7 @@
   min-height: 100vh;
   background-color: rgba(255, 255, 255, 0.945);
   color: black;
-  padding-block: 180px;
+  padding-block: 120px;
 
   .header_title {
     padding: 0 0 3rem;
@@ -17,10 +17,11 @@
 
     h2 {
       font-size: 3.5rem;
-      // font-weight: 100;
+      font-weight: 100;
     }
 
     p {
+      width: 80%;
       max-width: 800px;
       margin: auto;
       font-size: 1.2rem;
@@ -74,8 +75,15 @@
   }
 
   .right {
+    padding-left: 2rem;
     .channels {
       padding: 0.5rem;
+    }
+
+    @include sm{
+      padding-left: 0;
+      text-align: center;
+      margin-bottom: 3rem;
     }
   }
 

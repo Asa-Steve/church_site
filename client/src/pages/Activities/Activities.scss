@@ -1,15 +1,24 @@
 @import "../../styles/responsive.scss";
 
-.weekly_activities {
+section.weekly_activities {
+  padding: 180px 0;
+
+  background-color: #fff;
+  border: 1px solid;
+  // height: 500px;
+  // height: 89vh !important;
+  overflow-y: auto;
+
   .intro {
     color: #001220;
     max-width: 80%;
     text-align: center;
     padding: 0.5rem;
-    margin: 8rem auto 10rem auto;
+    margin: 0 auto 10rem auto;
 
     h1 {
       margin-bottom: 2rem;
+      font-size: 2rem;
       max-width: 85%;
       margin-inline: auto;
     }
@@ -18,10 +27,7 @@
       margin: auto;
     }
   }
-  background-color: #fff;
-  border: 1px solid;
-  height: 500px;
-  overflow-y: auto;
+
   h2 {
     color: white;
     font-size: 1.7rem;
@@ -63,7 +69,7 @@
 
   @include md {
     .intro {
-      h1{
+      h1 {
         font-size: 1.5rem;
       }
     }
@@ -71,9 +77,9 @@
 
   @include sm {
     .intro {
-      p{
+      p {
         width: 100%;
-        padding: .5rem;
+        padding: 0.5rem;
       }
     }
     .schedules {
@@ -83,16 +89,17 @@
     }
   }
 
-  
   @include xsm {
-.intro {
+    padding: 100px 0;
+    .intro {
       max-width: 100%;
       margin: 2rem auto 3rem auto;
-
-      h1{
-        font-size: 1rem;
+      h1 {
         max-width: 100%;
       }
+    }
+    div h2 {
+      font-size: 1.2rem !important;
     }
   }
 }

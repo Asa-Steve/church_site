@@ -66,20 +66,23 @@
   .items {
     width: 90%;
     position: absolute;
-    bottom: -70px;
+    bottom: -100px;
     left: 50px;
     right: 50px;
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     background-color: #fff;
 
     .item {
       text-align: center;
       z-index: 1;
       padding: 0.5rem;
-
       color: #001220;
+
+      h3 {
+        font-size: 20px !important;
+      }
       p {
         max-width: 80%;
         margin: auto;
@@ -206,16 +209,26 @@ section.wave {
           font-size: 15px;
           font-weight: 400;
           position: relative;
-        }
+          transition: all 0.3s ease;
+          
+          &::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 0px;
+            bottom: -4px;
+            background-color: transparent;
+            border-bottom: 1px solid #ff0066;
+            transition: all 0.3s ease;
+          }
 
-        a::before {
-          content: "";
-          position: absolute;
-          width: 40px;
-          height: 0px;
-          bottom: -4px;
-          background-color: transparent;
-          border-bottom: 1px solid #ff0066;
+          &:hover {
+            color: #ff5197;
+            &::before {
+              width: 80px;
+              color: white;
+            }
+          }
         }
       }
 

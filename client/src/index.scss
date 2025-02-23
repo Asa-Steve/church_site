@@ -426,10 +426,24 @@ section.top {
 
 // Chunk ends here
 
+.intro_text {
+  p,
+  ul,
+  ol,
+  span {
+    font-size: 1.2rem;
+    color: rgb(96, 95, 95);
+
+    @include sm {
+      font-size: 1rem;
+    }
+  }
+}
 .disclaimer {
   color: #ff0066;
   font-style: italic;
   font-size: 14px;
+  margin-top: 1rem;
 
   @include xsm {
     max-width: 90%;

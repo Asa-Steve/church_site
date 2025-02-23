@@ -1,10 +1,11 @@
 @import "../../../styles/responsive.scss";
 
 .Footer {
-  height: 300px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 100px 50px;
 
   border-top: 1px solid rgba(255, 255, 255, 0.502);
 
@@ -138,10 +139,12 @@
       color: #ff006684;
       // font-weight: bold;
     }
-
     @include xsm {
       margin-top: 2rem;
       padding-inline: 0.3rem;
     }
+  }
+  @include sm {
+    padding: 2rem 0 0 !important;
   }
 }

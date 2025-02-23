@@ -87,7 +87,7 @@ const HomePage = () => {
                   of our mission.
                 </p>
 
-                <Link to="/donate">Explore Ministries</Link>
+                <Link to="/society">Explore Ministries</Link>
               </div>
             </div>
             <div className="program sec">

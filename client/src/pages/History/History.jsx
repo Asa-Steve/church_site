@@ -12,10 +12,10 @@ const History = () => {
         </section>
 
         <div className="main_content">
-          <h1>
-            A BRIEF HISTORY OF ST. MATTHIAS CATHOLIC CHURCH, AMARATA, YENAGOA,
-            BAYELSA STATE.
-          </h1>
+          <h2>
+            A Brief History of St. Matthias Catholic Church, Amarata, Yenagoa,
+            Bayelsa State.
+          </h2>
           <div className="text-container clearfix">
             <div className="img_wrap image-left">
               {/* <img src="/imgs/pic1.jpg" alt="" /> */}

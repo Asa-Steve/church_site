@@ -3,11 +3,14 @@
 .mass.form-section {
   // border: 1px solid;
   min-height: max-content;
-  padding: 180px 0 ;
+  padding: 120px 0 ;
 
   background-color: #fff;
 
 .intro_text{
+  p,ul,ol{
+    font-size: 1.2rem;
+  }
   div.disclaimer{
     font-style: italic;
     margin-top: 1rem;

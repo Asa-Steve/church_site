@@ -32,6 +32,7 @@ import Login from "./pages/Login/Login.jsx";
 import Reset from "./pages/Reset/Reset.jsx";
 import ForgotPw from "./pages/ForgotPw/ForgotPw.jsx";
 import History from "./pages/History/History.jsx";
+import Society from "./pages/society/Society.jsx";
 
 // Admin Pages (Require Auth)
 import Dashboard from "./pages/Admin_pages/Dashboard/Dashboard.jsx";
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
       {
         path: "/history",
         element: <History />,
+      },
+      {
+        path: "/society",
+        element: <Society />,
       },
       {
         path: "/activities",
