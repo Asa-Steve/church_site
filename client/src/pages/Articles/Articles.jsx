@@ -70,15 +70,27 @@ const Articles = () => {
                 </div>
                 <div className="post-body">
                   <h2>
-                    <Link to={`/articles/${post?.slug}`}>{post?.postTitle}</Link>
+                    <Link to={`/articles/${post?.slug}`}>
+                      {post?.postTitle}
+                    </Link>
                   </h2>
                   <p className="post-content">
                     {post?.content?.length > 100
                       ? post?.content.slice(0, 140) + "..."
                       : post?.content}
                   </p>
-                  <p>Tag : {post?.category}</p>
-                  <p className="author">posted by : {post?.author?.username}</p>
+                  <div>
+                    <div className="post_auth">
+                      <div className="art_cat">
+                        <img src="../icons/tag.png" alt="" />
+                        <p>{post?.category}</p>
+                      </div>
+                      <div className="art_cat">
+                        <img src="../icons/user.png" alt="" />
+                        <p className="author">{post?.author?.username}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}

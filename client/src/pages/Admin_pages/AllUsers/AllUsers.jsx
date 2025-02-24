@@ -26,6 +26,7 @@ const AllUsers = () => {
   // Logic for Getting all users from server
   const getUsers = async (page) => {
     try {
+      setLoading(true);
       setMessage("");
       const response = await axiosInstance.get(`/users?page=${page}&limit=8`); // sending Queries alongside
       setUsers(response?.data?.data);
@@ -76,52 +77,50 @@ const AllUsers = () => {
         <h1>{message ? message : "No User Found."}</h1>
       </div>
     ) : (
-      <div>
+      <div className="all_users">
         <h1 className="all_postheader">All Users</h1>
-        <div>
-          <div className="admin_allusers">
-            {users.map((user) => {
-              return (
-                <div key={user._id} className="user">
-                  <div className="user-img">
-                    <img
-                      src={user.img ? `${user.img}` : "/profile.webp"}
-                      alt={user.username}
-                    />
-                  </div>
-                  <h2>{user.username}</h2>
-                  <p>
-                    {" "}
-                    joined:
-                    {` ${new Date(user.createdAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}`}
-                  </p>
-                  <p className="role">{user.role}</p>
-                  {userRole === "superAdmin" && (
-                    <div className="btns">
-                      <Link to={`/admin/users/edit/${user._id}`}>Edit</Link>
-                      <button
-                        onClick={() => handleDelete(user._id)}
-                        disabled={loading}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  )}
+        <div className="admin_allusers">
+          {users.map((user) => {
+            return (
+              <div key={user._id} className="user">
+                <div className="user-img">
+                  <img
+                    src={user.img ? `${user.img}` : "/profile.webp"}
+                    alt={user.username}
+                  />
                 </div>
-              );
-            })}
-          </div>
-          <div className="footer-pagination">
-            <Pagination
-              handlePageChange={handlePageChange}
-              currentPage={currentPage}
-              totalPages={totalPages}
-            />
-          </div>
+                <h2>{user.username}</h2>
+                <p>
+                  {" "}
+                  joined:
+                  {` ${new Date(user.createdAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}`}
+                </p>
+                <p className="role">{user.role}</p>
+                {userRole === "superAdmin" && (
+                  <div className="btns">
+                    <Link to={`/admin/users/edit/${user._id}`}>Edit</Link>
+                    <button
+                      onClick={() => handleDelete(user._id)}
+                      disabled={loading}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <div className="footer-pagination">
+          <Pagination
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
         </div>
       </div>
     );

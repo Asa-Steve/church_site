@@ -12,7 +12,7 @@
   // overflow-y: auto;
 
   .form-section {
-    // height: fit-content; 
+    // height: fit-content;
     // display: grid;
     // place-items: center;
     // padding-top: 0.5rem;
@@ -20,7 +20,7 @@
     .wrap {
       text-align: center;
       position: relative;
-      width: 40%;
+      width: 40% !important;
       overflow: hidden;
       border: 1px solid rgba(128, 128, 128, 0.42);
       padding: 0.5rem 0.2rem;
@@ -117,12 +117,16 @@
       }
 
       @include md {
-        width: 80%;
+        width: 80% !important;
       }
 
       @include xsm {
-        width: 98%;
+        width: 98% !important;
       }
     }
+  }
+
+  @include xsm {
+    min-height: fit-content;
   }
 }

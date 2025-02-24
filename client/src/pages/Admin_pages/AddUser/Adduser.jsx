@@ -89,7 +89,7 @@ const Adduser = () => {
       setIsLoading(false);
       setTimeout(() => {
         setMessage(null);
-        navigate("/admin/users/");
+        navigate("/admin/users");
       }, 3000);
     } catch (err) {
       setMessage({ ...err.response?.data });

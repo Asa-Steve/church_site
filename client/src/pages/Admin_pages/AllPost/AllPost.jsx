@@ -98,9 +98,9 @@ const AllPost = () => {
       </div>
     ) : (
       <>
-        <h1 className="all_postheader">All Posts</h1>
         <div>
           <div className="admin_posts">
+        <h1 className="all_postheader">All Posts</h1>
             {posts.map((post) => {
               return (
                 <div key={post._id} className="post">

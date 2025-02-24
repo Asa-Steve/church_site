@@ -213,8 +213,12 @@
     .outro_text {
       width: 95%;
       padding: 0;
+      h3{
+        font-size:20px !important;
+        font-weight: 500;
+      }
       p {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
     }
   }

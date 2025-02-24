@@ -13,6 +13,7 @@
     background: linear-gradient(to right, #ff0066 15%, #ff0066 37%, #fff 37%);
     display: grid;
     place-items: center;
+    height: 100% !important;
 
     .wrap {
       max-height: 600px;
